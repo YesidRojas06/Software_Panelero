@@ -34,9 +34,10 @@
                     </q-item>
                 </router-link>
                 <q-separator inset class="q-my-sm" />
+                
                 <div class="q-mt-md">
                     <div class="flex flex-center q-gutter-xs">
-                        <a class="GNL__drawer-footer-link" aria-label="Privacy">Derechos reservados a WILYECORP</a>
+                        <a class="GNL__drawer-footer-link" aria-label="Privacy">Software Panelero</a>
                     </div>
                 </div>
             </q-list>
@@ -47,7 +48,7 @@
         <q-footer class="bg-white text-black" reveal elevated>
             <q-toolbar>
 
-                <q-toolbar-title>Derechos reservados a WILYECORP.</q-toolbar-title>
+                <q-toolbar-title>Software Panelero</q-toolbar-title>
             </q-toolbar>
         </q-footer>
 
@@ -77,10 +78,12 @@ function toggleLeftDrawer() {
 }
 
 let links1 = ref([
-    { icon: 'home', text: 'Inicio', href: '/home' },
-    { icon: 'newspaper', text: 'Noticias', href: '/news' },
-    { icon: 'how_to_reg', text: 'Registrar', href: '/register' },
-    { icon: 'account_circle', text: 'Perfil', href: '/profile' },
+    { icon: '', text: 'Mantenimiento', href: '/mantenimiento' },
+    { icon: '', text: 'Inventario', href: '/inventario' },
+    { icon: '', text: 'Costos', href: '/costos' },
+    { icon: '', text: 'Pedidos', href: '/pedidos' },
+    { icon: '', text: 'Transformacion', href: '/transformacion' },
+    { icon: '', text: 'Reportes', href: '/reportes' },
 ])
 
 </script>
