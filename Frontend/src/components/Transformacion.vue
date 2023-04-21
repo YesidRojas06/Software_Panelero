@@ -1,5 +1,5 @@
 <template>
     <!-- <q-page> -->
-      Registrar
+      Transformacion
     <!-- </q-page> -->
 </template>
