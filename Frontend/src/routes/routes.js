@@ -4,7 +4,7 @@ import Costos from "../components/Costos.vue";
 import Pedidos from "../components/Pedidos.vue";
 import Transformacion from "../components/Transformacion.vue";
 import Reportes from "../components/Reportes.vue";
-
+import Home from "../components/Home.vue";
 
 import Homee from "../pages/Homee.vue"
 import Login from "../pages/Login.vue";
@@ -12,7 +12,8 @@ import Login from "../pages/Login.vue";
 export const routes = [
   { path: "/", component: Login },
   // { path: "/login", component: Login },
-  { path: "/home", component:Homee, children: [
+  { path: "/homee", component:Homee, children: [
+    { path: "/home", component:Home },
     { path: "/mantenimiento", component:Mantenimiento },
     { path: "/pedidos", component:Pedidos },
     { path: "/inventario", component: Inventario },

@@ -45,7 +45,7 @@ ss
                     margin: 0px auto;
                     margin-top: 10px;
                   ">
-                <router-link to="/home">
+                <router-link to="/homee">
                   <q-btn style="border-radius: 10px" color="black" label="Login" />
                 </router-link>
                   <!-- <q-btn @click="addUser()" style="border-radius: 10px" color="black" label="Login" /></router-link> -->

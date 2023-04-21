@@ -78,12 +78,13 @@ function toggleLeftDrawer() {
 }
 
 let links1 = ref([
-    { icon: '', text: 'Mantenimiento', href: '/mantenimiento' },
-    { icon: '', text: 'Inventario', href: '/inventario' },
-    { icon: '', text: 'Costos', href: '/costos' },
-    { icon: '', text: 'Pedidos', href: '/pedidos' },
-    { icon: '', text: 'Transformacion', href: '/transformacion' },
-    { icon: '', text: 'Reportes', href: '/reportes' },
+    { icon: 'home', text: 'Inicio', href: '/home' },
+    { icon: 'build_circle', text: 'Mantenimiento', href: '/mantenimiento' },
+    { icon: 'inventory_2', text: 'Inventario', href: '/inventario' },
+    { icon: 'monetization_on', text: 'Costos', href: '/costos' },
+    { icon: 'local_shipping', text: 'Pedidos', href: '/pedidos' },
+    { icon: 'roundabout_right', text: 'Transformacion', href: '/transformacion' },
+    { icon: 'wysiwyg', text: 'Reportes', href: '/reportes' },
 ])
 
 </script>
