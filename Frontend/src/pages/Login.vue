@@ -1,5 +1,7 @@
 <template>
 
+
+
   <!-- <div class="row " style="background-image: url('../src/assets/Estudios-mexicanos-de-videojuegos-que-debes-conocer-2.webp')">
     <div class="col-4"></div>
     <div class="col-4 full-height">
@@ -9,7 +11,7 @@ ss
   </div> -->
   <!-- <template> -->
   <!-- <q-page> -->
-    <div class="row">
+    <div class="row background-image ">
       <!-- <div v-show="home == true" style="min-height: 100vh; background-color: green"> -->
         <!-- <div v-show="home == true" class="row" style="min-height: 90vh"> -->
           <div class="col-1"></div>
@@ -31,21 +33,24 @@ ss
                     font-family: Cambria, Cochin, Georgia, Times,
                       'Times New Roman', serif;
                   ">
-                <b>Iniciar Seccion</b>
+                <b>Iniciar Sesión</b>
               </h4>
 
               <q-input style="background-color: white; width: 90%; border-radius: 10px" outlined v-model="user"
                 label="Usuario" stack-label :dense="dense" /><br />
               <q-input style="background-color: white; width: 90%; border-radius: 10px" outlined v-model="pass"
                 label="Contraseña" stack-label :dense="dense" />
+                <p class="forgot-password">
+      <router-link to="/formulario">¿Olvidaste tu contraseña?</router-link>
+    </p>
 
               <div style="
                     width: 35%;
-                    height: 40px;
+                    height: 20px;
                     margin: 0px auto;
-                    margin-top: 10px;
+                    margin-top: 5px;
                   ">
-                <router-link to="/homee">
+                <router-link to="/home">
                   <q-btn style="border-radius: 10px" color="black" label="Login" />
                 </router-link>
                   <!-- <q-btn @click="addUser()" style="border-radius: 10px" color="black" label="Login" /></router-link> -->
@@ -55,7 +60,7 @@ ss
             <!-- Imagen -->
             <div style="width: 90%; height: 100%">
               <img style="width: 100%; height: 100%"
-                src="../assets/Estudios-mexicanos-de-videojuegos-que-debes-conocer-2.webp" alt="" />
+                src="../assets/cana-azucar.jpg" alt="" />
             </div>
           </div>
 
@@ -72,6 +77,7 @@ ss
   <!-- </q-page> -->
 <!-- </template> -->
 
+  
 </template>
 
 
@@ -88,12 +94,14 @@ function pasarHome() {
 
 const userStore = UserStore()
 
-let user = ref("w@w.com")
-let pass = ref("123456")
+let user= ref("")
+let pass = ref("")
 
-const addUser = () => {
+const addUser =() => {
   userStore.registerUser(user.value, pass.value)
 }
+
+
 function login() {
   userStore.login(user.value, pass.value)
 }
@@ -103,3 +111,25 @@ function login() {
 .my-card
   width: 100%
 </style>
+
+
+<style>
+  .background-image {
+    background-size: cover;
+    background-position: center center;
+    height: 120vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .forgot-password{
+    background-color: white;
+    color: black;
+    position: relative;
+    height: 100px;
+    width: 100px;
+  }
+</style>
+
