@@ -14,8 +14,12 @@
                         </q-avatar>
                         <q-tooltip>Perfil</q-tooltip>
                     </q-btn>
+                    <router-link to="/">
+            <q-btn class="iboto text-left">Salir</q-btn>
+          </router-link>
                 </div>
             </q-toolbar>
+            
         </q-header>
 
         <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-white" :width="280">
