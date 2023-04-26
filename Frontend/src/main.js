@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 // import './style.css'
+import axios from 'axios';
 import { Quasar } from "quasar";
 import App from "./App.vue";
 const app = createApp(App);
