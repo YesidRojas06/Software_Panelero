@@ -1,17 +1,5 @@
 <template>
-
-  <!-- <div class="row " style="background-image: url('../src/assets/Estudios-mexicanos-de-videojuegos-que-debes-conocer-2.webp')">
-    <div class="col-4"></div>
-    <div class="col-4 full-height">
-ss
-    </div>
-    <div class="col-4"></div>
-  </div> -->
-  <!-- <template> -->
-  <!-- <q-page> -->
-    <div class="row">
-      <!-- <div v-show="home == true" style="min-height: 100vh; background-color: green"> -->
-        <!-- <div v-show="home == true" class="row" style="min-height: 90vh"> -->
+    <div class="row background-image ">
           <div class="col-1"></div>
           <div class="col-10" style="
                 background-color: white;
@@ -31,75 +19,105 @@ ss
                     font-family: Cambria, Cochin, Georgia, Times,
                       'Times New Roman', serif;
                   ">
-                <b>Iniciar Seccion</b>
+                <b>Iniciar Sesión</b>
               </h4>
 
               <q-input style="background-color: white; width: 90%; border-radius: 10px" outlined v-model="user"
                 label="Usuario" stack-label :dense="dense" /><br />
               <q-input style="background-color: white; width: 90%; border-radius: 10px" outlined v-model="pass"
                 label="Contraseña" stack-label :dense="dense" />
+                <p class="forgot-password">
+      <router-link to="/formulario">¿Olvidaste tu contraseña?</router-link>
+    </p>
 
               <div style="
                     width: 35%;
-                    height: 40px;
+                    height: 20px;
                     margin: 0px auto;
-                    margin-top: 10px;
+                    margin-top: 5px;
                   ">
                 <router-link to="/home">
-                  <q-btn style="border-radius: 10px" color="black" label="Login" />
+                  <q-btn style="border-radius: 10px" color="black" label="Iniciar Sesión" />
                 </router-link>
-                  <!-- <q-btn @click="addUser()" style="border-radius: 10px" color="black" label="Login" /></router-link> -->
+    
               </div>
             </div>
 
             <!-- Imagen -->
             <div style="width: 90%; height: 100%">
               <img style="width: 100%; height: 100%"
-                src="../assets/Estudios-mexicanos-de-videojuegos-que-debes-conocer-2.webp" alt="" />
+                src="../assets/cana-azucar.jpg" alt="" />
             </div>
           </div>
 
           <div class="col-1"></div>
-        <!-- </div> -->
-      <!-- </div> -->
-
-      <!-- <div v-show="home == false"> -->
-        <!-- <h1>Te Registraste</h1> -->
-        <!-- <router-view></router-view> -->
-      <!-- </div> -->
-      <!-- termina div que contiene todo -->
     </div>
-  <!-- </q-page> -->
-<!-- </template> -->
-
 </template>
 
 
 <script setup>
+import axios from 'axios'
 import { ref } from "vue";
-import { UserStore } from "../stores/user.js"
 
-let home = ref(true);
 let dense = ref(false);
+let user= ref("")
+let pass = ref("")
 
-function pasarHome() {
-  home.value = false;
-}
-
-const userStore = UserStore()
-
-let user = ref("w@w.com")
-let pass = ref("123456")
-
-const addUser = () => {
-  userStore.registerUser(user.value, pass.value)
-}
 function login() {
-  userStore.login(user.value, pass.value)
+  axios.post('/api/login', {username: user.value, password: pass.value})
+    .then(response => {
+      // Si la respuesta es satisfactoria, guarda el token de autenticación en el local storage
+      localStorage.setItem('token', response.data.token);
+      // Luego, redirige al usuario a la página de inicio
+      router.push('/home');
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
+
+
+
+
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style lang="sass" scoped>
 .my-card
   width: 100%
 </style>
+
+
+<style>
+  .background-image {
+    background-size: cover;
+    background-position: center center;
+    height: 120vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .forgot-password{
+    background-color: white;
+    color: black;
+    position: relative;
+    height: 100px;
+    width: 100px;
+  }
+</style>
+
