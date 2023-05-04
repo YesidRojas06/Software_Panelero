@@ -20,10 +20,11 @@ class servidor{
         })
     }
     rutas(){
-        this.app.use("/",(req,res)=>{
-            res.send("life");
+        
+        this.app.use("/usuario",rutasusuarios)
+        this.app.use("/", (req,res) => {
+            res.send('life')
         })
-        this.app.use("/usario",rutasusuarios)
     }
 }
 
