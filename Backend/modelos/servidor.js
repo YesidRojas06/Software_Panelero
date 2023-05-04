@@ -6,18 +6,13 @@ import rutasusuarios from "../rutas/usuarios.js";
 class servidor{
     constructor(){
         this.app=express()
-        this.app.use(cors());
         this.app.use(express.json())
-        this.rutas()
+        this.app.use(cors());
         this.conexion()
+        this.rutas()
     }
     async conexion(){
         await conexion()
-    }
-    listen(){
-        this.app.listen("3100",()=>{
-            console.log("servidor en linea")
-        })
     }
     rutas(){
         
@@ -26,6 +21,12 @@ class servidor{
             res.send('life')
         })
     }
+    listen(){
+        this.app.listen("3100",()=>{
+            console.log("servidor en linea")
+        })
+    }
+  
 }
 
 export default servidor
