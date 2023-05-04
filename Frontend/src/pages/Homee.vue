@@ -1,66 +1,74 @@
 <template>
-    <q-layout view="hHh lpR fFf" class="bg-grey-1">
-        <q-header elevated class="bg-white text-grey-8">
-            <q-toolbar class="GNL__toolbar">
-                <q-btn flat dense round @click="toggleLeftDrawer" aria-label="Menu" icon="menu"
-                    class="q-mr-sm"><q-tooltip>Menu</q-tooltip></q-btn>
-                <q-space />
+    
+  <q-layout view="hHh lpR fFf" class="bg-grey-1">
+      <q-header elevated class=" " style="background-color: rgb(14, 224, 14);">
+          <q-toolbar class="GNL__toolbar">
+              <q-btn flat dense round @click="toggleLeftDrawer" aria-label="Menu" icon="menu"
+                  class="q-mr-sm"><q-tooltip>Menu</q-tooltip></q-btn>
+              <q-space />
 
 
-                <div class="q-gutter-sm row items-center no-wrap">
-                    <q-btn round flat>
-                        <q-avatar size="26px">
-                            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                        </q-avatar>
-                        <q-tooltip>Perfil</q-tooltip>
-                    </q-btn>
-                </div>
-            </q-toolbar>
-        </q-header>
+              <div class="q-gutter-sm row items-center no-wrap">
+                  <q-btn round flat>
+                      <q-avatar size="26px">
+                          <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                      </q-avatar>
+                      <q-tooltip>Perfil</q-tooltip>
+                  </q-btn>
+                  <router-link to="/">
+                      <q-btn class="iboto text-left" style="background-color: white; color: black; ">Salir</q-btn>
+                  </router-link>
+              </div>
+          </q-toolbar>
 
-        <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-white" :width="280">
-            <q-list padding class="text-grey-8">
-                <router-link v-for="link in links1" :key="link.text" :to="link.href" style="text-decoration: none;">
-                    <q-item class="GNL__drawer-item text-black" v-ripple clickable>
+      </q-header>
 
-                        <q-item-section avatar>
-                            <q-icon :name="link.icon" />
-                        </q-item-section>
-                        <q-item-section>
-                            <q-item-label> {{ link.text }}
-                            </q-item-label>
-                        </q-item-section>
+      <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-white" :width="280" >
+          <q-list padding class="text-grey-8" >
+              <router-link v-for="link in links1" :key="link.text" :to="link.href" style="text-decoration: none;">
+                  <q-item class="GNL__drawer-item text-black" v-ripple clickable >
 
-                    </q-item>
-                </router-link>
-                <q-separator inset class="q-my-sm" />
-                
-                <div class="q-mt-md">
-                    <div class="flex flex-center q-gutter-xs">
-                        <a class="GNL__drawer-footer-link" aria-label="Privacy">Software Panelero</a>
-                    </div>
-                </div>
-            </q-list>
-        </q-drawer>
+                      <q-item-section avatar>
+                          <q-icon :name="link.icon" />
+                      </q-item-section>
+                      <q-item-section>
+                          <q-item-label> {{ link.text }}
+                          </q-item-label>
+                      </q-item-section>
 
-        <!-- <h1>{{userStore.userData}}</h1> -->
+                  </q-item>
+              </router-link>
+              <q-separator inset class="q-my-sm" />
 
-        <q-footer class="bg-white text-black" reveal elevated>
-            <q-toolbar>
+              <div class="q-mt-md">
+                  <div class="flex flex-center q-gutter-xs">
+                      <a class="GNL__drawer-footer-link" aria-label="Privacy">Software Panelero</a>
+                  </div>
+              </div>
+          </q-list>
+      </q-drawer>
 
-                <q-toolbar-title>Software Panelero</q-toolbar-title>
-            </q-toolbar>
-        </q-footer>
+      <!-- <h1>{{userStore.userData}}</h1> -->
+
+      <q-footer class="footer" style="background-color: rgb(163 163 163);" reveal elevated>
+          <q-toolbar>
+
+              <q-toolbar-title>Software Panelero</q-toolbar-title>
+          </q-toolbar>
+      </q-footer>
 
 
 
-        <q-page-container>
-            <!-- <Home/> -->
-            <router-view></router-view>
-            
-        </q-page-container>
-    </q-layout>
-</template> 
+      <q-page-container style="padding-left: 0;">
+          <!-- <Home/> -->
+          <router-view></router-view>
+
+      </q-page-container>
+  </q-layout>
+
+
+  
+</template>
 
   
 
@@ -78,9 +86,9 @@ function toggleLeftDrawer() {
 }
 
 let links1 = ref([
-    { icon: 'home', text: 'Inicio', href: '/home' },
+    { icon: 'home',  text: 'Inicio', href: '/home', class: 'text-green-10'   },
     { icon: 'build_circle', text: 'Mantenimiento', href: '/mantenimiento' },
-    { icon: 'inventory_2', text: 'Inventario', href: '/inventario' },
+    { icon: 'inventory_2', text: 'Inventario', href: '/inventario' , class: 'text-green-7' },
     { icon: 'monetization_on', text: 'Costos', href: '/costos' },
     { icon: 'local_shipping', text: 'Pedidos', href: '/pedidos' },
     { icon: 'roundabout_right', text: 'Transformacion', href: '/transformacion' },
@@ -88,4 +96,49 @@ let links1 = ref([
 ])
 
 </script>
+
+<style>
+.q-item:hover{
+  background-color: rgb(14, 224, 14);
+
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

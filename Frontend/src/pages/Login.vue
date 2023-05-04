@@ -1,19 +1,5 @@
 <template>
-
-
-
-  <!-- <div class="row " style="background-image: url('../src/assets/Estudios-mexicanos-de-videojuegos-que-debes-conocer-2.webp')">
-    <div class="col-4"></div>
-    <div class="col-4 full-height">
-ss
-    </div>
-    <div class="col-4"></div>
-  </div> -->
-  <!-- <template> -->
-  <!-- <q-page> -->
     <div class="row background-image ">
-      <!-- <div v-show="home == true" style="min-height: 100vh; background-color: green"> -->
-        <!-- <div v-show="home == true" class="row" style="min-height: 90vh"> -->
           <div class="col-1"></div>
           <div class="col-10" style="
                 background-color: white;
@@ -51,9 +37,9 @@ ss
                     margin-top: 5px;
                   ">
                 <router-link to="/home">
-                  <q-btn style="border-radius: 10px" color="black" label="Login" />
+                  <q-btn style="border-radius: 10px" color="black" label="Iniciar Sesión" />
                 </router-link>
-                  <!-- <q-btn @click="addUser()" style="border-radius: 10px" color="black" label="Login" /></router-link> -->
+    
               </div>
             </div>
 
@@ -65,48 +51,50 @@ ss
           </div>
 
           <div class="col-1"></div>
-        <!-- </div> -->
-      <!-- </div> -->
-
-      <!-- <div v-show="home == false"> -->
-        <!-- <h1>Te Registraste</h1> -->
-        <!-- <router-view></router-view> -->
-      <!-- </div> -->
-      <!-- termina div que contiene todo -->
     </div>
-  <!-- </q-page> -->
-<!-- </template> -->
-
-  
 </template>
 
 
 <script setup>
+import axios from 'axios'
 import { ref } from "vue";
-import { UserStore } from "../stores/user.js"
 
-let home = ref(true);
 let dense = ref(false);
-
-function pasarHome() {
-  home.value = false;
-}
-
-const userStore = UserStore()
-
 let user= ref("")
 let pass = ref("")
 
-const addUser =() => {
-  userStore.registerUser(user.value, pass.value)
-}
-
-
 function login() {
-  userStore.login(user.value, pass.value)
+  axios.post('/api/login', {username: user.value, password: pass.value})
+    .then(response => {
+      // Si la respuesta es satisfactoria, guarda el token de autenticación en el local storage
+      localStorage.setItem('token', response.data.token);
+      // Luego, redirige al usuario a la página de inicio
+      router.push('/home');
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
+
+
+
+
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style lang="sass" scoped>
 .my-card
   width: 100%
