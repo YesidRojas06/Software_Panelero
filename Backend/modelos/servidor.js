@@ -1,10 +1,12 @@
 import conexion from "../baseDeDatos/configuracion.js";
+import cors from 'cors'
 import express from "express";
 import rutasusuarios from "../rutas/usuarios.js";
 
 class servidor{
     constructor(){
         this.app=express()
+        this.app.use(cors());
         this.app.use(express.json())
         this.rutas()
         this.conexion()
