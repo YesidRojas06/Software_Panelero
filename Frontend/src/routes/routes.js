@@ -10,7 +10,7 @@ import Homee from "../pages/Homee.vue"
 import Login from "../pages/Login.vue";
 
 export const routes = [
-  { path: "/", component: Usuarios },
+  { path: "/", component: Login },
   // { path: "/login", component: Login },
   { path: "/homee", component:Homee, children: [
     { path: "/home", component:Home },
@@ -20,6 +20,7 @@ export const routes = [
     { path: "/costos", component: Costos },
     { path: "/transformacion", component: Transformacion },
     { path: "/reportes", component: Reportes },
+    { path: "/usuarios", component: Usuarios },
     ] 
   },
   

@@ -48,6 +48,9 @@ const listarUsuarios = async()=>{
 listarUsuarios()
 
 </script>
+
+
+
 <!-- 
 <script setup>
 import { ref, onMounted } from "vue"
