@@ -9,7 +9,7 @@ const usuariohttp= {
         const{nombre,correo,contrasena,rol,estado}= req.body
         const usuario= new modelousuario({nombre,correo,contrasena,rol,estado}) 
         await usuario.save()
-        res.send("usario creado")
+        res.send("usuario creado")
     },
     usuariologin:async(req,res) => {
         const{correo,contrasena}= req.body
@@ -22,7 +22,7 @@ const usuariohttp= {
     },
 
     usuarioput:async(req,res) => { 
-        const{nombre,correo,contrasena,rol,estado}= req.body 
+        const{nombre,correo,contrasena,rol}= req.body 
         const{id}=req.params
         const usuario= await modelousuario.findByIdAndUpdate(id,{nombre,correo,contrasena,rol,estado}) 
         await usuario.save()

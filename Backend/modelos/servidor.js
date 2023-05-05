@@ -17,13 +17,13 @@ class servidor{
     rutas(){
         
         this.app.use("/usuario",rutasusuarios)
-        this.app.use("/", (req,res) => {
+        /* this.app.use("/", (req,res) => {
             res.send('life')
-        })
+        }) */
     }
     listen(){
         this.app.listen("3100",()=>{
-            console.log("servidor en linea")
+            console.log("servidor en linea en puerto 3100 ")
         })
     }
   
