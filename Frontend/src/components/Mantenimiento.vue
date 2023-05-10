@@ -7,7 +7,7 @@
           <q-card class="home">
             <q-card-section>
               <router-link to="/usuarios" class="no-link">
-                <q-icon class="icon q-m" size="130px" name="settings" style="left: 80px; color: black; "></q-icon>
+                <q-icon class="icon q-m" size="130px" name="person_search" style="left: 80px; color: black; "></q-icon>
                 <div class="text-h6" style="color: black;  text-align: center; ">Usuario</div>
 
               </router-link>
