@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h4>Modulo De Costos</h4>
+    <h4>Modulo De Pedidos</h4>
     <!-- reflejar por pantalla -->
     <pre
       >{{ fecha }} --- {{ modulo1 }}  ---  {{ seleccion }} --- {{  modulo3 }} --- {{ modulo4 }} --- {{ modulo5 }}  </pre >
