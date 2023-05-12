@@ -1,9 +1,14 @@
 <template>
   <q-page padding>
-    <h4>Modulo De Costos</h4>
+    <div class="bg-1">
+      <h1 class="t-stroke t-shadow">Modulo De Costos</h1>
+    </div>
     <!-- reflejar por pantalla -->
     <pre
-      >{{ fecha }} --- {{ modulo1 }}  ---  {{ seleccion }} --- {{  modulo3 }} --- {{ modulo4 }} --- {{ modulo5 }}  </pre >
+      >{{ fecha }} --- {{ modulo1 }}  ---  {{ seleccion }} --- {{
+        modulo3
+      }} --- {{ modulo4 }} --- {{ modulo5 }}  </pre
+    >
     <q-form
       class="row q-col-gutter-md"
       @submit.prevent="procesarFormulario"
@@ -98,16 +103,20 @@
       </div>
 
       <div class="col-12">
-        <q-toggle label="seguro de guardar" v-model="terminos" />
+        <q-toggle
+          label="seguro de guardar"
+          color="green-14"
+          v-model="terminos"
+        />
       </div>
 
       <!-- campo de los botones -->
       <div class="col-12">
-        <q-btn label="Enviar" color="primary" type="submit" />
+        <q-btn label="Enviar" color="green-14" type="submit" />
 
         <q-btn
           label="Cancel"
-          color="primary"
+          color="green-6"
           outline
           class="q-ml-sm"
           :ripple="false"
@@ -115,7 +124,12 @@
         />
 
         <!-- tabla dos -->
-        <pre>{{ productos }}</pre>
+
+        <div class="image-container">
+          
+          <img src="../assets/caña2.png" alt="img" />
+        </div>
+
         <q-table
           class="q-mt-md"
           title="Inventario"
@@ -123,10 +137,45 @@
           :columns="columns"
           :rows="productos"
         >
+
+
+       <template v-slot:body-cell-eliminar="{ row }">
+       <q-td>
+          <q-btn
+            color="negative"
+            size="sm"
+            dense
+            label="Eliminar"
+            @click="eliminarProducto(row)"
+          />
+        </q-td>
+      </template>
+      <template v-slot:body-cell-editar="{ row }">
+       <q-td>
+          <q-btn
+            color="positive"
+            size="sm"
+            dense
+            label="editar"
+            @click="editarProducto(row)"
+          />
+        </q-td>
+      </template>
+
+
         </q-table>
       </div>
-    </q-form>
+
+
+
+
+
+
+
+
+</q-form>
   </q-page>
+
 </template>
 
 <script>
@@ -182,10 +231,23 @@ const columns = [
     sortable: true,
   },
 
+  {
+    name: "eliminar",
+    label: "",
+    align: "center",
+    field: "eliminar",
+  },
+
+  {
+    name: "editar",
+    label: "",
+    align: "center",
+    field: "editar",
+  },
 ];
 
 const rows = [
-  {    
+  {
     fecha: "Fecha",
     modulo1: "modulo1",
     modulo2: "modulo2",
@@ -217,7 +279,25 @@ export default {
     const terminos = ref(false);
     const opciones = ["Trapiche 1", "Trapiche 2", "Trapiche 3", "Trapiche 4"];
 
-    //array del formulario
+
+
+
+
+    const eliminarProducto = (producto) => {
+      console.log("le diste click a eleminar producto");
+
+      const index = productos.value.indexOf(producto);
+      productos.value.splice(index, 1);
+    };
+
+    
+    const editarProducto = (producto) => {
+      console.log("le diste click a eleminar producto");
+
+      const index = productos.value.indexOf(producto);
+      productos.value.splice(index, 1);
+    };
+
 
     const reset = () => {
       modulo1.value = null;
@@ -228,6 +308,8 @@ export default {
       modulo5.value = null;
       fecha.value = null;
     };
+
+    
 
     const procesarFormulario = () => {
       console.log("le diste click al formulario");
@@ -267,6 +349,11 @@ export default {
     //array del formulario
     const productos = ref([]);
 
+
+
+
+
+
     // retornacion
     return {
       modulo1,
@@ -281,11 +368,58 @@ export default {
       reset,
       myForm,
       columns,
-      rows,
       productos,
+      rows,
+
+
+      // ... variables y métodos exportados previos ...
+      
+      eliminarProducto,
+      editarProducto
     };
   },
 };
 </script>
 
+<style>
+.t-stroke {
+  color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000000;
+}
 
+.t-shadow {
+  text-shadow: 7px 7px #07ff93;
+}
+
+.q-field--focused .q-field__control {
+  color: #07ff93;
+}
+
+
+
+
+
+.q-field__control {
+  border-bottom: 1px solid #07ff93;
+}
+
+
+
+
+
+
+.image-container {
+  position: relative; /* establecer el contenedor como posición relativa */
+}
+
+.image-container img {
+  max-width: 11%; /* la imagen no debe ser más ancha que el contenedor */
+  display: block;
+  position: absolute;
+  top: 60%; /* centrar verticalmente la imagen */
+  transform: translateY(-69%); /* ajustar la posición vertical */
+  right: 1%; /* posicionar la imagen desde el borde derecho */
+}
+
+</style>

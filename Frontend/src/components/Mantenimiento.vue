@@ -21,7 +21,7 @@
           <q-card class="inventario">
             <q-card-section class="">
               <router-link to="/inventario" class="no-link">
-                <q-icon class="icon q-m" size="130px" name="article" style="left: 80px; color: black; "></q-icon>
+                <q-icon class="icon q-m" size="130px" name="article" style="left: 80px; color: black;  "></q-icon>
                 <div class="text-h6" style="color: black; position: relative; 
                 text-align: center;">Modulo de facturacion </div>
               </router-link>

@@ -5,9 +5,10 @@ import Pedidos from "../components/Pedidos.vue";
 import Transformacion from "../components/Transformacion.vue";
 import Reportes from "../components/Reportes.vue";
 import Home from "../components/Home.vue";
-import Usuarios from "../components/Usuarios.vue"
-import Homee from "../pages/Homee.vue"
+import Usuarios from "../components/Usuarios.vue";
+import Homee from "../pages/Homee.vue";
 import Login from "../pages/Login.vue";
+import Pedido2 from "../components/Pedido2.vue"
 
 export const routes = [
   { path: "/", component: Login },
@@ -21,6 +22,7 @@ export const routes = [
     { path: "/transformacion", component: Transformacion },
     { path: "/reportes", component: Reportes },
     { path: "/usuarios", component: Usuarios },
+    { path: "/Pedido2", component: Pedido2 },
     ] 
   },
   
