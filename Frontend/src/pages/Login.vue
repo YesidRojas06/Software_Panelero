@@ -57,11 +57,25 @@
 
 <script setup>
 import axios from 'axios'
-import { ref } from "vue";
+import { ref,onBeforeMount } from "vue";
+import { getUsers,setUsers,login} from "../api/users.api";
+import { api } from "../../boot/axios"
 
 let dense = ref(false);
 let user= ref("")
 let pass = ref("")
+
+/* getUsers(); */
+
+onBeforeMount(async () => {
+  await getUsers().then((res) => {
+  console.log(res)})
+
+await login().then((res) => {
+    //gf
+  }) 
+
+}),
 
 function login() {
   axios.post('/api/login', {username: user.value, password: pass.value})

@@ -5,12 +5,12 @@ import Pedidos from "../components/Pedidos.vue";
 import Transformacion from "../components/Transformacion.vue";
 import Reportes from "../components/Reportes.vue";
 import Home from "../components/Home.vue";
-
+import Usuarios from "../components/Usuarios.vue"
 import Homee from "../pages/Homee.vue"
 import Login from "../pages/Login.vue";
 
 export const routes = [
-  { path: "/", component: Login },
+  { path: "/", component: Usuarios },
   // { path: "/login", component: Login },
   { path: "/homee", component:Homee, children: [
     { path: "/home", component:Home },
