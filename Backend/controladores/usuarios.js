@@ -22,7 +22,7 @@ const usuariohttp= {
     },
 
     usuarioput:async(req,res) => { 
-        const{nombre,correo,contrasena,rol}= req.body 
+        const{nombre,correo,rol}= req.body 
         const{id}=req.params
         const usuario= await modelousuario.findByIdAndUpdate(id,{nombre,correo,contrasena,rol,estado}) 
         await usuario.save()
