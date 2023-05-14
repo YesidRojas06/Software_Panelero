@@ -36,9 +36,9 @@
                     margin: 0px auto;
                     margin-top: 5px;
                   ">
-                <router-link to="/home">
-                  <q-btn style="border-radius: 10px" color="black" label="Iniciar Sesión" />
-                </router-link>
+                <!-- <router-link to="/home"> -->
+                  <q-btn @click="login()" style="border-radius: 10px" color="black" label="Iniciar Sesión" />
+                <!-- </router-link> -->
     
               </div>
             </div>
@@ -58,32 +58,46 @@
 <script setup>
 import axios from 'axios'
 import { ref,onBeforeMount } from "vue";
-import { getUsers,setUsers,login} from "../api/users.api";
+import { getUsers,setUsers,login, } from "../api/users.api";
 import { api } from "../../boot/axios"
 
+import { useRouter} from 'vue-router'
+
+import { UserStore} from '../stores/user.js'
+
 let dense = ref(false);
-let user= ref("")
-let pass = ref("")
+let user= ref("raulyesidII@gmail.com")
+let pass = ref("123456")
+
+const router = useRouter()
+
+const store = UserStore()
 
 /* getUsers(); */
 
-onBeforeMount(async () => {
-  await getUsers().then((res) => {
-  console.log(res)})
+// onBeforeMount(async () => {
+//   await getUsers().then((res) => {
+//   console.log(res)})
 
-await login().then((res) => {
-    //gf
-  }) 
+// // await login().then((res) => {
+//     //gf
+// //   }) 
 
-}),
+// }),
 
 function login() {
-  axios.post('/api/login', {username: user.value, password: pass.value})
+  console.log('en login')
+  axios.post('http://localhost:3100/usuario/login', {correo: user.value, contrasena: pass.value})
     .then(response => {
       // Si la respuesta es satisfactoria, guarda el token de autenticación en el local storage
-      localStorage.setItem('token', response.data.token);
+      // localStorage.setItem('token', response.data.token);
+
+      store.createToken(response.data.token)
+
+      console.log(store.token)
+      
       // Luego, redirige al usuario a la página de inicio
-      router.push('/home');
+      router.push('/home'); 
     })
     .catch(error => {
       console.error(error);
