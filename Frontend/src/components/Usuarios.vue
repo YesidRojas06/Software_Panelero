@@ -274,19 +274,25 @@ function edit (row){
 
 function guardar (){
   bd.value=0
-nuevo.value=true
+nuevo.value=true;
+
+
 }
 
   async function guardarEditarDatos(){
- if(bd.value == 0 ){
-  console.log("guardar");
- }else{
-  const datos = {
+    const datos = {
     nombre: nombre.value,
     correo: correo.value,
     rol: rol.value,
   }
-  console.log("editar "+datos.nombre);
+ if(bd.value == 0 ){
+  console.log("guardar "+datos);
+  let res = await getUser.addUser(_id, datos);
+  listarUsuarios()
+  console.log(res);
+ }else{
+  
+  console.log("editar "+datos);
   let res = await getUser.editUser(_id, datos);
   listarUsuarios()
   console.log(res);
