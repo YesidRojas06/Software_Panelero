@@ -184,11 +184,11 @@ td {
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <span v-else>Inactivo</span>
         </template>
-        <template v-slot:body-cell-opcion="props" style="opacity: 0;">
+        <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
           <td style="text-align: center;">
-            <button @click="edit(props.row)">Editar</button>
-            <button v-if="props.row.estado == 1">Desactivar</button>
-            <button v-else>Activar</button>
+            <q-btn @click="edit(props.row)" class="">📝</q-btn>
+            <button v-if="props.row.estado == 1" >🚫</button>
+            <button v-else>✅</button>
 
           </td>
         </template>
@@ -236,8 +236,11 @@ let rows = ref([])
 
 
 let nombre = ref("");
+let clave=ref("")
 let correo = ref("");
 let rol = ref("");
+
+
 
 let nuevo= ref(false)
 let bd= ref (0)
@@ -266,7 +269,7 @@ function edit (row){
   console.log(row._id);
   bd.value=1;
   nuevo.value=true
-  _id=row._id
+  _id = row. _id;
   nombre.value = row.nombre;
   correo.value = row.correo;
   rol.value = row.rol;
@@ -274,25 +277,58 @@ function edit (row){
 
 function guardar (){
   bd.value=0
-nuevo.value=true;
+  nuevo.value=true;
+
+  if (nombre.value.trim() === "" || correo.value.trim() === "" || rol.value.trim() === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, rellene todos los campos obligatorios.",
+      position: "top",
+    });
+    return;
+  }
 
 
+  const nuevoUsuario = {
+    nombre: nombre.value,
+    correo: correo.value,
+    rol: rol.value,
+  };
+
+
+  postUser.addUser(nuevoUsuario).then(() => {
+    listarUsuarios();
+    q.notify({
+      type: "positive",
+      message: "Usuario guardado exitosamente.",
+      position: "top",
+    });
+  });
 }
 
+
+
   async function guardarEditarDatos(){
-    const datos = {
+
+ if(bd.value == 0 ){
+  const datos = {
+    nombre: nombre.value,
+    correo: correo.value,
+    contrasena:clave.value,
+    rol: rol.value,
+    estado:1
+  }
+  console.log("guardar ",  datos);
+  let res = await getUser.addUser(datos);
+  listarUsuarios()
+  console.log(res);
+ }else{
+  const datos = {
     nombre: nombre.value,
     correo: correo.value,
     rol: rol.value,
   }
- if(bd.value == 0 ){
-  console.log("guardar "+datos);
-  let res = await getUser.addUser(_id, datos);
-  listarUsuarios()
-  console.log(res);
- }else{
-  
-  console.log("editar "+datos);
+  console.log("editar ", datos);
   let res = await getUser.editUser(_id, datos);
   listarUsuarios()
   console.log(res);

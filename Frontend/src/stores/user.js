@@ -28,7 +28,7 @@ export const UserStore = defineStore("user", {
                 const resp = await axios.post('https://software-panelero.onrender.com/usuario',
                     datos
                 ) 
-               return resp.data.usuarios
+               return resp
        
            } catch (error) {
                console.log(error);
