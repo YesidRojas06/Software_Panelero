@@ -31,7 +31,7 @@ export const UserStore = defineStore("user", {
         },
         async editUser (id, datos){
             try {
-                console.log(id);
+                console.log(datos);
                 const resp = await axios.put(`https://software-panelero.onrender.com/usuario/${id}`,{
                     datos
                 }) 

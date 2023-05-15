@@ -26,7 +26,7 @@ const usuariohttp= {
         const{id}=req.params
         const usuario= await modelousuario.findByIdAndUpdate(id,{nombre,correo,rol}) 
         await usuario.save()
-        res.send("usario actualizado")
+        res.send(usuario)
 
     },
 

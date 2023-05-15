@@ -179,7 +179,7 @@ td {
     <div class="q-pa-md">
       <q-btn color="white" text-color="black" label="Nuevo Registro" @click="guardar"/>
 
-      <q-table title="Treats" :rows="rows" :columns="columns">
+      <q-table title="Usuario" :rows="rows" :columns="columns">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <span v-else>Inactivo</span>
