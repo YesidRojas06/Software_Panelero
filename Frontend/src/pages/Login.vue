@@ -58,8 +58,8 @@
 <script setup>
 import axios from 'axios'
 import { ref,onBeforeMount } from "vue";
-import { getUsers,setUsers,login} from "../../api/users.api.js"
-import { api } from "../../boot/axios.js";
+import { getUsers,setUsers,login} from "../api/users.api";
+import { api } from "../../boot/axios"
 
 let dense = ref(false);
 let user= ref("")

@@ -1,14 +1,14 @@
-import { api } from "../boot/axios";
+import { api } from "../../boot/axios.js"
 
 
 export const getUsers = async () =>{
     try {
-        const resp =await api.get('/usuario') 
-
-        console.log(resp.data);
+         const resp =await api.get('/usuario') 
+        return resp.data
 
     } catch (error) {
-        
+        console.log(error);
+        return error
     }
 }
 
