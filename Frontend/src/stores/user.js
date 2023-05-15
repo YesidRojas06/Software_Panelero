@@ -3,9 +3,15 @@ import axios from "axios"
 
 export const UserStore = defineStore("user", {
     state: () => ({
-        userData: ":)"
+        userData: ":)",
+        token: null
     }),
     actions:{
+
+        createToken(token){
+            this.token = token;
+        },
+
         async getUsers(){
             try {
                  const resp =await axios.get('https://software-panelero.onrender.com/usuario') 
