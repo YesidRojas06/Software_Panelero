@@ -58,7 +58,7 @@
 <script setup>
 import axios from 'axios'
 import { ref,onBeforeMount } from "vue";
-import { getUsers,setUsers,login, } from "../api/users.api";
+import { getUsers,setUsers, } from "../api/users.api";
 import { api } from "../../boot/axios"
 
 import { useRouter} from 'vue-router'
