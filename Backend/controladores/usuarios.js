@@ -48,11 +48,13 @@ const usuariohttp= {
 
     usuarioput:async(req,res) => { 
         const{nombre,correo,rol}= req.body 
+
         console.log(req.body);
         const{id}=req.params
         const usuario= await modelousuario.findByIdAndUpdate(id,{nombre,correo,rol}) 
         await usuario.save()
         res.send(usuario)
+
 
     },
 
