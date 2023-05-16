@@ -125,10 +125,10 @@
 
         <!-- tabla dos -->
 
-        <div class="image-container">
+        <!-- <div class="image-container">
           
           <img src="../assets/caña2.png" alt="img" />
-        </div>
+        </div> -->
 
         <q-table
           class="q-mt-md"
