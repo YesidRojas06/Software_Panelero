@@ -9,9 +9,9 @@
         <q-col cols="col-12 col-sm-6">
           <q-card class="pedido2">
             <q-card-section>
-              <router-link to="/Mantenimiento" class="no-link">
+              <router-link to="/Costos/Modulos/Pagos" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="engineering" style="left: 80px; color: black;"></q-icon>
-                <div class="text-h6" style="color: black; text-align: center;">Mantenimiento</div>
+                <div class="text-h6" style="color: black; text-align: center;">Pagos</div>
               </router-link>
             </q-card-section>
           </q-card>
@@ -22,9 +22,9 @@
         <q-col cols="col-12 col-sm-6">
           <q-card class="comprobantes">
             <q-card-section>
-              <router-link to="/Costos" class="no-link">
+              <router-link to="/Costos/Modulos/Gastos_Mensuales" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="monetization_on" style="left: 80px; color: black;"></q-icon>
-                <div class="text-h6" style="color: black; text-align: center;">Costos</div>
+                <div class="text-h6" style="color: black; text-align: center;">Gastos Mensuales</div>
               </router-link>
             </q-card-section>
           </q-card>
@@ -36,36 +36,15 @@
         <q-col cols="col-12 col-sm-6">
           <q-card class="consultasp">
             <q-card-section>
-              <router-link to="/Pedido2" class="no-link">
+              <router-link to="/Costos/Modulos/Gastos_Ocasionales" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="shopping_cart" style="left: 80px; color: black;"></q-icon>
-                <div class="text-h6" style="color: black; text-align: center;">Pedidos</div>
-              </router-link>
-            </q-card-section>
-          </q-card>
-        </q-col>
-
-        <q-col cols="col-12 col-sm-6">
-          <q-card class="consultasp">
-            <q-card-section>
-              <router-link to="/Transformacion" class="no-link">
-                <q-icon class="icon q-m" size="130px" name="move_up" style="left: 80px; color: black;"></q-icon>
-                <div class="text-h6" style="color: black; text-align: center;">Transformacion</div>
+                <div class="text-h6" style="color: black; text-align: center;">Gastos Ocasionales</div>
               </router-link>
             </q-card-section>
           </q-card>
         </q-col>
 
 
-        <q-col cols="col-12 col-sm-6">
-          <q-card class="consultasp">
-            <q-card-section>
-              <router-link to="/Inventario" class="no-link">
-                <q-icon class="icon q-m" size="130px" name="inventory" style="left: 80px; color: black;"></q-icon>
-                <div class="text-h6" style="color: black; text-align: center;">Inventario</div>
-              </router-link>
-            </q-card-section>
-          </q-card>
-        </q-col>
 
 
 
