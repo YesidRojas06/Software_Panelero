@@ -23,7 +23,7 @@
               <router-link to="/inventario" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="engineering" style="left: 80px; color: black;  "></q-icon>
                 <div class="text-h6" style="color: black; position: relative; 
-                text-align: center;">Modulo de Trabajo </div>
+                text-align: center;"> Labores </div>
               </router-link>
             </q-card-section>
             <q-card-actions>
