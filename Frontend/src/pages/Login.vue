@@ -328,9 +328,9 @@ function login() {
 }
 
 .image-container {
-  width: 55%;
-  height: 59vh;
-  background-image: url('https://elpoderdelconsumidor.org/wp-content/uploads/2019/12/cania.jpg');
+  width: 45%;
+  height: 54vh;
+  background-image:   url('https://elpoderdelconsumidor.org/wp-content/uploads/2019/12/cania.jpg');
   background-size: cover;
   background-position: center;
 }
