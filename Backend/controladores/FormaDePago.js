@@ -1,14 +1,14 @@
-import modeloFormaPago from "../modelos/Labores.js";
+import modeloFormaPago from "../modelos/FormaDePago";
 import jwt from 'jsonwebtoken';
 
 import bcrypt from "bcrypt";
-import modeloFormaPago from "../modelos/Labores.js";
+import modeloFormaPago from "../modelos/FormaDePago.js";
 
 
 const FormaPagohttp= {
    FormaPagoget:async(req,res) => {
         const FormaPago= await modeloFormaPago.find() 
-        res.json({FormaDePago:FormaPago})
+        res.json({ FormaDePago: FormaPago})
     },
     FormaPago:async(req,res) => {
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import FormaPagohttp from "../controladores/usuarios.js";
+import FormaPagohttp from "../controladores/FormaDePago.js";
 
 const rutasFormaDePago = Router() 
 

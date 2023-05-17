@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Laborhttp from "../controladores/usuarios.js";
+import Laborhttp from "../controladores/Labores.js";
 
 const rutasLabores = Router() 
 
