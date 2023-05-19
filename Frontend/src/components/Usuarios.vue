@@ -232,7 +232,7 @@ import { useQuasar } from 'quasar'
 
 const q=useQuasar()
 const getUser = UserStore()
-let rows = ref([])
+let rows = ref()
 
 
 let nombre = ref("");
