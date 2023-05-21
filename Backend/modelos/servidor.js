@@ -1,9 +1,10 @@
 import conexion from "../baseDeDatos/configuracion.js";
 import cors from 'cors'
 import express from "express";
+import * as dotenv from 'dotenv' 
 import rutasusuarios from "../rutas/usuarios.js";
 
-
+dotenv.config()
 class servidor{
     constructor(){
         this.app=express()
