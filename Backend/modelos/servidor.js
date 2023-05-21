@@ -1,7 +1,10 @@
 import conexion from "../baseDeDatos/configuracion.js";
 import cors from 'cors'
 import express from "express";
+import * as dotenv from 'dotenv' 
 import rutasusuarios from "../rutas/usuarios.js";
+
+dotenv.config()
 
 class servidor{
     constructor(){
@@ -17,12 +20,12 @@ class servidor{
     rutas(){
         
         this.app.use("/usuario",rutasusuarios)
-        /* this.app.use("/", (req,res) => {
+        this.app.use("/", (req,res) => {
             res.send('life')
-        }) */
+        }) 
     }
     listen(){
-        this.app.listen("3100",()=>{
+        this.app.listen(process.env.PORT,()=>{
             console.log("servidor en linea en puerto 3100 ")
         })
     }
