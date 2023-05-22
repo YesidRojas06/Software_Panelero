@@ -303,7 +303,9 @@ function guardar (){
       message: "Usuario guardado exitosamente.",
       position: "top",
     });
-  });
+    
+  })
+  
 }
 
 
@@ -316,8 +318,8 @@ function guardar (){
     correo: correo.value,
     contrasena:clave.value,
     rol: rol.value,
-    estado:1
-  }
+    estado:0,
+  };
   console.log("guardar ",  datos);
   let res = await getUser.addUser(datos);
   listarUsuarios()
@@ -327,7 +329,8 @@ function guardar (){
     nombre: nombre.value,
     correo: correo.value,
     rol: rol.value,
-  }
+    estado:1,
+  };
   console.log("editar ", datos);
   let res = await getUser.editUser(_id, datos);
   listarUsuarios()
