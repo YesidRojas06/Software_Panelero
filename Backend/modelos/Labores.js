@@ -6,7 +6,7 @@ const schema= new mongoose.Schema({
     areaRealizar:{type: String, required: true},
     pago:{type: Number, required: true},
     acciones:{type: String, required: true},
-    estado:{type:Number,required:true}
+    estado:{type:Number,required:true,default:1}
 });
 
 

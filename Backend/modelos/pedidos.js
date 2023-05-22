@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 const schema = new mongoose.Schema({
-    documento : {type: Number, required: true},
+    documento : {type: String, required: true},
     fecha : {type: Date, required: true},
     nombre_pedido : {type: String, required: true},
-    telefono : {type: Number, required: true},
-    cantidad: {type: Number, required: true},
-    estado : {type: Number, required: true},
+    telefono : {type: String, required: true},
+    cantidad: {type: String, required: true},
+    estado : {type: Number, required: true,default:1},
     comprobante_pago : {type: String, required: true},
     direccion : {type: String , required: true},
     saldo: { typr : Number, required : true},
