@@ -1,10 +1,13 @@
 <template>
     <q-layout>
       <q-page-container>
+        <div class="title-container"> 
+        <h1 class="page-title">Inventario</h1>
+      </div>
         <div class="row">
-          <div class="col-1"></div>
+          <div class="col-2"></div>
           <div class="col-3">
-            <q-card class="Mantenimiento">
+            <q-card class="Mantenimiento1">
               <q-card-section>
                 <router-link to="/" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="engineering" style="left: 80px; color: black; "></q-icon>
@@ -18,7 +21,7 @@
           </div>
           <div class="col-3 q-ma-4">
   
-            <q-card class="Inventario">
+            <q-card class="Costos1">
               <q-card-section >
                 <router-link to="/" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="monetization_on" style="left: 80px; color: black; "></q-icon>
@@ -35,7 +38,7 @@
           <div class="col-3">
   
   
-            <q-card class="Costos">
+            <q-card class="Pedidos1">
               <q-card-section>
                 <router-link to="/" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="shopping_cart" style="left: 80px; color: black; "></q-icon>
@@ -54,11 +57,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-1"></div>
+          <div class="col-2"></div>
   
           <div class="col-3">
   
-            <q-card class="Pedidos">
+            <q-card class="Transformacion1">
               <q-card-section>
                 <router-link to="/" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="move_up" style="left: 80px; color: black; "></q-icon>
@@ -85,7 +88,7 @@
   
   
   
-            <q-card class="Transformacion">
+            <q-card class="Inventario1">
               <q-card-section>
                 <router-link to="/" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="inventory" style="left: 80px; color: black; "></q-icon>
@@ -121,7 +124,7 @@
   
   }
   
-  .Mantenimiento {
+  .Mantenimiento1 {
     width: 330px;
     height: 250px;
     margin: 10px;
@@ -129,7 +132,7 @@
     margin-top: 30px;
   }
   
-  .Inventario {
+  .Costos1 {
     width: 330px;
     height: 250px;
     margin: 10px;
@@ -137,7 +140,7 @@
     margin-top: 30px;
   }
   
-  .Costos {
+  .Pedidos1 {
     width: 330px;
     height: 250px;
     margin: 10px;
@@ -145,7 +148,7 @@
     margin-top: 30px;
   }
   
-  .Pedidos {
+  .Transformacion1 {
     width: 330px;
     height: 250px;
     margin: 10px;
@@ -154,7 +157,7 @@
     left: 150px;
   }
   
-  .Transformacion {
+  .Inventario1 {
     width: 330px;
     height: 250px;
     margin: 10px;

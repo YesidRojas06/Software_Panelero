@@ -2,8 +2,11 @@
 
   <q-layout>
     <q-page-container>
+      <div class="title-container"> 
+        <h1 class="page-title">Costos</h1>
+      </div>
       <div class="row">
-        <div class="col-1"></div>
+        <div class="col-2"></div>
         <div class="col-3">
           <q-card class="Pagos">
             <q-card-section>
@@ -94,6 +97,8 @@
   border-radius: 20px;
   margin-top: 30px;
 }
+
+
 
 
 
