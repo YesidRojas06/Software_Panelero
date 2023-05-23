@@ -1,6 +1,7 @@
 import conexion from "../baseDeDatos/configuracion.js";
 import cors from 'cors'
 import express from "express";
+import * as dotenv from 'dotenv'
 import rutasbodegas from "../rutas/bodegas.js";
 import rutasingClientes from "../rutas/ingClientes.js";
 import rutasconsultasInventario from "../rutas/consultasInventario.js";
@@ -13,6 +14,7 @@ import rutasingProveedores from "../rutas/ingProveedores.js";
 import rutasregistro from "../rutas/registro.js";
 import rutasusuarios from "../rutas/usuarios.js";
 
+dotenv.config()
 class servidor {
     constructor(){
         this.app=express()
