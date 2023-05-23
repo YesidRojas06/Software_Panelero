@@ -187,8 +187,8 @@ td {
         <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
           <td style="text-align: center;">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <button v-if="props.row.estado == 1" >🚫</button>
-            <button v-else>✅</button>
+            <q-btn v-if="props.row.estado == 1" >🚫</q-btn>
+            <q-btn v-else>✅</q-btn>
 
           </td>
         </template>
@@ -225,6 +225,7 @@ td {
     </div>
 
 </template>
+
 <script setup>
 import { ref, onMounted } from "vue"
 import { UserStore } from "../stores/user"
