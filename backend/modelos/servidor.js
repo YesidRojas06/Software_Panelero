@@ -38,9 +38,13 @@ class servidor {
         this.app.use("/ingProveedores", rutasingProveedores)
         this.app.use("/registro", rutasregistro)
         this.app.use("/usuario", rutasusuarios)
+            this.app.use("/", (req,res) => {
+                res.send('life')
+            })
     }
+
     listen(){
-        this.app.listen("4100",()=>{
+        this.app.listen(process.env.PORT,()=>{
             console.log("Escuchando puerto 4100 ")
         })
     }
