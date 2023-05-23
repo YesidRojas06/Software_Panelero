@@ -1,8 +1,11 @@
 <template>
   <q-layout>
     <q-page-container>
+      <div class="title-container"> 
+        <h1 class="page-title">Home</h1>
+      </div>
       <div class="row">
-        <div class="col-1"></div>
+        <div class="col-2"></div>
         <div class="col-3">
           <q-card class="home">
             <q-card-section>
@@ -54,7 +57,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-1"></div>
+        <div class="col-2"></div>
 
         <div class="col-3">
 

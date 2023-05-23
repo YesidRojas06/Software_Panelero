@@ -28,7 +28,7 @@ export const UserStore = defineStore("user", {
                 const resp = await axios.post('https://software-panelero.onrender.com/usuario',
                     datos
                 ) 
-               return resp.data.usuarios
+               return resp
        
            } catch (error) {
                console.log(error);
@@ -48,7 +48,16 @@ export const UserStore = defineStore("user", {
                return error
            }
 
-        }
+        },
+        // async editUser(id, datos){
+        //     try{
+        //         const resp = await axios.put(`https://software-panelero.onrender.com/usuario/${id}`, datos);
+        //         return resp.data;
+        //     }catch(error){
+        //         console.log(error);
+        //         return error;
+        //     }
+        // }
     }
     
 })
