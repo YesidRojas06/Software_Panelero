@@ -9,6 +9,8 @@ import Usuarios from "../components/Usuarios.vue";
 import Homee from "../pages/Homee.vue";
 import Login from "../pages/Login.vue";
 import Pedido2 from "../components/Pedido2.vue"
+import Labores from "../components/Labores.vue"
+import Bodegas from "../components/Bodegas.vue"
 
 export const routes = [
   { path: "/", component: Login },
@@ -23,6 +25,9 @@ export const routes = [
     { path: "/reportes", component: Reportes },
     { path: "/usuarios", component: Usuarios },
     { path: "/Pedido2", component: Pedido2 },
+    { path: "/Labores", component: Labores },
+    { path: "/Bodegas", component: Bodegas },
+
     ] 
   },
   

@@ -17,12 +17,12 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Labores">
               <div class="card">
                 <div class="textos">
                   <center><h6>Labores</h6></center>
                   <!-- <q-separator style="background-color: #000000" dark inset /> -->
-                  <i class="material-icons" style="font-size: 100px;">monetization_on</i>
+                  <i class="material-icons" style="font-size: 100px;">engineering</i>
                 </div>
               </div>
             </router-link>
