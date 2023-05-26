@@ -58,6 +58,18 @@ const usuariohttp= {
 
     },
 
+    usuarioput:async(req,res) => { 
+       
+
+        console.log(req.body);
+        const{id}=req.params
+        const usuario= await modelousuario.findByIdAndUpdate(id,{estado:0}) 
+        await usuario.save()
+        res.send(usuario)
+
+    }
+
+
 }
 
 export default usuariohttp

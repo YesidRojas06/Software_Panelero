@@ -10,7 +10,7 @@
         <div class="col-3">
           <q-card class="Pagos">
             <q-card-section>
-              <router-link to="/" class="no-link">
+              <router-link to="" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="request_page" style="left: 80px; color: black; "></q-icon>
                 <div class="text-h6" style="color: black;  text-align: center; ">Pagos</div>
 
@@ -24,7 +24,7 @@
 
           <q-card class="Inventario">
             <q-card-section >
-              <router-link to="/" class="no-link">
+              <router-link to="" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="shopping_cart" style="left: 80px; color: black;  "></q-icon>
                 <div class="text-h6" style="color: black; position: relative; 
                 text-align: center;"> Gastos Mensuales </div>
@@ -41,7 +41,7 @@
 
           <q-card class="Gastos">
             <q-card-section>
-              <router-link to="/" class="no-link">
+              <router-link to="" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="fact_check" style="left: 80px; color: black; "></q-icon>
                 <div class="text-h6" style="color: black; position: relative;
          text-align: center;"> Gastos ocacionales  </div>

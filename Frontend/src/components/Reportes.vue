@@ -9,7 +9,7 @@
           <div class="col-3">
             <q-card class="Mantenimiento1">
               <q-card-section>
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="engineering" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black;  text-align: center; ">Mantenimiento</div>
   
@@ -23,7 +23,7 @@
   
             <q-card class="Costos1">
               <q-card-section >
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="monetization_on" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative; 
                   text-align: center;">Costos</div>
@@ -40,7 +40,7 @@
   
             <q-card class="Pedidos1">
               <q-card-section>
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="shopping_cart" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative;
                    text-align: center;">Pedidos</div>
@@ -63,7 +63,7 @@
   
             <q-card class="Transformacion1">
               <q-card-section>
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="move_up" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative; 
            text-align: center;">Transformacion</div>
@@ -90,7 +90,7 @@
   
             <q-card class="Inventario1">
               <q-card-section>
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="inventory" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative; 
            text-align: center;">Inventario</div>

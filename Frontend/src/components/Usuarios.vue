@@ -177,7 +177,9 @@ td {
 <template>
   <div>
     <div class="q-pa-md">
-      <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar"/>
+      
+      <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar" style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
+      border-radius: 30px;  "/>
 
       <q-table title="Usuario" :rows="rows" :columns="columns">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
@@ -185,7 +187,7 @@ td {
           <span v-else>Inactivo</span>
         </template>
         <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
-          <td style="text-align: center;">
+          <td style="text-align: center;"> 
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
             <q-btn v-if="props.row.estado == 1" >🚫</q-btn>
             <q-btn v-else>✅</q-btn>
@@ -198,25 +200,26 @@ td {
 
 
       <q-dialog v-model="nuevo" persistent transition-show="scale" transition-hide="scale">
-        <q-card class="bg-teal text-dark" style="width: 300px">
-          <q-card-section>
-            <div class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
+        <q-card class="bg-teal text-dark"  style="width: 500px; max-width: 80vw;">
+          <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
+            <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
           </q-card-section>
 
           <q-card-section class="q-pt-none">
             <p>Nombre</p>
-          <input type="text" v-model="nombre">
+          <input type="text" v-model="nombre" class="form-input" >
           <p>Correo</p>
-          <input type="text" v-model="correo">
+          <input type="text" v-model="correo" class="form-input">
           <p v-if="bd == 0 ">contraseña</p>
-          <input v-if="bd == 0 " type="text" v-model="clave">
+          <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
           <p>Rol</p>
-          <q-select :options="rolOptions"  v-model="rol" emit-value map-options :option-value="'value'" :option-label="'label'" />
+          <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
+          :option-value="'value'" :option-label="'label'" class="form-input" />
           </q-card-section>
 
-          <q-card-actions align="right" class="bg-white text-black">
-            <q-btn color="warning" label="Cancelar" @click="nuevo=false"/>
-            <q-btn color="secondary" @click="guardarEditarDatos">{{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
+          <q-card-actions align="center" class="bg-white text-black">
+            <q-btn  label="Cancelar" @click="nuevo=false" style="background-color: rgb(243, 9, 9)"/>
+            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">{{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
             
           </q-card-actions>
         </q-card>
@@ -291,15 +294,7 @@ function guardar (){
   limpiarFormulario(); // Limpia los valores del formulario antes de abrir el modal
   nuevo.value = true;
 
-  if (nombre.value.trim() === "" || correo.value.trim() === "" || rol.value.trim() === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, rellene todos los campos obligatorios.",
-      position: "top",
-    });
-    return;
-  }
-
+ 
 
   const nuevoUsuario = {
     nombre: nombre.value,
@@ -375,6 +370,8 @@ listarUsuarios()
 
 .q-card-section {
   padding: 20px; /* Aumentar el relleno de las secciones de la tarjeta. */
+  
+
 }
 
 .q-card-actions {
@@ -392,7 +389,13 @@ input[type="text"] {
 .text-h6 {
   font-size: 1.25rem; /* Aumentar el tamaño de fuente del título de la sección.*/
 }
-
+.q-btn:hover{
+  background-color: rgb(14, 224, 14);
+}
+.form-input {
+    margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
+   
+  }
 
 </style>
 

@@ -27,7 +27,7 @@ export const UserStore = defineStore("user", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post('https://software-panelero.onrender.com/usuario',
+                const resp = await axios.post(`https://software-panelero.onrender.com/usuario`,
                 JSON.stringify(datos)
                 ) 
                return resp

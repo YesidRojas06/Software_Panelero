@@ -25,7 +25,7 @@
   
             <q-card class="Marcas">
               <q-card-section >
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="verified" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative; 
                   text-align: center;">Marcas</div>
@@ -51,7 +51,7 @@
   
             <q-card class="Categorias">
               <q-card-section>
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="shopping_bag" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative; 
            text-align: center;">Categorias</div>
@@ -78,7 +78,7 @@
   
             <q-card class="Productos">
               <q-card-section>
-                <router-link to="/" class="no-link">
+                <router-link to="" class="no-link">
                   <q-icon class="icon q-m" size="130px" name="inventory" style="left: 80px; color: black; "></q-icon>
                   <div class="text-h6" style="color: black; position: relative; 
            text-align: center;">Productos</div>
