@@ -10,7 +10,7 @@
         <div class="col-3">
           <q-card class="Proceso">
             <q-card-section>
-              <router-link to="/" class="no-link">
+              <router-link to="/Proceso_diario" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="manage_accounts" style="left: 80px; color: black; "></q-icon>
                 <div class="text-h6" style="color: black;  text-align: center; ">Proceso Diario</div>
 
@@ -24,7 +24,7 @@
 
           <q-card class="materiaPrima">
             <q-card-section >
-              <router-link to="/" class="no-link">
+              <router-link to="/Materia_Prima" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="south_america" style="left: 80px; color: black;  "></q-icon>
                 <div class="text-h6" style="color: black; position: relative; 
                 text-align: center;"> Materia Prima Transformada </div>
@@ -41,7 +41,7 @@
 
           <q-card class="Empaques">
             <q-card-section>
-              <router-link to="/" class="no-link">
+              <router-link to="/Empaques" class="no-link">
                 <q-icon class="icon q-m" size="130px" name="fact_check" style="left: 80px; color: black; "></q-icon>
                 <div class="text-h6" style="color: black; position: relative;
          text-align: center;"> Empaques  </div>
