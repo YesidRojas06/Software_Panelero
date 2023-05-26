@@ -9,6 +9,8 @@ const rutasusuarios = Router()
 rutasusuarios.get("/",usuariohttp.usuarioget)
 rutasusuarios.post("/login",usuariohttp.usuariologin)
 rutasusuarios.put("/:id",usuariohttp.usuarioput)
+rutasusuarios.put("/desactivar/:id",usuariohttp.usuarioInactivoput)
+rutasusuarios.put("/activar/:id",usuariohttp.usuarioActivoput)
 rutasusuarios.post('/',[    
     check('nombre', 'El nombre es obligatorio!').not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
