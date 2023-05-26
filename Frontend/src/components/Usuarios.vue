@@ -211,8 +211,7 @@ td {
           <p v-if="bd == 0 ">contraseña</p>
           <input v-if="bd == 0 " type="text" v-model="clave">
           <p>Rol</p>
-          <input type="text" v-model="rol">
-         
+          <q-select :options="rolOptions"  v-model="rol" emit-value map-options :option-value="'value'" :option-label="'label'" />
           </q-card-section>
 
           <q-card-actions align="right" class="bg-white text-teal">
@@ -234,6 +233,11 @@ import { useQuasar } from 'quasar'
 const q=useQuasar()
 const getUser = UserStore()
 let rows = ref()
+
+let rolOptions = ref([
+  { label: 'Admin', value: 'Admin' },
+  { label: 'User', value: 'User' }
+]);
 
 
 let nombre = ref("");
@@ -262,6 +266,10 @@ let columns = ref([
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
 
+
+
+
+
 const listarUsuarios = async () => {
   console.log(await getUser.getUsers());
   rows.value = await getUser.getUsers()
@@ -274,11 +282,14 @@ function edit (row){
   nombre.value = row.nombre;
   correo.value = row.correo;
   rol.value = row.rol;
+
 }
 
 function guardar (){
   bd.value=0
   nuevo.value=true;
+  limpiarFormulario(); // Limpia los valores del formulario antes de abrir el modal
+  nuevo.value = true;
 
   if (nombre.value.trim() === "" || correo.value.trim() === "" || rol.value.trim() === "") {
     q.notify({
@@ -299,16 +310,19 @@ function guardar (){
 
   postUser.addUser(nuevoUsuario).then(() => {
     listarUsuarios();
-    q.notify({
-      type: "positive",
-      message: "Usuario guardado exitosamente.",
-      position: "top",
-    });
+    
     
   })
   
 }
 
+function limpiarFormulario() {
+  nombre.value = "";
+  clave.value = "";
+  correo.value = "";
+  rol.value = "";
+  bd.value = 0;
+}
 
 
   async function guardarEditarDatos(){
@@ -336,8 +350,14 @@ function guardar (){
   let res = await getUser.editUser(_id, datos);
   listarUsuarios()
   console.log(res);
+  q.notify({
+      type: "positive",
+      message: "Usuario actualizado exitosamente.",
+      position: "top",
+    });
  }
 }
+
 
 listarUsuarios()
 

@@ -24,14 +24,16 @@ export const UserStore = defineStore("user", {
         },
 
         async addUser(datos){
+            console.log('datos' + datos );
+            console.log(JSON.stringify(datos))
             try {
                 const resp = await axios.post('https://software-panelero.onrender.com/usuario',
-                    datos
+                JSON.stringify(datos)
                 ) 
                return resp
        
            } catch (error) {
-               console.log(error);
+            console.log(error)
                return error
            }
         },
@@ -49,15 +51,7 @@ export const UserStore = defineStore("user", {
            }
 
         },
-        // async editUser(id, datos){
-        //     try{
-        //         const resp = await axios.put(`https://software-panelero.onrender.com/usuario/${id}`, datos);
-        //         return resp.data;
-        //     }catch(error){
-        //         console.log(error);
-        //         return error;
-        //     }
-        // }
+       
     }
     
 })
