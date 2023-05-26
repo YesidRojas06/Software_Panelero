@@ -177,7 +177,7 @@ td {
 <template>
   <div>
     <div class="q-pa-md">
-      <q-btn color="white" text-color="black" label="Nuevo Registro" @click="guardar"/>
+      <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar"/>
 
       <q-table title="Usuario" :rows="rows" :columns="columns">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
