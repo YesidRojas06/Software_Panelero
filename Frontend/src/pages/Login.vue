@@ -328,8 +328,8 @@ function login() {
 }
 
 .image-container {
-  width: 45%;
-  height: 54vh;
+  width: 48%;
+  height: 72vh;
   background-image:   url('https://elpoderdelconsumidor.org/wp-content/uploads/2019/12/cania.jpg');
   background-size: cover;
   background-position: center;
@@ -386,7 +386,7 @@ p {
     margin: 2rem;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #28ff0c;
+    background-color: #ffffff;
     padding: 2rem;
   }
 

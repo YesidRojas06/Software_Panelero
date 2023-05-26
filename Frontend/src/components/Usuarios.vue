@@ -198,7 +198,7 @@ td {
 
 
       <q-dialog v-model="nuevo" persistent transition-show="scale" transition-hide="scale">
-        <q-card class="bg-teal text-white" style="width: 300px">
+        <q-card class="bg-teal text-dark" style="width: 300px">
           <q-card-section>
             <div class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
           </q-card-section>
@@ -214,7 +214,7 @@ td {
           <q-select :options="rolOptions"  v-model="rol" emit-value map-options :option-value="'value'" :option-label="'label'" />
           </q-card-section>
 
-          <q-card-actions align="right" class="bg-white text-teal">
+          <q-card-actions align="right" class="bg-white text-black">
             <q-btn color="warning" label="Cancelar" @click="nuevo=false"/>
             <q-btn color="secondary" @click="guardarEditarDatos">{{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
             
@@ -363,7 +363,38 @@ listarUsuarios()
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.q-pt-none {
+  background-color: #ffffff; /* Establecer el color de fondo del cuadro de diálogo */
+}
+
+.q-card {
+  border-radius: 8px; /* Agregar radio de borde a la tarjeta */
+}
+
+.q-card-section {
+  padding: 20px; /* Aumentar el relleno de las secciones de la tarjeta. */
+}
+
+.q-card-actions {
+  justify-content: flex-end; /* Alinear las acciones de la tarjeta a la derecha */
+}
+
+.q-btn {
+  margin-left: 10px; /* Añade algo de espacio entre los botones. */
+}
+
+input[type="text"] {
+  width: 100%; /* Hacer que las entradas de texto ocupen todo el ancho */
+}
+
+.text-h6 {
+  font-size: 1.25rem; /* Aumentar el tamaño de fuente del título de la sección.*/
+}
+
+
+</style>
 
 
 

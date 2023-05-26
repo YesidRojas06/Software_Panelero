@@ -44,7 +44,7 @@ class servidor {
     }
 
     listen(){
-        this.app.listen(process.env.PORT,()=>{
+        this.app.listen(4100,()=>{
             console.log("Escuchando puerto 4100 ")
         })
     }

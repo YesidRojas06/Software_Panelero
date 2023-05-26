@@ -13,11 +13,11 @@ rutasusuarios.post('/',[
     check('nombre', 'El nombre es obligatorio!').not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
     check('correo').custom( helpersUsuarios.existeEmail ),
-    check('password', 'Password no es válido').isLength({ min: 8}),
-    check("documento", "El número de documento es obligatorio!").not().isEmpty(),
-    check('id', 'No es un ID válido').isMongoId(),
-    check('id').custom(helpersUsuarios.existeUsuarioById), 
-    check("documento").custom(helpersUsuarios.existeUsuarioById),
+    check('contrasena', 'Password no es válido').not().isEmpty(),
+    // check("documento", "El número de documento es obligatorio!").not().isEmpty(),
+    // check('id', 'No es un ID válido').isMongoId(),
+    // check('id').custom(helpersUsuarios.existeUsuarioById), 
+    // check("documento").custom(helpersUsuarios.existeUsuarioById),
     validarCampos     
 ],usuariohttp.usuariopost);
 
