@@ -1,4 +1,12 @@
 <template>
+   
+  <h1>Bodegas
+</h1>
+
+</template>
+
+
+<!-- <template>
     <div>
       <div class="q-pa-md">
         <q-btn color="white" text-color="black" label="Nuevo Registro" @click="guardar"/>
@@ -167,4 +175,4 @@
   
   </script>
   
-  <style lang="scss" scoped></style>
+  <style lang="scss" scoped></style> -->
