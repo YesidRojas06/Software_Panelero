@@ -14,7 +14,7 @@ export const UserStore = defineStore("user", {
 
         async getUsers(){
             try {
-                 const resp =await axios.get('https://software-panelero.onrender.com/usuario') 
+                 const resp =await axios.get('http://localhost:4100/usuario') 
                 return resp.data.usuarios
         
             } catch (error) {
@@ -27,8 +27,8 @@ export const UserStore = defineStore("user", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`https://software-panelero.onrender.com/usuario`,
-                JSON.stringify(datos)
+                const resp = await axios.post(`http://localhost:4100/usuario`,
+                datos
                 ) 
                return resp
        
@@ -43,6 +43,28 @@ export const UserStore = defineStore("user", {
                 const resp = await axios.put(`https://software-panelero.onrender.com/usuario/${id}`,
                     datos
                 ) 
+               return resp
+       
+           } catch (error) {
+               console.log(error);
+               return error
+           }
+
+        },
+        async activeUser (id){
+            try {
+                const resp = await axios.put(`http://localhost:4100/usuario/activar/${id}`                ) 
+               return resp
+       
+           } catch (error) {
+               console.log(error);
+               return error
+           }
+
+        },
+        async inactiveUser (id){
+            try {
+                const resp = await axios.put(`http://localhost:4100/usuario/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {

@@ -13,8 +13,8 @@
         <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
           <td style="text-align: center;"> 
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <q-btn v-if="props.row.estado == 1" >🚫</q-btn>
-            <q-btn v-else>✅</q-btn>
+            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
+            <q-btn v-else @click="active(props.row)">✅</q-btn>
 
           </td>
         </template>
@@ -126,19 +126,30 @@ function guardar (){
 
  
 
-  const nuevoUsuario = {
-    nombre: nombre.value,
-    correo: correo.value,
-    rol: rol.value,
-  };
+  // const nuevoUsuario = {
+  //   nombre: nombre.value,
+  //   correo: correo.value,
+  //   rol: rol.value,
+  // };
 
 
-  postUser.addUser(nuevoUsuario).then(() => {
-    listarUsuarios();
+  // postUser.addUser(nuevoUsuario).then(() => {
+  //   listarUsuarios();
     
     
-  })
+  // })
   
+}
+async function inactive(props) {
+  console.log("desactivado", props.nombre);
+  let res = await getUser.inactiveUser(props._id);
+  listarUsuarios()
+}
+
+async function active(props) {
+  console.log("activado", props.nombre);
+  let res = await getUser.activeUser(props._id);
+  listarUsuarios()
 }
 
 function limpiarFormulario() {
@@ -160,10 +171,10 @@ function limpiarFormulario() {
     rol: rol.value,
     estado:0,
   };
-  console.log("guardar ",  datos);
+  // console.log("guardar ",  datos);
   let res = await getUser.addUser(datos);
   listarUsuarios()
-  console.log(res);
+  console.log(res.response.data);
  }else{
   const datos = {
     nombre: nombre.value,

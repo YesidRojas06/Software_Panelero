@@ -12,9 +12,9 @@ rutasusuarios.put("/:id",usuariohttp.usuarioput)
 rutasusuarios.put("/desactivar/:id",usuariohttp.usuarioInactivoput)
 rutasusuarios.put("/activar/:id",usuariohttp.usuarioActivoput)
 rutasusuarios.post('/',[    
+    // check('correo').custom( helpersUsuarios.existeEmail ),
     check('nombre', 'El nombre es obligatorio!').not().isEmpty(),
     check('correo', 'El correo no es válido').isEmail(),
-    check('correo').custom( helpersUsuarios.existeEmail ),
     check('contrasena', 'Password no es válido').not().isEmpty(),
     // check("documento", "El número de documento es obligatorio!").not().isEmpty(),
     // check('id', 'No es un ID válido').isMongoId(),
