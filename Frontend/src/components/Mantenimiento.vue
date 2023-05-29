@@ -27,7 +27,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Forma_pago">
               <div class="card">
                 <div class="textos">
                   <center><h6>Forma de Pago</h6></center>
@@ -37,7 +37,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Tipo_pago">
               <div class="card">
                 <div class="textos">
                   <center><h6>Tipo de Pago</h6></center>
@@ -57,7 +57,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/eps">
               <div class="card">
                 <div class="textos">
                   <center><h6>EPS</h6></center>

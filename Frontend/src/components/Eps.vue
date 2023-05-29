@@ -1,9 +1,9 @@
 <template>
     <div>
       <div class="q-pa-md">
-        <q-btn color="white" text-color="black" label="Nuevo Lote" @click="guardar"/>
+        <q-btn color="white" text-color="black" label="Nuevo Registro" @click="guardar"/>
   
-        <q-table title="Lote" :rows="rows" :columns="columns">
+        <q-table title="Usuario" :rows="rows" :columns="columns">
           <template v-slot:body-cell-estado="props" style="opacity: 0;">
             <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
             <span v-else>Inactivo</span>
@@ -28,29 +28,14 @@
             </q-card-section>
   
             <q-card-section class="q-pt-none">
-              <p>Codigo</p>
+              <p>Nombre</p>
             <input type="text" v-model="nombre">
-            <p>Nombres</p>
+            <p>Correo</p>
             <input type="text" v-model="correo">
             <p v-if="bd == 0 ">contraseña</p>
             <input v-if="bd == 0 " type="text" v-model="clave">
             <p>Rol</p>
             <input type="text" v-model="rol">
-            <p>Descripcion</p>
-            <input type="text" v-model="correo">
-            <p>Tamaño</p>
-            <input type="text" v-model="tamaño">
-            <p>EstadoSueldo</p>
-            <input type="text" v-model="estadoS">
-            <p>Clase</p>
-            <input type="text" v-model="clase">
-            <p>Padre</p>
-            <input type="text" v-model="padre">
-            <p>Densidad</p>
-            <input type="text" v-model="densidad">
-
-
-
            
             </q-card-section>
   
@@ -95,14 +80,9 @@
       field: "nombre",
       sortable: false
     },
-    { name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
-    { name: 'nombres', label: 'Nombres', field: 'nombres', sortable: true, align: "center"},
-    { name: 'descripcion', label: 'Descripcion', field: 'descripcion', align: "center" },
-    { name: 'tamaño', label: 'Tamaño', field: 'tamaño', sortable: true, align: "center" },
-    { name: 'estado sueldo', label: 'Estado sueldo', field: 'estado sueldo', sortable: true, align: "center" },
-    { name: 'clase', label: 'Clase', field: 'clase', sortable: true, align: "center" },
-    { name: 'padre', label: 'Padre', field: 'padre', sortable: true, align: "center" },
-    { name: 'densidad', label: 'Densidad', field: 'densidad', sortable: true, align: "center" },
+    { name: 'correo', align: 'center', label: 'Correo', field: "correo", sortable: true },
+    { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
+    { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
     { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
   ])
   
@@ -115,9 +95,9 @@
     bd.value=1;
     nuevo.value=true
     _id = row. _id;
-    codigo.value = row.codigo;
-    nombres.value = row.nombres;
-    descripcion.value = row.descripcion;
+    nombre.value = row.nombre;
+    correo.value = row.correo;
+    rol.value = row.rol;
   }
   
   function guardar (){
@@ -188,5 +168,3 @@
   </script>
   
   <style lang="scss" scoped></style>
-  
-  
