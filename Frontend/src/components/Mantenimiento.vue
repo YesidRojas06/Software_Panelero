@@ -78,7 +78,7 @@
             </router-link>
 
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/lotes">
               <div class="card">
                 <div class="textos">
                   <center><h6>Lotes</h6></center>
