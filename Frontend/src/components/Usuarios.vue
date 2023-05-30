@@ -2,7 +2,8 @@
     <div>
       <div class="q-pa-md">
         
-        <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar" style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
+        <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar" 
+        style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
         border-radius: 30px;  "/>
   
         <q-table title="Usuario" :rows="rows" :columns="columns">
