@@ -2,7 +2,7 @@
   <div>
     <div class="q-pa-md">
       <div class="title-container">
-        <h1 class="page-title">Bodegas</h1>
+        <h1 class="page-title">Bodegass</h1>
       </div>
 
       <q-btn
