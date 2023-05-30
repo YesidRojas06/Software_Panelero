@@ -11,7 +11,7 @@
             <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
           </template>
           <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
-            <td style="text-align: center;"> 
+            <td style="text-align: center;">
               <q-btn @click="edit(props.row)" class="">📝</q-btn>
               <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
               <q-btn v-else @click="active(props.row)">✅</q-btn>

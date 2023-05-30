@@ -47,7 +47,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Unidad_Medica">
               <div class="card">
                 <div class="textos">
                   <center><h6>Unidad de Medida</h6></center>
@@ -67,7 +67,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="Tipo_Documento">
               <div class="card">
                 <div class="textos">
                   <center><h6>Tipo de Documento</h6></center>
@@ -89,7 +89,7 @@
             </router-link>
 
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Numero_Etapa">
               <div class="card">
                 <div class="textos">
                   <center><h6>Numero de Etapa</h6></center>
@@ -100,7 +100,7 @@
             </router-link>
 
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Numero_Finca">
               <div class="card">
                 <div class="textos">
                   <center><h6>Numero de Finca</h6></center>
@@ -111,7 +111,7 @@
             </router-link>
 
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Empaques">
               <div class="card">
                 <div class="textos">
                   <center><h6>Empaques</h6></center>
@@ -122,7 +122,7 @@
             </router-link>
 
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="/Soporte">
               <div class="card">
                 <div class="textos">
                   <center><h6>Soporte</h6></center>

@@ -11,7 +11,7 @@
           <q-card class="Proceso">
             <q-card-section>
 
-              <router-link to="" class="no-link">
+              <router-link to="/Proceso_diario" class="no-link">
 
 
                 <q-icon class="icon q-m" size="130px" name="manage_accounts" style="left: 80px; color: black; "></q-icon>

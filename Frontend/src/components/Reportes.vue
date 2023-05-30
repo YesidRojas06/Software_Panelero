@@ -10,7 +10,7 @@
             <q-card class="Mantenimiento1">
               <q-card-section>
 
-                <router-link to="" class="no-link">
+                <router-link to="/Mantenimiento" class="no-link">
 
 
                   <q-icon class="icon q-m" size="130px" name="engineering" style="left: 80px; color: black; "></q-icon>
@@ -46,7 +46,7 @@
             <q-card class="Pedidos1">
               <q-card-section>
 
-                <router-link to="" class="no-link">
+                <router-link to="/Pedidos" class="no-link">
 
 
                   <q-icon class="icon q-m" size="130px" name="shopping_cart" style="left: 80px; color: black; "></q-icon>

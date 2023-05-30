@@ -11,7 +11,7 @@
           <q-card class="Pagos">
             <q-card-section>
 
-              <router-link to="" class="no-link">
+              <router-link to="/Pagos" class="no-link">
 
 
                 <q-icon class="icon q-m" size="130px" name="request_page" style="left: 80px; color: black; "></q-icon>
