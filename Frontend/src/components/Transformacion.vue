@@ -1,18 +1,20 @@
 <template>
+
   <q-layout>
     <q-page-container>
       <div class="title-container"> 
-        <h1 class="page-title">Mantenimiento</h1>
+        <h1 class="page-title">Transformación</h1>
       </div>
 
-        <div class="contenedor">
+
+      <div class="contenedor">
           <div class="contenedor-conciertos">
             <router-link class="lg4" to="/Proceso_diario">
               <div class="card">
                 <div class="textos">
                   <center><h6>Proceso_diario</h6></center>
                   <!-- <q-separator style="background-color: #000000" dark inset /> -->
-                  <i class="material-icons" style="font-size: 100px;">store</i>
+                  <i class="material-icons" style="font-size: 100px;">running_with_errors</i>
                 </div>
               </div>
             </router-link>
@@ -20,38 +22,35 @@
             <router-link class="lg4" to="/Materia_prima">
               <div class="card">
                 <div class="textos">
-                  <center><h6>materiaPrima_tranformada</h6></center>
+                  <center><h6>materiaPrima_transformada</h6></center>
                   <!-- <q-separator style="background-color: #000000" dark inset /> -->
-                  <i class="material-icons" style="font-size: 100px;">verified</i>
+                  <i class="material-icons" style="font-size: 100px;">shopping_cart</i>
                 </div>
               </div>
-            </router-link>°
+            </router-link>
 
             <router-link class="lg4" to="/Empaques">
               <div class="card">
                 <div class="textos">
                   <center><h6>Empaques</h6></center>
                   <!-- <q-separator style="background-color: #000000" dark inset /> -->
-                  <i class="material-icons" style="font-size: 100px;">shopping_bag</i>
+                  <i class="material-icons" style="font-size: 100px;">fact_check</i>
                 </div>
               </div>
- 
-           </router-link>
+            </router-link>
 
-
-           
           </div>
-          </div>
-
-              </q-page-container>
-          </q-layout>
-      
-          
+        </div>
+    </q-page-container>
+  </q-layout>
 
 
 </template>
 
-<style>
+
+
+<style >
+
 .lg4 {
   text-decoration: none;
 
@@ -126,7 +125,6 @@
     gap: 20px;
   }
 }
-
 
 
 </style>
