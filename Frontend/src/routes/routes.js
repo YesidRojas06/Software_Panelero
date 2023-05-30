@@ -26,7 +26,7 @@ import Empaques from "../components/Empaques.vue"
 import Costos from "../components/Costos.vue";
 import Pagos from "../components/Pagos.vue";
 import Gastos_Mensuales from "../components/Gastos_Mensuales.vue";
-import Gastos_Ocacionales from "../components/Gastos_Ocacionales.vue"
+import Gastos_Ocasionales from "../components/Gastos_Ocasionales.vue"
 
 //Mantenimineto 
 import Mantenimiento from "../components/Mantenimiento.vue";
@@ -81,7 +81,7 @@ export const routes = [
     //costos
     { path: "/Costos", component: Costos },
     { path: "/Gastos_Mensuales", component: Gastos_Mensuales },
-    { path: "/Gastos_Ocacionales", component: Gastos_Ocacionales },
+    { path: "/Gastos_Ocasionales", component: Gastos_Ocasionales },
     { path: "/Pagos", component: Pagos },
 
 
