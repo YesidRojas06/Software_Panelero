@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import axios from "axios"
 
-export const UserStore = defineStore("Bodegas", {
+export const BodegasStore = defineStore("Bodegas", {
     state: () => ({
         userData: ":)",
         token: null
