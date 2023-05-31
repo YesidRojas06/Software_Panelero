@@ -92,7 +92,7 @@
 
 <script setup>
 import { ref,     } from "vue";
-import { BodegasStore } from "../stores/Bodegas.js";
+import { BodegasStore } from "../stores/Bodegas";
 import { useQuasar } from "quasar";
 
 const q = useQuasar();
@@ -142,13 +142,7 @@ let columns = ref([
   
   { name: "rol", label: "Rol", field: "rol", sortable: true, align: "center" },
   { name: "estado", label: "Estado", field: "estado", align: "center" },
-  {
-    name: "opcion",
-    label: "Opciones",
-    field: "",
-    sortable: true,
-    align: "center",
-  },
+  {name: "opcion", label: "Opciones", field: "", sortable: true, align: "center",},
 ]);
 
 const listarBodegas = async () => {
@@ -185,6 +179,8 @@ function guardar() {
     listarBodegas();
   });
 }
+
+
 async function inactive(props) {
   console.log("desactivado", props.Codigo);
   let res = await Bodegas.inactiveBodegas(props._id);
@@ -196,6 +192,8 @@ async function active(props) {
   let res = await Bodegas.activeBodegas(props._id);
   listarBodegas();
 }
+
+
 
 function limpiarFormulario() {
   Codigo.value = "";
@@ -234,7 +232,7 @@ async function guardarEditarDatos() {
     console.log(res);
     q.notify({
       type: "positive",
-      message: "Usuario actualizado exitosamente.",
+      message: "Bodega actualizado exitosamente.",
       position: "top",
     });
   }

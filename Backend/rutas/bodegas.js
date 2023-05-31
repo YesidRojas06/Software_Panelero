@@ -9,6 +9,8 @@ const rutasbodegas = Router();
 rutasbodegas.get("/",bodegahttp.bodegasIDGet);
 rutasbodegas.get("/",bodegahttp.bodegasSearchForTextGet);
 rutasbodegas.delete("/",bodegahttp.bodegasDelete);
+rutasbodegas.put("/desactivar/:id",bodegahttp.bodegasInactivoput)
+rutasbodegas.put("/activar/:id",bodegahttp.bodegasActivoput)
 rutasbodegas.post('/', [
 //     check('nombres', 'Los nombres son obligatorio').not().isEmpty(),
 //     check('descripcion', 'La descripcion es obligatoria').not().isEmpty(),

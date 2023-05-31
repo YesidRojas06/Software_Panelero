@@ -105,8 +105,9 @@
   
   
   const listarUsuarios = async () => {
-    console.log(await getUser.getUsers());
+    // console.log(await getUser.getUsers());
     rows.value = await getUser.getUsers()
+    
   }
   function edit (row){
     console.log(row._id);
@@ -123,24 +124,26 @@
     bd.value=0
     nuevo.value=true;
     limpiarFormulario(); // Limpia los valores del formulario antes de abrir el modal
-    nuevo.value = true;
+
   
    
   
-    const nuevoUsuario = {
-      nombre: nombre.value,
-      correo: correo.value,
-      rol: rol.value,
-    };
+    // const nuevoUsuario = {
+    //   nombre: nombre.value,
+    //   correo: correo.value,
+    //   rol: rol.value,
+    // };
   
   
-    postUser.addUser(nuevoUsuario).then(() => {
-      listarUsuarios();
-      
-      
-    })
+    // getUser.addUser(nuevoUsuario)
+    // // .then(() => {
+    // listarUsuarios();
+    // // });
     
   }
+
+
+
   async function inactive(props) {
     console.log("desactivado", props.nombre);
     let res = await getUser.inactiveUser(props._id);
@@ -152,6 +155,8 @@
     let res = await getUser.activeUser(props._id);
     listarUsuarios()
   }
+  
+
   
   function limpiarFormulario() {
     nombre.value = "";
@@ -175,6 +180,7 @@
     // console.log("guardar ",  datos);
     let res = await getUser.addUser(datos);
     listarUsuarios()
+    nuevo.value = false;
     console.log(res.response.data);
    }else{
     const datos = {
