@@ -236,7 +236,7 @@ async function guardarEditarDatos() {
     console.log(res);
     q.notify({
       type: "positive",
-      message: "Usuario actualizado exitosamente.",
+      message: "Bodega actualizado exitosamente.",
       position: "top",
     });
   }

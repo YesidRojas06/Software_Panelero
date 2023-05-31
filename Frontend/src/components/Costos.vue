@@ -29,7 +29,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="/Gastos_Ocacionales">
+            <router-link class="lg4" to="/Gastos_Ocasionales">
               <div class="card">
                 <div class="textos">
                   <center><h6>Gastos_ocacionales</h6></center>
