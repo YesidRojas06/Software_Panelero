@@ -14,7 +14,7 @@ export const UserStore = defineStore("user", {
 
         async getUsers(){
             try {
-                 const resp =await axios.get('http://localhost:4100/usuario') 
+                 const resp =await axios.get('https://software-panelero.onrender.com/usuario') 
                 return resp.data.usuarios
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const UserStore = defineStore("user", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post('http://localhost:4100/usuario',
+                const resp = await axios.post('http:https://software-panelero.onrender.com/usuario',
                 datos
                 ) 
                return resp
