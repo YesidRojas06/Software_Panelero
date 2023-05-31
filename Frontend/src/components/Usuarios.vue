@@ -30,20 +30,26 @@
             <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
               <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
   
-         
+              
   
             </q-card-section>
   
             <q-card-section class="q-pt-none">
               <p>Nombre</p>
             <input type="text" v-model="nombre" class="form-input" >
+
             <p>Correo</p>
-            <input type="text" v-model="correo" class="form-input">
+            <!-- <input type="text" v-model="correo" class="form-input"> -->
+
+            <input type="text" id="email" class="form-input" name="email" v-model="correo" required @input="validateEmail">
+
+
             <p v-if="bd == 0 ">contraseña</p>
             <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
             <p>Rol</p>
+
             <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
-            :option-value="'value'" :option-label="'label'" class="form-input" />
+            :option-value="'value'" :option-label="'label'" class="form-input" required/>
             </q-card-section>
   
               <q-card-actions align="center" class="bg-white text-black">
@@ -61,149 +67,188 @@
   
   <script setup>
   import { ref, onMounted } from "vue"
-  import { UserStore } from "../stores/user"
-  import { useQuasar } from 'quasar'
-  
-  const q=useQuasar()
-  const getUser = UserStore()
-  let rows = ref()
-  
-  let rolOptions = ref([
-    { label: 'Admin', value: 'Admin' },
-    { label: 'User', value: 'User' }
-  ]);
-  
-  
-  let nombre = ref("");
-  let clave=ref("")
-  let correo = ref("");
-  let rol = ref("");
-  
-  
-  
-  let nuevo= ref(false)
-  let bd= ref (0)
-  let _id=""
-  
-  let columns = ref([
-    {
-      name: 'nombre',
-      required: true,
-      label: 'Nombre',
-      align: 'left',
-      field: "nombre",
-      sortable: false
-    },
-    { name: 'correo', align: 'center', label: 'Correo', field: "correo", sortable: true },
-    { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
-    { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
-    { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
-  ])
-  
-  
-  
-  
-  
-  const listarUsuarios = async () => {
-    // console.log(await getUser.getUsers());
-    rows.value = await getUser.getUsers()
-    
-  }
-  function edit (row){
-    console.log(row._id);
-    bd.value=1;
-    nuevo.value=true
-    _id = row. _id;
-    nombre.value = row.nombre;
-    correo.value = row.correo;
-    rol.value = row.rol;
-  
-  }
-  
-  function guardar (){
-    bd.value=0
-    nuevo.value=true;
-    limpiarFormulario(); // Limpia los valores del formulario antes de abrir el modal
+import { UserStore } from "../stores/user"
+import { useQuasar } from 'quasar'
 
-  
-   
-  
-    // const nuevoUsuario = {
-    //   nombre: nombre.value,
-    //   correo: correo.value,
-    //   rol: rol.value,
-    // };
-  
-  
-    // getUser.addUser(nuevoUsuario)
-    // // .then(() => {
-    // listarUsuarios();
-    // // });
-    
-  }
+const q = useQuasar()
+const getUser = UserStore()
+let rows = ref()
+
+let rolOptions = ref([
+  { label: 'Admin', value: 'Admin' },
+  { label: 'User', value: 'User' }
+]);
 
 
+let nombre = ref("");
+let clave = ref("");
+let correo = ref("");
+let rol = ref("");
 
-  async function inactive(props) {
-    console.log("desactivado", props.nombre);
-    let res = await getUser.inactiveUser(props._id);
-    listarUsuarios()
-  }
-  
-  async function active(props) {
-    console.log("activado", props.nombre);
-    let res = await getUser.activeUser(props._id);
-    listarUsuarios()
-  }
-  
+let nuevo = ref(false)
+let bd = ref(0)
+let _id = ""
 
-  
-  function limpiarFormulario() {
-    nombre.value = "";
-    clave.value = "";
-    correo.value = "";
-    rol.value = "";
-    bd.value = 0;
+let columns = ref([
+  {
+    name: 'nombre',
+    required: true,
+    label: 'Nombre',
+    align: 'left',
+    field: "nombre",
+    sortable: false
+  },
+  { name: 'correo', align: 'center', label: 'Correo', field: "correo", sortable: true },
+  { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
+  { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
+  { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
+])
+
+const listarUsuarios = async () => {
+  rows.value = await getUser.getUsers()
+}
+
+function edit(row) {
+  bd.value = 1;
+  nuevo.value = true;
+  _id = row._id;
+  nombre.value = row.nombre;
+  correo.value = row.correo;
+  rol.value = row.rol;
+}
+
+function guardar() {
+  bd.value = 0;
+  nuevo.value = true;
+  limpiarFormulario();
+}
+
+async function inactive(props) {
+  let res = await getUser.inactiveUser(props._id);
+  listarUsuarios()
+}
+
+async function active(props) {
+  let res = await getUser.activeUser(props._id);
+  listarUsuarios()
+}
+
+function limpiarFormulario() {
+  nombre.value = "";
+  clave.value = "";
+  correo.value = "";
+  rol.value = "";
+  bd.value = 0;
+}
+
+function validateEmail() {
+  if (!correo.value.includes("@")) {
+    q.notify({
+      type: "negative",
+      message: "El correo electrónico debe contener el símbolo @",
+      position: "top",
+    });
   }
-  
-  
-    async function guardarEditarDatos(){
-  
-   if(bd.value == 0 ){
+}
+
+
+async function guardarEditarDatos() {
+  if (bd.value === 0) {
+    if (nombre.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (correo.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un correo válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (clave.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una contraseña válida.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (rol.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, seleccione un rol válido.",
+        position: "top",
+      });
+      return;
+    }
+
     const datos = {
       nombre: nombre.value,
       correo: correo.value,
-      contrasena:clave.value,
+      contrasena: clave.value,
       rol: rol.value,
-      estado:0,
+      estado: 0,
     };
-    // console.log("guardar ",  datos);
+
     let res = await getUser.addUser(datos);
     listarUsuarios()
     nuevo.value = false;
     console.log(res.response.data);
-   }else{
+  } else {
+    if (nombre.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (correo.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un correo válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (rol.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, seleccione un rol válido.",
+        position: "top",
+      });
+      return;
+    }
+
     const datos = {
       nombre: nombre.value,
       correo: correo.value,
       rol: rol.value,
-      estado:1,
+      estado: 1,
     };
-    console.log("editar ", datos);
+
     let res = await getUser.editUser(_id, datos);
     listarUsuarios()
     console.log(res);
     q.notify({
-        type: "positive",
-        message: "Usuario actualizado exitosamente.",
-        position: "top",
-      });
-   }
+      type: "positive",
+      message: "Usuario actualizado exitosamente.",
+      position: "top",
+    });
   }
-  
-  
-  listarUsuarios()
-  
+}
+
+listarUsuarios()
   </script>
   
   <style lang="scss" scoped>
