@@ -2,7 +2,7 @@
   <q-layout>
     <q-page-container>
       <div class="title-container"> 
-        <h1 class="page-title">Mantenimiento</h1>
+        <h1 class="page-title">Inventario</h1>
       </div>
 
         <div class="contenedor">
