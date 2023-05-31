@@ -38,7 +38,23 @@ const bodegahttp= {
       codigo, nombres, descripcion,
     });
     res.json({ "Bodega eliminada": bodegas });
-  }
+  },
+  bodegasInactivoput: async (req, res) => {
+    console.log(req.params);
+    const { id } = req.params;
+    const bodega = await modelobodegas.findByIdAndUpdate(id, { estado: 0 });
+    // await user.save();
+    // return res.send("usuario");
+    res.send(bodega);
+},
+
+bodegasActivoput: async (req, res) => {
+      console.log(req.params);
+    // console.log(req.body);
+    const { id } = req.params;
+    const bodega = await modelobodegas.findByIdAndUpdate(id, { estado: 1 });
+    res.send(bodega);
+  },
 }
 
 export default bodegahttp

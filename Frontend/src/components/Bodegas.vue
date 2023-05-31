@@ -92,7 +92,7 @@
 
 <script setup>
 import { ref,     } from "vue";
-import { BodegasStore } from "../stores/Bodegas.js";
+import { BodegasStore } from "../stores/Bodegas";
 import { useQuasar } from "quasar";
 
 const q = useQuasar();
@@ -142,13 +142,7 @@ let columns = ref([
   
   { name: "rol", label: "Rol", field: "rol", sortable: true, align: "center" },
   { name: "estado", label: "Estado", field: "estado", align: "center" },
-  {
-    name: "opcion",
-    label: "Opciones",
-    field: "",
-    sortable: true,
-    align: "center",
-  },
+  {name: "opcion", label: "Opciones", field: "", sortable: true, align: "center",},
 ]);
 
 const listarBodegas = async () => {
