@@ -56,7 +56,8 @@ export const UserStore = defineStore("user", {
                 const resp = await axios.put(`http://localhost:4100/usuario/activar/${id}`                ) 
                return resp
        
-           } catch (error) {
+   
+        } catch (error) {
                console.log(error);
                return error
            }
@@ -77,7 +78,6 @@ export const UserStore = defineStore("user", {
     }
     
 })
-
 
 
 

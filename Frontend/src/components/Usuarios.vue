@@ -141,6 +141,9 @@
     })
     
   }
+
+
+
   async function inactive(props) {
     console.log("desactivado", props.nombre);
     let res = await getUser.inactiveUser(props._id);
@@ -152,6 +155,8 @@
     let res = await getUser.activeUser(props._id);
     listarUsuarios()
   }
+  
+
   
   function limpiarFormulario() {
     nombre.value = "";

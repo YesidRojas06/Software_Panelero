@@ -185,6 +185,8 @@ function guardar() {
     listarBodegas();
   });
 }
+
+
 async function inactive(props) {
   console.log("desactivado", props.Codigo);
   let res = await Bodegas.inactiveBodegas(props._id);
@@ -196,6 +198,8 @@ async function active(props) {
   let res = await Bodegas.activeBodegas(props._id);
   listarBodegas();
 }
+
+
 
 function limpiarFormulario() {
   Codigo.value = "";
