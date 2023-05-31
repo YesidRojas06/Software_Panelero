@@ -13,6 +13,11 @@ import rutaslotes from "../rutas/lotes.js";
 import rutasingProveedores from "../rutas/ingProveedores.js";
 import rutasregistro from "../rutas/registro.js";
 import rutasusuarios from "../rutas/usuarios.js";
+import rutaseps from "../rutas/eps.js";
+import rutaslabores from "../rutas/labores.js";
+import rutaspagosMantenimiento from "../rutas/pagosMantenimiento.js";
+import rutasunidadesMedida from "../rutas/unidadesMedida.js";
+import rutastipoDocumento from "../rutas/tipoDocumento.js";
 
 dotenv.config()
 class servidor {
@@ -38,14 +43,20 @@ class servidor {
         this.app.use("/ingProveedores", rutasingProveedores)
         this.app.use("/registro", rutasregistro)
         this.app.use("/usuario", rutasusuarios)
+        this.app.use("/eps", rutaseps)
+        this.app.use("/labores", rutaslabores)
+        this.app.use("/pagosMantenimiento", rutaspagosMantenimiento)
+        this.app.use("/unidadesMedida", rutasunidadesMedida)
+        this.app.use("/tipoDocumento", rutastipoDocumento)
+        
             this.app.use("/", (req,res) => {
                 res.send('life')
             })
     }
 
     listen(){
-        this.app.listen(4100,()=>{
-            console.log("Escuchando puerto 4100 ")
+        this.app.listen(4503,()=>{
+            console.log("Escuchando puerto 4503 ")
         })
     }
 }
