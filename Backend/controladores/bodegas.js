@@ -38,6 +38,24 @@ const bodegahttp= {
       codigo, nombres, descripcion,
     });
     res.json({ "Bodega eliminada": bodegas });
+  },
+
+  
+  bodegasEdit: async (req, res) => {
+    const { id } = req.params;
+    const { codigo, nombres, descripcion } = req.body;
+  
+    try {
+      const bodega = await modelobodegas.findByIdAndUpdate(
+        id,
+        { codigo, nombres, descripcion },
+        { new: true }
+      );
+  
+      res.json({ bodega });
+    } catch (error) {
+      res.status(500).json({ error: "Error al editar la bodega" });
+    }
   }
 }
 
