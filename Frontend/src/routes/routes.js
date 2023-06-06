@@ -34,7 +34,7 @@ import Usuarios from "../components/Usuarios.vue";
 import Labores from "../components/Labores.vue"
 import Forma_pago from "../components/Forma_pago.vue"
 import Tipo_pago from "../components/Tipo_pago.vue"
-import Unidad_Medica from "../components/Unidad_Medica.vue"
+import Unidad_Medida from "../components/Unidad_Medida.vue"
 import Eps from "../components/Eps.vue"
 import Tipo_Documento from "../components/Tipo_Documento.vue"
 import Lotes from "../components/Lotes.vue"
@@ -91,7 +91,7 @@ export const routes = [
     { path: "/Labores", component: Labores },
     { path: "/Forma_pago", component: Forma_pago },
     { path: "/Tipo_pago", component: Tipo_pago },
-    { path: "/Unidad_Medica", component: Unidad_Medica },
+    { path: "/Unidad_Medida", component: Unidad_Medida },
     { path: "/Eps", component: Eps },
     { path: "/Tipo_Documento", component: Tipo_Documento },
     { path: "/Lotes", component: Lotes },

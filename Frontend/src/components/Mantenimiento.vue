@@ -47,7 +47,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="/Unidad_Medica">
+            <router-link class="lg4" to="/Unidad_Medida">
               <div class="card">
                 <div class="textos">
                   <center><h6>Unidad de Medida</h6></center>
