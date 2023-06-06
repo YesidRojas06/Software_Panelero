@@ -14,8 +14,8 @@ export const BodegasStore = defineStore("Bodegas", {
 
         async getBodegas(){
             try {
-                 const resp =await axios.get('http://localhost:4100/Bodegas') 
-                return resp.data.usuarios
+                 const resp =await axios.get('http://localhost:4503/bodegas') 
+                return(resp.data.bodega)
         
             } catch (error) {
                 console.log(error);
@@ -27,20 +27,20 @@ export const BodegasStore = defineStore("Bodegas", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4100/Bodegas`,
+                const resp = await axios.post(`http://localhost:4503/bodegas`,
                 datos
-                ) 
-               return resp
+                ); 
+               return resp;
        
            } catch (error) {
-            console.log(error)
-               return error
+            console.log(error);
+               return error;
            }
         },
         async editBodegas (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://software-panelero.onrender.com/Bodegas/${id}`,
+                const resp = await axios.put(`https://localhost:4503/bodegas${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const BodegasStore = defineStore("Bodegas", {
         },
         async activeBodegas (id){
             try {
-                const resp = await axios.put(`http://localhost:4100/Bodegas/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/Bodegas/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -64,7 +64,7 @@ export const BodegasStore = defineStore("Bodegas", {
         },
         async inactiveBodegas (id){
             try {
-                const resp = await axios.put(`http://localhost:4100/Bodegas/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/bodegas/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {

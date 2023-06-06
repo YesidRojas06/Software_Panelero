@@ -64,15 +64,16 @@
 
           <p v-if="bd == 0 ">contraseña</p>
           <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
+          
           <p>Rol</p>
-
           <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
           :option-value="'value'" :option-label="'label'" class="form-input" required/>
           </q-card-section>
 
             <q-card-actions align="center" class="bg-white text-black">
             <q-btn  label="Cancelar" @click="nuevo=false" style="background-color: rgb(243, 9, 9)"/>
-            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">{{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
+            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
+              {{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
 
        
             

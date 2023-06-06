@@ -3,9 +3,11 @@
 import mongoose from "mongoose";
 
 const BodegasShechema=new mongoose.Schema({
-    codigo: { type:mongoose.Schema.ObjectId, ref:"codigo", required:true },
-    nombres:{ type:mongoose.Schema.ObjectId, ref:"nombres", required:true },
-    descripcion:{ type:mongoose.Schema.ObjectId, ref:"descripcion", required:true },
+    codigo: { type:String, },
+    nombres:{ type:String,   },
+    descripcion:{ type:String,  },
+    rol: { type: String, required: true },
+    estado: { type: Number, default: 1 },
 })
 
 export default mongoose.model("Bodegas", BodegasShechema)
