@@ -53,7 +53,7 @@ export const BodegasStore = defineStore("Bodegas", {
         },
         async activeBodegas (id){
             try {
-                const resp = await axios.put(`http://localhost:4100/Bodegas/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/Bodegas/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -64,7 +64,7 @@ export const BodegasStore = defineStore("Bodegas", {
         },
         async inactiveBodegas (id){
             try {
-                const resp = await axios.put(`http://localhost:4100/Bodegas/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/Bodegas/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import axios from "axios"
 
-export const UserStore = defineStore("user", {
+export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
     state: () => ({
         userData: ":)",
         token: null
@@ -12,9 +12,9 @@ export const UserStore = defineStore("user", {
             this.token = token;
         },
 
-        async getUsers(){
+        async getUnidadesMedida(){
             try {
-                 const resp =await axios.get('https://software-panelero.onrender.com/usuario') 
+                const resp =await axios.get('http://localhost:4503/uMedida') 
                 return resp.data.usuarios
         
             } catch (error) {
@@ -23,11 +23,11 @@ export const UserStore = defineStore("user", {
             }
         },
 
-        async addUser(datos){
+        async addUnidadesMedida(datos){
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post('http:https://software-panelero.onrender.com/usuario',
+                const resp = await axios.post(`http://localhost:4503/uMedida`,
                 datos
                 ) 
                return resp
@@ -37,10 +37,10 @@ export const UserStore = defineStore("user", {
                return error
            }
         },
-        async editUser (id, datos){
+        async editUnidadesMedida (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://software-panelero.onrender.com/usuario/${id}`,
+                const resp = await axios.put(`https://software-panelero.onrender.com/Bodegas/${id}`,
                     datos
                 ) 
                return resp
@@ -51,21 +51,20 @@ export const UserStore = defineStore("user", {
            }
 
         },
-        async activeUser (id){
+        async activeUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/usuario/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/uMedida/activar/${id}`                ) 
                return resp
        
-   
-        } catch (error) {
-               console.log(error);
+           } catch (error) {
+               console.log(error);                                     
                return error
            }
 
         },
-        async inactiveUser (id){
+        async inactiveUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/usuario/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/uMedida/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -79,5 +78,20 @@ export const UserStore = defineStore("user", {
     
 })
 
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

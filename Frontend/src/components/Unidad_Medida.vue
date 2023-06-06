@@ -34,7 +34,7 @@
         <q-btn
     color="white"
     text-color="black"
-    label="Nuevo Usuario"
+    label="Nueva unidad de medida"
     @click="guardar"
     class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
     style="position: absolute; top: 150px; right: 40px; border-radius: 30px;"
@@ -49,28 +49,25 @@
           <q-card class="bg-teal text-dark"  style="width: 500px; max-width: 80vw;">
   
             <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
-              <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
-  
-              
+              <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>  
   
             </q-card-section>
   
             <q-card-section class="q-pt-none">
-              <p>Nombre</p>
-            <input type="text" v-model="nombre" class="form-input" >
+              <p>Codigo</p>
+            <input type="text" v-model="Codigo" class="form-input" >
   
-            <p>Correo</p>
+            <p>Fecha</p>
             <!-- <input type="text" v-model="correo" class="form-input"> -->
   
-            <input type="text" id="email" class="form-input" name="email" v-model="correo" required @input="validateEmail">
+            <input type="text" v-model="fecha" class="form-input">
   
   
-            <p v-if="bd == 0 ">contraseña</p>
-            <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
-            <p>Rol</p>
+            <p v-if="bd == 0 ">Descripcion</p>
+            <input type="text" v-model="descripcion" class="form-input">
   
-            <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
-            :option-value="'value'" :option-label="'label'" class="form-input" required/>
+       
+           
             </q-card-section>
   
               <q-card-actions align="center" class="bg-white text-black">
@@ -119,9 +116,9 @@
     field: "nombre",
     sortable: false
   },
-  { name: 'correo', align: 'center', label: 'Correo', field: "correo", sortable: true },
-  { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
-  { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
+  { name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
+  { name: 'fecha', label: 'Fecha', field: 'fecha', sortable: true, align: "center" },
+  { name: 'descripcion', label: 'Descripcion', field: 'descripcion', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
   ])
   
