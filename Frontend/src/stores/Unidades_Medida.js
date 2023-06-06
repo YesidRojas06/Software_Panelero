@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import axios from "axios"
 
-export const BodegasStore = defineStore("Bodegas", {
+export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
     state: () => ({
         userData: ":)",
         token: null
@@ -12,10 +12,10 @@ export const BodegasStore = defineStore("Bodegas", {
             this.token = token;
         },
 
-        async getBodegas(){
+        async getUnidadesMedida(){
             try {
-                 const resp =await axios.get('http://localhost:4503/bodegas') 
-                return(resp.data.bodega)
+                const resp =await axios.get('http://localhost:4503/uMedida') 
+                return resp.data.usuarios
         
             } catch (error) {
                 console.log(error);
@@ -23,24 +23,24 @@ export const BodegasStore = defineStore("Bodegas", {
             }
         },
 
-        async addBodegas(datos){
+        async addUnidadesMedida(datos){
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4503/bodegas`,
+                const resp = await axios.post(`http://localhost:4503/uMedida`,
                 datos
-                ); 
-               return resp;
+                ) 
+               return resp
        
            } catch (error) {
-            console.log(error);
-               return error;
+            console.log(error)
+               return error
            }
         },
-        async editBodegas (id, datos){
+        async editUnidadesMedida (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://localhost:4503/bodegas${id}`,
+                const resp = await axios.put(`https://software-panelero.onrender.com/Bodegas/${id}`,
                     datos
                 ) 
                return resp
@@ -51,22 +51,20 @@ export const BodegasStore = defineStore("Bodegas", {
            }
 
         },
-        async activeBodegas (id){
+        async activeUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/Bodegas/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/uMedida/activar/${id}`                ) 
                return resp
        
            } catch (error) {
-               console.log(error);
+               console.log(error);                                     
                return error
            }
 
         },
-        async inactiveBodegas (id){
+        async inactiveUnidadesMedida (id){
             try {
-                
-                const resp = await axios.put(`http://localhost:4503/Bodegas/desactivar/${id}`                ) 
-
+                const resp = await axios.put(`http://localhost:4503/uMedida/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -80,6 +78,20 @@ export const BodegasStore = defineStore("Bodegas", {
     
 })
 
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
