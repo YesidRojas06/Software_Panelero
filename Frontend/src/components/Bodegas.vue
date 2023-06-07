@@ -43,17 +43,11 @@
           <p>Nombre</p>
           <input type="text" v-model="nombres" class="form-input" />
 
-          <p>Correo</p>
-          <input type="text" id="email" class="form-input" name="email" v-model="codigo" required @input="validateEmail" />
-
-
-
           <p>Descripcion</p>
           <input type="text" v-model="descripcion" class="form-input" />
-
-          <p>Rol</p>
-          <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
-          :option-value="'value'" :option-label="'label'" class="form-input" required/>
+          
+          <p>codigo</p>
+          <input type="text" v-model="codigo" class="form-input" />
           
 
           
@@ -79,15 +73,12 @@ const q = useQuasar();
 const Bodegas = BodegasStore();
 let rows = ref();
 
-let rolOptions = ref([
-{ label: 'Admin', value: 'Admin' },
-{ label: 'User', value: 'User' }
-]);
+
 
 let nombres = ref("");
 let descripcion = ref("");
 let codigo = ref("");
-let rol = ("");
+
 
 let nuevo = ref(false);
 let bd = ref(0);
@@ -104,7 +95,6 @@ let columns = ref([
   },
   { name: 'codigo', align: 'center', label: 'codigo', field: "codigo", sortable: true },
   { name: 'descripcion', label: 'Descripcion', field: 'descripcion', sortable: true, align: "center" },
-  { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ]);
@@ -119,10 +109,12 @@ function edit(row) {
   bd.value = 1;
   nuevo.value = true;
   _id = row._id;
-  nombres.value = row.nombre;
+  nombres.value = row.nombres;
   codigo.value = row.codigo;
   descripcion.value = row.descripcion;
-  rol.value = row.rol
+ 
+
+  
 }
 
 function guardar() {
@@ -145,20 +137,12 @@ function limpiarFormulario() {
   nombres.value = "";
   codigo.value = "";
   descripcion.value = "";
-  rol.value = "";
-  descripcion.value
+  descripcion.value ="";
   bd.value = 0;
+  codigo.value= "";
 }
 
-function validateEmail() {
-  if (!correo.value.includes("@")) {
-    q.notify({
-      type: "negative",
-      message: "El correo electrónico debe contener el símbolo @",
-      position: "top",
-    });
-  }
-}
+
 
 async function guardarEditarDatos() {
   if (bd.value === 0) {
@@ -180,21 +164,13 @@ async function guardarEditarDatos() {
       return;
     }
 
-    if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
+  
 
 
     const datos = {
       nombres: nombres.value,
       codigo: codigo.value,
       descripcion: descripcion.value,
-      rol: rol.value,
       estado: 0,
     };
 
@@ -225,10 +201,10 @@ async function guardarEditarDatos() {
       nombres: nombres.value,
       codigo: codigo.value,
       descripcion: descripcion.value,
-      rol: rol.value,
       estado: 1,
     };
 
+    console.log(_id, {datos});
     let res = await Bodegas.editBodegas(_id, datos);
     listarBodegas();
     console.log(res);
