@@ -85,7 +85,7 @@
   
   <script setup>
   import { ref, onMounted } from "vue";
-  import { Unidades_MedidaStore } from "../stores/Unidades_Medida";
+  import { Unidades_MedidaStore } from "../stores/Unidades_Medida.js";
   import { useQuasar } from 'quasar';
   
   const q = useQuasar()
@@ -95,13 +95,13 @@
  
   
   let codigo = ref("");
-  let clave = ref("");
   let fecha = ref("");
-  let rol = ref("");
+  let descripcion = ref("");
+ 
   
   let nuevo = ref(false)
   let bd = ref(0)
-  let _id = ""
+  let _id = "";
   
   let columns = ref([
   { name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
@@ -111,7 +111,7 @@
   ])
   
   const listarUnidadesMedida = async () => {
-  rows.value = await getUnidadesMedida.getUnidadesMedidas()
+  rows.value = await UnidadesMedida.getUnidadesMedidas();
   }
   
   function edit(row) {
@@ -119,9 +119,8 @@
   nuevo.value = true;
   _id = row._id;
   codigo.value = row.codigo;
-  descripcion.value = row.descripcion;
   fecha.value = row.fecha;
-  rol.value = row.rol;
+  descripcion.value = row.descripcion;
   }
   
   function guardar() {
@@ -132,7 +131,7 @@
   
   async function inactive(props) {
   let res = await UnidadesMedida.inactiveUnidadesMedida(props._id);
-  listarUnidadesMedida()
+  listarUnidadesMedida();
   }
   
   async function active(props) {
@@ -146,18 +145,7 @@
   descripcion.value = "";
   bd.value = 0;
   }
-  
-  function validateEmail() {
-  if (!fecha.value.includes("@")) {
-    q.notify({
-      type: "negative",
-      message: "El fecha electrónico debe contener el símbolo @",
-      position: "top",
-    });
-  }
-  }
-  
-  
+   
   async function guardarEditarDatos() {
   if (bd.value === 0) {
     if (codigo.value === "") {
@@ -202,15 +190,14 @@
     const datos = {
       codigo: codigo.value,
       fecha: fecha.value,
-      contrasena: clave.value,
-      rol: rol.value,
+      descripcion: descripcion.value,
       estado: 0,
     };
   
-    let res = await getUnidadesMedida.addUnidadesMedida(datos);
-    listarUsuarios()
+    let res = await UnidadesMedida.addUnidadesMedida(datos);
+    console.log(res);
+    listarUnidadesMedida();
     nuevo.value = false;
-    console.log(res.response.data);
   } else {
     if (codigo.value === "") {
       q.notify({
@@ -224,16 +211,7 @@
     if (fecha.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un fecha válido.",
-        position: "top",
-      });
-      return;
-    }
-  
-    if (rol.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, seleccione un rol válido.",
+        message: "Por favor, ingrese una fecha válida.",
         position: "top",
       });
       return;
@@ -242,22 +220,23 @@
     const datos = {
       codigo: codigo.value,
       fecha: fecha.value,
-      rol: rol.value,
+      descripcion: descripcion.value,
       estado: 1,
     };
   
-    let res = await getUnidadesMedida.editUnidadesMedida(_id, datos);
-    listarUsuarios()
+    console.log(_id, {datos});
+    let res = await UnidadesMedida.editUnidadesMedida(_id, datos);
+    listarUnidadesMedida();
     console.log(res);
     q.notify({
       type: "positive",
-      message: "Usuario actualizado exitosamente.",
+      message: "Unidad de medida actualizada exitosamente.",
       position: "top",
     });
   }
-  }
+}
   
-  listarUsuarios()
+  listarUnidadesMedida();
   </script>
   
   <style lang="scss" scoped>

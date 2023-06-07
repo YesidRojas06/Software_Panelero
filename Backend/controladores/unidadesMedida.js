@@ -1,34 +1,51 @@
 import modelosuMedida from "../modelos/unidadesMedida.js";
 
 const uMedidahttp = {
-  uMedidaget: async (req, res) => {
+  uMedidaIDget: async (req, res) => {
     const uMedida = await modelosuMedida.find({});
-    res.json({ uMedidas: uMedida });
+    res.json({ uMedida });
   },
 
   uMedidapost: async (req, res) => {
-    let { codigo, nombreU, fecha, descripcion } = req.body;
-    const uMedida = new modelosuMedida({ codigo, nombreU, fecha, descripcion });
-    try {
-      await uMedida.save();
-      res.send("Unidad de medida creada");
-    } catch (error) {
-      res.status(500).send("Error al crear la unidad de medida");
-    }
+    const { codigo, fecha, descripcion } = req.body;
+    const uMedida = new modelosuMedida({ codigo, fecha, descripcion });
+
+    await uMedida.save();
+    res.json({
+      uMedida,
+    });
+   
   },
 
   uMedidaput: async (req, res) => {
-    const { _id, nombreU } = req.body;
-    try {
-      const uMedida = await modelosuMedida.findByIdAndUpdate(_id, { nombreU }, { new: true });
-      if (!uMedida) {
-        return res.status(404).send("Unidad de medida no encontrada");
-      }
-      res.send("Unidad de medida actualizada");
-    } catch (error) {
-      res.status(500).send("Error al actualizar la unidad de medida");
-    }
-  }
+    const {codigo, fecha, descripcion } = req.body;
+  
+    console.log(req.body);
+    const { id } = req.params;
+    const uMedida = await modelosuMedida.findByIdAndUpdate(id, {
+
+      codigo,
+      fecha,
+      descripcion,
+      
+    });
+    await uMedida.save();
+    res.send(uMedida);
+  },
+
+  uMedidaInactivoput:async (req,res) => {
+    console.log(req.params);
+    const { id } = req.params;
+    const uMedida = await modelosuMedida.findByIdAndUpdate(id,{estado:0});
+    res.send (uMedida); 
+ },
+
+ uMedidaActivoput:async (req,res) => {
+  console.log(req.params);
+  const { id } = req.params;
+  const uMedida = await modelosuMedida.findByIdAndUpdate(id,{estado:1});
+  res.send(uMedida);
+ },
 };
 
 export default uMedidahttp;
