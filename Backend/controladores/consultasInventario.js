@@ -1,5 +1,3 @@
-// CONSULTA DE DATOS (INVENTARIO)
-
 import modelconsulta from "../modelos/consultasInventario.js";
 
 const consultahttp= {

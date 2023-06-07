@@ -1,5 +1,3 @@
-// INGRESAR PROVEEDORES
-
 import mongoose from "mongoose";
 
 const ingProveedoresShechema=new mongoose.Schema({

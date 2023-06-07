@@ -1,5 +1,3 @@
-// INCLUSION DE DATOS (INVENTARIO)
-
 import mongoose from "mongoose";
 
 const inclusionInventarioISchema= new mongoose.Schema({

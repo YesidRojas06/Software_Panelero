@@ -28,6 +28,24 @@ const laboreshttp= {
     });
   },
 
+
+
+  laboresput: async (req, res) => {
+    const { nombres, codigo,  descripcion } = req.body;
+
+    console.log(req.body);
+    const { id } = req.params;
+    const labores = await modelolabores.findByIdAndUpdate(id, {
+      nombres,
+      codigo,
+      descripcion
+      
+    });
+    await labores.save();
+    res.send(labores);
+  },
+
+  
   laboresGetBuscar : async (req, res) => {
     const { nombre_labor, area_realizar, pago_diario } = req.query;
     const labores = await modelosLabores.find({

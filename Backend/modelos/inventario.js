@@ -1,5 +1,3 @@
-// INVENTARIO
-
 import mongoose from "mongoose";
 
 const InventarioSchema = new mongoose.Schema({

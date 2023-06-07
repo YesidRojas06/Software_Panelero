@@ -1,5 +1,3 @@
-// INVENTARIO
-
 import modeloInventario from "../modelos/inventario.js";
 
 const inventariohttp= {

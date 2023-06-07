@@ -1,5 +1,3 @@
-// LOTES
-
 import modelosLotes from "../modelos/lotes.js";
 
 const loteshttp= {
