@@ -55,15 +55,15 @@
   
             <q-card-section class="q-pt-none">
               <p>Codigo</p>
-            <input type="text" v-model="Codigo" class="form-input" >
+            <input type="text" v-model="codigo" class="form-input" >
   
             <p>Fecha</p>
-            <!-- <input type="text" v-model="correo" class="form-input"> -->
+            <!-- <input type="text" v-model="fecha" class="form-input"> -->
   
             <input type="text" v-model="fecha" class="form-input">
   
   
-            <p v-if="bd == 0 ">Descripcion</p>
+            <p>Descripcion</p>
             <input type="text" v-model="descripcion" class="form-input">
   
        
@@ -84,23 +84,19 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from "vue"
-  import { UserStore } from "../stores/user"
-  import { useQuasar } from 'quasar'
+  import { ref, onMounted } from "vue";
+  import { Unidades_MedidaStore } from "../stores/Unidades_Medida";
+  import { useQuasar } from 'quasar';
   
   const q = useQuasar()
-  const getUser = UserStore()
+  const UnidadesMedida = Unidades_MedidaStore();
   let rows = ref()
   
-  let rolOptions = ref([
-  { label: 'Admin', value: 'Admin' },
-  { label: 'User', value: 'User' }
-  ]);
+ 
   
-  
-  let nombre = ref("");
+  let codigo = ref("");
   let clave = ref("");
-  let correo = ref("");
+  let fecha = ref("");
   let rol = ref("");
   
   let nuevo = ref(false)
@@ -108,62 +104,54 @@
   let _id = ""
   
   let columns = ref([
-  {
-    name: 'nombre',
-    required: true,
-    label: 'Nombre',
-    align: 'left',
-    field: "nombre",
-    sortable: false
-  },
   { name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
   { name: 'fecha', label: 'Fecha', field: 'fecha', sortable: true, align: "center" },
   { name: 'descripcion', label: 'Descripcion', field: 'descripcion', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
   ])
   
-  const listarUsuarios = async () => {
-  rows.value = await getUser.getUsers()
+  const listarUnidadesMedida = async () => {
+  rows.value = await getUnidadesMedida.getUnidadesMedidas()
   }
   
   function edit(row) {
   bd.value = 1;
   nuevo.value = true;
   _id = row._id;
-  nombre.value = row.nombre;
-  correo.value = row.correo;
+  codigo.value = row.codigo;
+  descripcion.value = row.descripcion;
+  fecha.value = row.fecha;
   rol.value = row.rol;
   }
   
   function guardar() {
   bd.value = 0;
   nuevo.value = true;
-  limpiarFormulario();
+  limpiarFormulario(); 
   }
   
   async function inactive(props) {
-  let res = await getUser.inactiveUser(props._id);
-  listarUsuarios()
+  let res = await UnidadesMedida.inactiveUnidadesMedida(props._id);
+  listarUnidadesMedida()
   }
   
   async function active(props) {
-  let res = await getUser.activeUser(props._id);
-  listarUsuarios()
+  let res = await UnidadesMedida.activeUnidadesMedida(props._id);
+  listarUnidadesMedida();
   }
   
   function limpiarFormulario() {
-  nombre.value = "";
-  clave.value = "";
-  correo.value = "";
-  rol.value = "";
+  codigo.value = "";
+  fecha.value = "";
+  descripcion.value = "";
   bd.value = 0;
   }
   
   function validateEmail() {
-  if (!correo.value.includes("@")) {
+  if (!fecha.value.includes("@")) {
     q.notify({
       type: "negative",
-      message: "El correo electrónico debe contener el símbolo @",
+      message: "El fecha electrónico debe contener el símbolo @",
       position: "top",
     });
   }
@@ -172,68 +160,71 @@
   
   async function guardarEditarDatos() {
   if (bd.value === 0) {
-    if (nombre.value === "") {
+    if (codigo.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un nombre válido.",
+        message: "Por favor, ingrese un codigo válido.",
         position: "top",
       });
       return;
     }
   
-    if (correo.value === "") {
+    if (fecha.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un correo válido.",
+        message: "Por favor, ingrese una fecha válida.",
         position: "top",
       });
       return;
     }
   
-    if (clave.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, ingrese una contraseña válida.",
-        position: "top",
-      });
-      return;
-    }
+    // if (clave.value === "") {
+    //   q.notify({
+    //     type: "negative",
+    //     message: "Por favor, ingrese una contraseña válida.",
+    //     position: "top",
+    //   });
+    //   return;
+    // }
+
+
+    
   
-    if (rol.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, seleccione un rol válido.",
-        position: "top",
-      });
-      return;
-    }
+    // if (rol.value === "") {
+    //   q.notify({
+    //     type: "negative",
+    //     message: "Por favor, seleccione un rol válido.",
+    //     position: "top",
+    //   });
+    //   return;
+    // }
   
     const datos = {
-      nombre: nombre.value,
-      correo: correo.value,
+      codigo: codigo.value,
+      fecha: fecha.value,
       contrasena: clave.value,
       rol: rol.value,
       estado: 0,
     };
   
-    let res = await getUser.addUser(datos);
+    let res = await getUnidadesMedida.addUnidadesMedida(datos);
     listarUsuarios()
     nuevo.value = false;
     console.log(res.response.data);
   } else {
-    if (nombre.value === "") {
+    if (codigo.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un nombre válido.",
+        message: "Por favor, ingrese un codigo válido.",
         position: "top",
       });
       return;
     }
   
-    if (correo.value === "") {
+    if (fecha.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un correo válido.",
+        message: "Por favor, ingrese un fecha válido.",
         position: "top",
       });
       return;
@@ -249,13 +240,13 @@
     }
   
     const datos = {
-      nombre: nombre.value,
-      correo: correo.value,
+      codigo: codigo.value,
+      fecha: fecha.value,
       rol: rol.value,
       estado: 1,
     };
   
-    let res = await getUser.editUser(_id, datos);
+    let res = await getUnidadesMedida.editUnidadesMedida(_id, datos);
     listarUsuarios()
     console.log(res);
     q.notify({
