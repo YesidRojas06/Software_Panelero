@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import axios from "axios"
 
-export const laboresStore = defineStore("labores", {
+export const EpsStore = defineStore("Eps", {
     state: () => ({
         userData: ":)",
         token: null
@@ -12,10 +12,10 @@ export const laboresStore = defineStore("labores", {
             this.token = token;
         },
 
-        async getlabores(){
+        async getEps(){
             try {
-                 const resp =await axios.get('http://localhost:4503/labores') 
-                return(resp.data.labore)
+                 const resp =await axios.get('http://localhost:4503/Eps') 
+                return(resp.data.Eps)
         
             } catch (error) {
                 console.log(error);
@@ -23,11 +23,11 @@ export const laboresStore = defineStore("labores", {
             }
         },
 
-        async addlabores(datos){
+        async addEps(datos){
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4503/labores`,
+                const resp = await axios.post(`http://localhost:4503/Eps`,
                 datos
                 ); 
                return resp;
@@ -37,10 +37,10 @@ export const laboresStore = defineStore("labores", {
                return error;
            }
         },
-        async editlabores (id, datos){
+        async editEps (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://localhost:4503/labores${id}`,
+                const resp = await axios.put(`http://localhost:4503/Eps/${id}`,
                     datos
                 ) 
                return resp
@@ -51,9 +51,9 @@ export const laboresStore = defineStore("labores", {
            }
 
         },
-        async activelabores (id){
+        async activeEps (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/labores/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/Eps/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -62,10 +62,10 @@ export const laboresStore = defineStore("labores", {
            }
 
         },
-        async inactivelabores (id){
+        async inactiveEps (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4503/labores/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/Eps/desactivar/${id}`                ) 
 
                return resp
        
@@ -79,7 +79,5 @@ export const laboresStore = defineStore("labores", {
     }
     
 })
-
-
 
 

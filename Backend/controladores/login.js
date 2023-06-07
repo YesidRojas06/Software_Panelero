@@ -1,5 +1,3 @@
-// LOGIN
-
 import modelologin from "../modelos/login.js";
 
 const loginhttp= {

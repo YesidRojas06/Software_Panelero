@@ -1,5 +1,3 @@
-// INCLUSION DE DATOS (COSTOS)
-
 import mongoose from "mongoose";
 
 const inclusionCostosShechema=new mongoose.Schema({

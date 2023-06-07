@@ -1,5 +1,3 @@
-// CONSULTA DE DATOS (INVENTARIO)
-
 import mongoose from "mongoose";
 
 const consultaCostosShechema=new mongoose.Schema({
