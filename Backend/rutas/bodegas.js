@@ -11,13 +11,16 @@ rutasbodegas.get("/",bodegahttp.bodegasIDGet);
 rutasbodegas.delete("/",bodegahttp.bodegasDelete);
 rutasbodegas.put("/desactivar/:id",bodegahttp.bodegasInactivoput)
 rutasbodegas.put("/activar/:id",bodegahttp.bodegasActivoput)
-rutasbodegas.post('/', [
+rutasbodegas.put("/:id",bodegahttp.bodegaput)
+rutasbodegas.post('/', 
+// [
 //     check('nombres', 'Los nombres son obligatorio').not().isEmpty(),
 //     check('descripcion', 'La descripcion es obligatoria').not().isEmpty(),
 //     check("codigo", "No es un codigo valido").isMongoId(),
 //     check("codigo").custom(helpersBodegas.existeBodegasById),
     // validarCampos
-], bodegahttp.bodegasPost);
+// ], 
+bodegahttp.bodegasPost);
 
 export default rutasbodegas;
 

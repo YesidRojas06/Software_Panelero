@@ -12,19 +12,33 @@ const bodegahttp = {
   },
 
   bodegasPost: async (req, res) => {
-    const { codigo, nombres, descripcion,  rol, estado } = req.body;
+    const { codigo, nombres, descripcion,  } = req.body;
     const bodega = new modelobodegas({
       codigo,
       nombres,
       descripcion,
-      rol,
-      estado,
+    
     });
 
     await bodega.save();
     res.json({
       bodega,
     });
+  },
+
+  bodegaput: async (req, res) => {
+    const { nombres, codigo,  descripcion } = req.body;
+
+    console.log(req.body);
+    const { id } = req.params;
+    const bodega = await modelobodegas.findByIdAndUpdate(id, {
+      nombres,
+      codigo,
+      descripcion
+      
+    });
+    await bodega.save();
+    res.send(bodega);
   },
 
   bodegasSearchForTextGet: async (req, res) => {
@@ -36,12 +50,11 @@ const bodegahttp = {
   },
 
   bodegasDelete: async (req, res) => {
-    const { codigo, nombres, descripcion,  rol, estado } = req.params;
+    const { codigo, nombres, descripcion,  estado } = req.params;
     const bodega = await modelobodegas.findOneAndDelete({
       codigo,
       nombres,
       descripcion,
-      rol,
       estado,
     });
     res.json({ "Bodega eliminada": bodega });
