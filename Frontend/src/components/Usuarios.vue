@@ -5,11 +5,6 @@
         <h1 class="page-title">Usuarios</h1>
       </div>
       
-      <!-- <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar" 
-      style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
-      border-radius: 30px;  "/> -->
-
-
 
       <q-table title="Usuario" :rows="rows" :columns="columns" class="tabla ">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
