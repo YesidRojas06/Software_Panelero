@@ -1,5 +1,3 @@
-// INGRESO DE PROVEEDORES
-
 import modeloproveedores from "../modelos/ingProveedores.js";
 
 const proveedoreshttp={

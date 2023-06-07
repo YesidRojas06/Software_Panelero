@@ -1,5 +1,3 @@
-// INCLUSION DE DATOS (INVENTARIO)
-
 import modeloinclusion from "../modelos/inclusionInventario.js";
 
 const inclusionhttp={

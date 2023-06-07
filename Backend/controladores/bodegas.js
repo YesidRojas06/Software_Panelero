@@ -1,5 +1,3 @@
-// Bodegas
-
 import modelobodegas from "../modelos/bodegas.js";
 
 const bodegahttp = {

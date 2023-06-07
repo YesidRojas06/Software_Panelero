@@ -1,5 +1,3 @@
-// BODEGAS
-
 import mongoose from "mongoose";
 
 const BodegasShechema=new mongoose.Schema({

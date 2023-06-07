@@ -1,5 +1,3 @@
-// INGRESO CLIENTES
-
 import modeloClientes from "../modelos/ingClientes.js";
 
 const clienteshttp= {

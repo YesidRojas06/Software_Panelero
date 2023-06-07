@@ -1,5 +1,3 @@
-// LOTES
-
 import mongoose from "mongoose";
 
 const LotesShechema=new mongoose.Schema({

@@ -1,5 +1,3 @@
-// INCLUSION DE DATOS (COSTOS)
-
 import modeloCostos from "../modelos/inclusionCostos.js";
 
 const costoshttp= {

@@ -1,5 +1,3 @@
-// INGRESAR CLIENTES
-
 import mongoose from "mongoose";
 
 const ingClientesShechema=new mongoose.Schema({
