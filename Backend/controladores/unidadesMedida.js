@@ -1,53 +1,64 @@
 import modelosuMedida from "../modelos/unidadesMedida.js";
 
-const uMedidahttp = {
-  uMedidaIDget: async (req, res) => {
-    const uMedida = await modelosuMedida.find({});
-    res.json({ uMedida });
+const unidadesMedidahttp = {
+  unidadesMedidaIDget: async (req, res) => {
+    const unidadesMedida = await modelosuMedida.find();
+    res.json( unidadesMedida);
   },
 
-  uMedidapost: async (req, res) => {
+  unidadesMedidapost: async (req, res) => {
     const { codigo, fecha, descripcion } = req.body;
-    const uMedida = new modelosuMedida({ codigo, fecha, descripcion });
+    const unidadesMedida = new modelosuMedida (
+      { codigo, fecha, descripcion }
+      );
 
-    await uMedida.save();
+    await unidadesMedida.save();
     res.json({
-      uMedida,
+      unidadesMedida,
     });
    
   },
+  unidadesMedidaSearchForTextGet:async (req, res) => {
+    const { codigo, fecha, descripcion } = req.query;
+    const unidadesMedida = await modelosuMedida.find({ codigo, fecha, descripcion });
+    res.json({
+      unidadesMedida,
+    });
+  },
+
+
 
   
 
-  uMedidaput: async (req, res) => {
+  unidadesMedidaput: async (req, res) => {
     const {codigo, fecha, descripcion } = req.body;
   
     console.log(req.body);
     const { id } = req.params;
-    const uMedida = await modelosuMedida.findByIdAndUpdate(id, {
+    const unidadesMedida = await modelosuMedida.findByIdAndUpdate(id, {
 
       codigo,
       fecha,
       descripcion,
       
     });
-    await uMedida.save();
-    res.send(uMedida);
+    await unidadesMedida.save();
+    res.send(unidadesMedida);
   },
 
-  uMedidaInactivoput:async (req,res) => {
+  unidadesMedidaInactivoput:async (req,res) => {
     console.log(req.params);
     const { id } = req.params;
-    const uMedida = await modelosuMedida.findByIdAndUpdate(id,{estado:0});
-    res.send (uMedida); 
+    const unidadesMedida = await modelosuMedida.findByIdAndUpdate(id,{estado:0});
+    res.send (unidadesMedida); 
  },
 
- uMedidaActivoput:async (req,res) => {
+ unidadesMedidaActivoput:async (req,res) => {
   console.log(req.params);
   const { id } = req.params;
-  const uMedida = await modelosuMedida.findByIdAndUpdate(id,{estado:1});
-  res.send(uMedida);
+  const unidadesMedida = await modelosuMedida.findByIdAndUpdate(id,{estado:1});
+  res.send(unidadesMedida);
  },
 };
 
-export default uMedidahttp;
+export default unidadesMedidahttp;

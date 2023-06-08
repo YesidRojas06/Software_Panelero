@@ -14,8 +14,8 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
 
         async getUnidadesMedida(){
             try {
-                const resp =await axios.get('http://localhost:4503/uMedida') 
-                return resp.data.usuarios
+                const resp =await axios.get('http://localhost:4503/UnidadesMedida') 
+                return resp.data
         
             } catch (error) {
                 console.log(error);
@@ -27,7 +27,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4503/uMedida`,
+                const resp = await axios.post(`http://localhost:4503/UnidadesMedida`,
                 datos
                 ) 
                return resp
@@ -40,7 +40,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
         async editUnidadesMedida (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://software-panelero.onrender.com/Bodegas/${id}`,
+                const resp = await axios.put(`https://software-panelero.onrender.com/UnidadesMedida/${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
         },
         async activeUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/uMedida/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/UnidadesMedida/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -64,7 +64,8 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
         },
         async inactiveUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/uMedida/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/UnidadesMedida/desactivar/${id}`                ) 
+                console.log(resp);
                return resp
        
            } catch (error) {

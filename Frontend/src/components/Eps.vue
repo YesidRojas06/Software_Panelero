@@ -41,7 +41,7 @@
 
         <q-card-section class="q-pt-none">
           <p>Nombre</p>
-          <input type="text" v-model="nombres" class="form-input" />
+          <input type="text" v-model="nombre" class="form-input" />
 
           <p>n_linea</p>
           <input type="text" v-model="n_linea" class="form-input" />
@@ -64,11 +64,11 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { BodegasStore } from "../stores/Bodegas.js";
+import { EpsStore } from "../stores/Eps";
 import { useQuasar } from 'quasar';
 
 const q = useQuasar();
-const Bodegas = BodegasStore();
+const Eps = EpsStore();
 let rows = ref();
 
 
@@ -86,7 +86,7 @@ let columns = ref([
     required: true,
     label: 'Nombre',
     align: 'left',
-    field: "nombres",
+    field: "nombre",
     sortable: false
   },
   { name: 'n_linea', align: 'center', label: 'N_LINEA', field: "n_linea", sortable: true },
@@ -95,22 +95,19 @@ let columns = ref([
 
 ]);
 
-const listarBodegas = async () => {
+const listarEps = async () => {
 
-  rows.value = await Bodegas.getBodegas();
+  rows.value = await Eps.getEps();
 };
-listarBodegas()
+listarEps()
 
 function edit(row) {
   bd.value = 1;
   nuevo.value = true;
   _id = row._id;
-  nombre.value = row.nombres;
-  codigo.value = row.codigo;
-  descripcion.value = row.descripcion;
- 
-
-  
+  nombre.value = row.nombre;
+  n_linea.value = row.n_linea
+   
 }
 
 function guardar() {
@@ -120,22 +117,21 @@ function guardar() {
 }
 
 async function inactive(props) {
-  let res = await Bodegas.inactiveBodegas(props._id);
-  listarBodegas();
+  let res = await Eps.inactiveEps(props._id);
+  listarEps();
 }
 
 async function active(props) {
-  let res = await Bodegas.activeBodegas(props._id);
-  listarBodegas();
+  console.log("sirve");
+  let res = await Eps.activeEps(props._id);
+  listarEps();
 }
 
 function limpiarFormulario() {
   nombre.value = "";
-  codigo.value = "";
-  descripcion.value = "";
-  descripcion.value ="";
+  n_linea.value = "";
   bd.value = 0;
-  codigo.value= "";
+
 }
 
 
@@ -151,10 +147,10 @@ async function guardarEditarDatos() {
       return;
     }
 
-    if (codigo.value === "") {
+    if (n_linea.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un correo válido.",
+        message: "Por favor, ingrese un n_linea válido.",
         position: "top",
       });
       return;
@@ -165,17 +161,16 @@ async function guardarEditarDatos() {
 
     const datos = {
       nombre: nombre.value,
-      codigo: codigo.value,
-      descripcion: descripcion.value,
+      n_linea: n_linea.value,
       estado: 0,
     };
 
-    let res = await Bodegas.addBodegas(datos);
+    let res = await Eps.addEps(datos);
     console.log(res);
-    listarBodegas();
+    listarEps();
     nuevo.value = false;
   } else {
-    if (nombres.value === "") {
+    if (nombre.value === "") {
       q.notify({
         type: "negative",
         message: "Por favor, ingrese un nombre válido.",
@@ -184,10 +179,10 @@ async function guardarEditarDatos() {
       return;
     }
 
-    if (codigo.value === "") {
+    if (n_linea.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un correo válido.",
+        message: "Por favor, ingrese un n_linea válido.",
         position: "top",
       });
       return;
@@ -195,24 +190,23 @@ async function guardarEditarDatos() {
 
     const datos = {
       nombre: nombre.value,
-      codigo: codigo.value,
-      descripcion: descripcion.value,
+      n_linea: n_linea.value,
       estado: 1,
     };
 
     console.log(_id, {datos});
-    let res = await Bodegas.editBodegas(_id, datos);
-    listarBodegas();
+    let res = await Eps.editEps(_id, datos);
+    listarEps();
     console.log(res);
     q.notify({
       type: "positive",
-      message: "Bodega actualizada exitosamente.",
+      message: "Eps actualizada exitosamente.",
       position: "top",
     });
   }
 }
 
- listarBodegas();
+listarEps();
 
 </script>
 
