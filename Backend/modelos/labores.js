@@ -1,9 +1,19 @@
 import mongoose from "mongoose";
 
 const LaboresShechema=new mongoose.Schema({
-    nombre_labor: { type:mongoose.Schema.ObjectId, ref:"nombre_labor", required:true },
-    area_realizar:{ type:mongoose.Schema.ObjectId, ref:"area_realizar", required:true },
-    pago_diario:{ type:mongoose.Schema.ObjectId, ref:"pago_diario", required:true },
+    nombre_labor: { type:String,  required:true },
+    area_realizar:{ type:String,  required:true },
+    pago_diario:{ type:Number,  required:true },
+    estado: { type: Number, default: 1 },
 })
 
-export default mongoose.model("Labores", LaboresShechema)
+const modelolabores = mongoose.model("Labores", LaboresShechema);
+
+export default modelolabores;
+
+
+
+
+ //ref:"pago_diario",
+ //ref:"area_realizar",
+//ref:"nombre_labor",
