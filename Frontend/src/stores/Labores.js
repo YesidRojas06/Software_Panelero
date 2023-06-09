@@ -15,7 +15,7 @@ export const laboresStore = defineStore("labores", {
         async getlabores(){
             try {
                  const resp =await axios.get('http://localhost:4503/labores') 
-                return(resp.data.labore)
+                return (resp.data.labores);
         
             } catch (error) {
                 console.log(error);
@@ -37,10 +37,10 @@ export const laboresStore = defineStore("labores", {
                return error;
            }
         },
-        async editlabores (id, datos){
+        async editlabores(id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://localhost:4503/labores${id}`,
+                const resp = await axios.put(`https://localhost:4503/labores/${id}`,
                     datos
                 ) 
                return resp

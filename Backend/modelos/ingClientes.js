@@ -6,6 +6,9 @@ const ingClientesShechema=new mongoose.Schema({
     direccion: { type:mongoose.Schema.ObjectId, ref:"direccion", required:true},
     ciudad: { type:mongoose.Schema.ObjectId, ref:"ciudad", required:true},
     telefono: { type:mongoose.Schema.ObjectId, ref:"telefono", required:true},
-})
+    estado: { type: Number, default: 1 },
+});
 
-export default mongoose.model("Iclientes",ingClientesShechema)
+const  modeloingClientes = mongoose.model("Iclientes",ingClientesShechema);
+
+export default modeloingClientes;

@@ -4,15 +4,15 @@
       <div class="title-container">
         <h1 class="page-title">EPS</h1>
       </div>
-      
-      
+
+
 
       <q-table title="EPS" :rows="rows" :columns="columns" class="tabla ">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
         </template>
-        <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
+        <template v-slot:body-cell-opcion="props" style="opacity: 0;">
           <td style="text-align: center;">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
             <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
@@ -21,14 +21,9 @@
         </template>
       </q-table>
 
-      <q-btn
-        color="white"
-        text-color="black"
-        label="Nueva EPS"
-        @click="guardar"
+      <q-btn color="white" text-color="black" label="Nueva EPS" @click="guardar"
         class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
-        style="position: absolute; top: 150px; right: 40px; border-radius: 30px;"
-      />
+        style="position: absolute; top: 150px; right: 40px; border-radius: 30px;" />
 
     </div>
 
@@ -45,16 +40,16 @@
 
           <p>n_linea</p>
           <input type="text" v-model="n_linea" class="form-input" />
-          
-      
 
-          
+
+
+
 
           <q-card-actions align="center" class="bg-white text-black">
             <q-btn label="Cancelar" @click="nuevo = false" style="background-color: rgb(243, 9, 9)" />
             <q-btn @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
               {{ bd === 0 ? "Guardar" : "Editar" }}
-            </q-btn> 
+            </q-btn>
           </q-card-actions>
         </q-card-section>
       </q-card>
@@ -99,7 +94,7 @@ const listarEps = async () => {
 
   rows.value = await Eps.getEps();
 };
-listarEps()
+listarEps();
 
 function edit(row) {
   bd.value = 1;
@@ -107,7 +102,7 @@ function edit(row) {
   _id = row._id;
   nombre.value = row.nombre;
   n_linea.value = row.n_linea
-   
+
 }
 
 function guardar() {
@@ -156,7 +151,7 @@ async function guardarEditarDatos() {
       return;
     }
 
-  
+
 
 
     const datos = {
@@ -194,7 +189,7 @@ async function guardarEditarDatos() {
       estado: 1,
     };
 
-    console.log(_id, {datos});
+    console.log(_id, { datos });
     let res = await Eps.editEps(_id, datos);
     listarEps();
     console.log(res);
@@ -212,46 +207,53 @@ listarEps();
 
 
 <style lang="scss" scoped>
-
 .q-pt-none {
-  background-color: #ffffff; /* Establecer el color de fondo del cuadro de diálogo */
+  background-color: #ffffff;
+  /* Establecer el color de fondo del cuadro de diálogo */
 }
 
 .q-card {
-  border-radius: 8px; /* Agregar radio de borde a la tarjeta */
+  border-radius: 8px;
+  /* Agregar radio de borde a la tarjeta */
 }
 
 .q-card-section {
-  padding: 20px; /* Aumentar el relleno de las secciones de la tarjeta. */
+  padding: 20px;
+  /* Aumentar el relleno de las secciones de la tarjeta. */
 }
 
 .q-card-actions {
-  justify-content: flex-end; /* Alinear las acciones de la tarjeta a la derecha */
+  justify-content: flex-end;
+  /* Alinear las acciones de la tarjeta a la derecha */
 }
 
 .q-btn {
-  margin-left: 10px; /* Añade algo de espacio entre los botones. */
+  margin-left: 10px;
+  /* Añade algo de espacio entre los botones. */
 }
 
 input[type="text"] {
-  width: 100%; /* Hacer que las entradas de texto ocupen todo el ancho */
+  width: 100%;
+  /* Hacer que las entradas de texto ocupen todo el ancho */
 }
 
 .text-h6 {
-  font-size: 1.25rem; /* Aumentar el tamaño de fuente del título de la sección.*/
+  font-size: 1.25rem;
+  /* Aumentar el tamaño de fuente del título de la sección.*/
 }
+
 .q-btn:hover {
   background-color: rgb(14, 224, 14);
 }
+
 .form-input {
-  margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
+  margin-bottom: 30px;
+  /* Ajusta el margen inferior entre los campos */
 }
 
 .tabla {
-border: 7px solid transparent;
-border-image: linear-gradient(to right, #00FF00, #000000) 1;
-border-image-slice: 1;
-border-radius: 20px;
-}
-
-</style>
+  border: 7px solid transparent;
+  border-image: linear-gradient(to right, #00FF00, #000000) 1;
+  border-image-slice: 1;
+  border-radius: 20px;
+}</style>
