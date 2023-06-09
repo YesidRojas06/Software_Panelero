@@ -65,7 +65,7 @@ export const BodegasStore = defineStore("Bodegas", {
         async inactiveBodegas (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4503/bodegas/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4503/bodegas/desactivar/${id}`) 
 
                return resp
        
