@@ -2,7 +2,6 @@ import modelobodegas from "../modelos/bodegas.js";
 
 const bodegahttp = {
   bodegasIDGet: async (req, res) => {
-    // const { id } = req.params;
     const bodega = await modelobodegas.find();
     res.json({
       bodega,

@@ -40,7 +40,7 @@ export const laboresStore = defineStore("labores", {
         async editlabores(id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://localhost:4503/labores/${id}`,
+                const resp = await axios.put(`http://localhost:4503/labores/${id}`,
                     datos
                 ) 
                return resp

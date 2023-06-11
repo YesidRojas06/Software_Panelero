@@ -45,30 +45,30 @@
           </q-card-section>
 
           <q-card-section class="q-pt-none">
-            <p>Codigo</p>
+            <p>codigo</p>
           <input type="text" v-model="codigo" class="form-input" >
 
-          <p>Nombres</p>
+          <p>nombres</p>
           <input type="text" v-model="nombres" class="form-input" >
           <!-- <input type="text" v-model="correo" class="form-input"> -->
 
-          <p>Descripcion</p>
+          <p>descripcion</p>
          <input type="text" v-model="descripcion" class="form-input" >
 
 
-         <p>Tamaño</p>
+         <p>tamaño</p>
          <input type="text" v-model="tamaño" class="form-input">
 
          <p>Estado Sueldo</p>
          <input type="text" v-model="estadoSueldo" class="form-input" >
 
-         <p>Clase</p>
+         <p>clase</p>
          <input type="text" v-model="clase" class="form-input">
 
-         <p>Padre</p>
+         <p>padre</p>
          <input type="text" v-model="padre" class="form-input" >
 
-         <p>Densidad</p>
+         <p>densidad</p>
          <input type="text" v-model="densidad" class="form-input">
 
 
@@ -96,11 +96,11 @@ import { ref, onMounted } from "vue"
 import { lotesStore } from "../stores/lotes"
 import { useQuasar } from 'quasar'
 
-const q = useQuasar()
-const getlotes = lotesStore()
+const q = useQuasar();
+const lotes = lotesStore();
+let rows = ref();
 
 
-let rows = ref()
 let codigo = ref ("");
 let nombres = ref("");
 let descripcion = ref("");
@@ -117,20 +117,23 @@ let _id = ""
 
 let columns = ref([
 
-{ name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
-{ name: 'nombres', label: 'Nombres', field: 'nombres', sortable: true, align: "center"},
-{ name: 'descripcion', label: 'Descripcion', field: 'descripcion', sortable:true, align: "center" },
-{ name: 'tamaño', label: 'Tamaño', field: 'tamaño', sortable:true, align: "center"},
-{ name: 'estado sueldo', label: 'Estado sueldo', field: 'estado sueldo', sortable:true, align: "center" },
-{ name: 'clase', label: 'Clase', field: 'clase', sortable:true, align: "center" },
-{ name: 'padre', label: 'Padre', field: 'padre', sortable:true, align: "center" },
-{ name: 'densidad', label: 'Densidad', field: 'densidad', sortable:true, align: "center" },
+{ name: 'codigo', align: 'center', label: 'codigo', field: "codigo", sortable: true },
+{ name: 'nombres', label: 'nombres', field: 'nombres', sortable: true, align: "center"},
+{ name: 'descripcion', label: 'descripcion', field: 'descripcion', sortable:true, align: "center" },
+{ name: 'tamaño', label: 'tamaño', field: 'tamaño', sortable:true, align: "center"},
+{ name: 'estadoSueldo', label: 'estadoSueldo', field: 'estadoSueldo', sortable:true, align: "center" },
+{ name: 'clase', label: 'clase', field: 'clase', sortable:true, align: "center" },
+{ name: 'padre', label: 'padre', field: 'padre', sortable:true, align: "center" },
+{ name: 'densidad', label: 'densidad', field: 'densidad', sortable:true, align: "center" },
+{ name: 'estado', label: 'Estado', field: 'estado', align: "center" },
 { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
 
 const listarlotes = async () => {
-rows.value = await getlotes.getlotes()
-}
+rows.value = await lotes.getlotes();
+};
+
+listarlotes();
 
 function edit(row) {
 bd.value = 1;
@@ -153,13 +156,13 @@ limpiarFormulario();
 }
 
 async function inactive(props) {
-let res = await getlotes.inactivelotes(props._id);
-listarlotes()
+let res = await lotes.inactivelotes(props._id);
+listarlotes();
 }
 
 async function active(props) {
-let res = await getlotes.activelotes(props._id);
-listarlotes()
+let res = await lotes.activelotes(props._id);
+listarlotes();
 }
 
 function limpiarFormulario() {
@@ -265,7 +268,7 @@ if (bd.value === 0) {
     estado: 0,
   };
 
-  let res = await getlotes.addlotes(datos);
+  let res = await lotes.addlotes(datos);
   console.log(res);
   listarlotes();
   nuevo.value = false;
@@ -333,7 +336,8 @@ if (bd.value === 0) {
     return;
   }
 
-  }
+  
+
   
   const datos = {
     codigo : codigo.value,
@@ -347,8 +351,9 @@ if (bd.value === 0) {
     estado: 1,
   };
 
-  let res = await getlotes.editlotes(_id, datos);
-  listarlotes()
+  console.log(_id, {datos});
+  let res = await lotes.editlotes(_id, datos);
+  listarlotes();
   console.log(res);
   q.notify({
     type: "positive",
@@ -356,9 +361,10 @@ if (bd.value === 0) {
     position: "top",
   });
 }
+}
 
+listarlotes();
 
-listarlotes()
 </script>
 
 <style lang="scss" scoped>

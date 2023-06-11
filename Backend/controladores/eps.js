@@ -3,7 +3,6 @@ import modeloeps from "../modelos/eps.js";
 const epshttp= {
   
   epsGet: async (req, res) => {
-    //const { nombre, n_linea } = req.params;
     const eps = await modeloeps.find();
     res.json({
       eps

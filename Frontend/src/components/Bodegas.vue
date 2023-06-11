@@ -111,10 +111,7 @@ function edit(row) {
   _id = row._id;
   nombres.value = row.nombres;
   codigo.value = row.codigo;
-  descripcion.value = row.descripcion;
- 
-
-  
+  descripcion.value = row.descripcion; 
 }
 
 function guardar() {

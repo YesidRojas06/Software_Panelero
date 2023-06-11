@@ -7,11 +7,10 @@ const laboreshttp= {
   //     res.json({lotes: labores})
   // },
 
-  laboresGet : async (req, res) => {
-  
+  laboresGet : async (req, res) => { 
     const labores = await modelosLabores.find();
     res.json({
-      labores,
+      labores
     });
   },
 
@@ -30,11 +29,10 @@ const laboreshttp= {
   },
 
   laboresSearchForTextGet:async (req, res) => {
-    const { nombre_labor, area_realizar, pago_diario} = req.query;
+    const { nombre_labor } = req.query;
     const labores = await modelosLabores.find({ 
-      nombre_labor, 
-      area_realizar, 
-      pago_diario });
+      nombre_labor: nombre_labor      
+    });
     res.json({
       labores,
     });
@@ -65,8 +63,8 @@ const laboreshttp= {
     const { id } = req.params;
     const labores = await modelosLabores.findByIdAndUpdate(id, {
       nombre_labor, 
-      area_realizar,
-      pago_diario
+      area_realizar, 
+      pago_diario 
       
     });
     await labores.save();

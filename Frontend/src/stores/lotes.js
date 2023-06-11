@@ -1,7 +1,7 @@
 import {defineStore} from "pinia"
 import axios from "axios"
 
-export const lotesStore = defineStore("lote",{
+export const lotesStore = defineStore("lotes", {
     state: () => ({
         loteData: ":)",
         token: null
@@ -14,7 +14,7 @@ actions:{
 
     async getlotes(){
         try {
-            const resp = await axios.get ('http://localhost:4503/lotes')
+            const resp = await axios.get('http://localhost:4503/lotes')
             return(resp.data.lotes)
         } catch (error){
             console.log(error);
@@ -61,7 +61,7 @@ actions:{
             }
         },
 
-        async inactivelotes (id){
+        async inactivelotes(id){
             try {
                 
                 const resp = await axios.put(`http://localhost:4503/lotes/desactivar/${id}`) 

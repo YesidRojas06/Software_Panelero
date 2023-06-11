@@ -71,6 +71,7 @@
   </div>
 </template>
 
+
 <script setup>
 import { ref } from "vue"
 import { laboresStore } from "../stores/Labores"
@@ -110,7 +111,7 @@ const listarLabores = async () => {
   const res = await labores.getlabores()
   rows.value = res == null ? [] : res
   console.log("sr");
-}
+};
 listarLabores()
 
 
@@ -144,7 +145,6 @@ function limpiarFormulario() {
   nombre_labor.value = "";
   area_realizar.value = "";
   pago_diario.value = "";
-
   bd.value = 0;
 }
 
@@ -211,7 +211,7 @@ async function guardarEditarDatos() {
       estado: 1,
     };
 
-    console.log(_id, {datos});
+    console.log(_id, { datos });
     let res = await labores.editlabores(_id, datos);
     listarLabores()
     console.log(res);
@@ -225,6 +225,7 @@ async function guardarEditarDatos() {
 }
 
 listarLabores()
+
 </script>
 
 <style lang="scss" scoped>

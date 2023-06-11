@@ -10,11 +10,21 @@ rutaslotes.get("/",loteshttp.lotesgetListar);
 rutaslotes.get("/",loteshttp.lotesIdGet);
 rutaslotes.get("/",loteshttp.lotesGetBuscar);
 rutaslotes.delete("/",loteshttp.lotesDelete);
-rutaslotes.post('/', [
-    check('nombres', 'Los nombres son obligatorio').not().isEmpty(),
-    check('descripcion', 'La descripcion es obligatoria').not().isEmpty(),
-    check("codigo", "No es un codigo valido").isMongoId(),
-    check("codigo").custom(helperslotes.existelotes),
-    validarCampos], loteshttp.lotesPost);
+rutaslotes.put("/desactivar/:id",loteshttp.lotesInactivoput)
+rutaslotes.put("/activar/:id",loteshttp.lotesActivoput)
+rutaslotes.put("/:id",loteshttp.lotesput)
+rutaslotes.post('/',  
+    
+//     [
+//     check('nombres', 'Los nombres son obligatorio').not().isEmpty(),
+//    check('descripcion', 'La descripcion es obligatoria').not().isEmpty(),
+//     check("codigo", "No es un codigo valido").isMongoId(),
+//     check("codigo").custom(helperslotes.existelotes),
+//     validarCampos],
+
+loteshttp.lotesPost);
 
 export default rutaslotes;
+
+
+  

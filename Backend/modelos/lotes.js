@@ -1,14 +1,29 @@
 import mongoose from "mongoose";
 
 const LotesShechema=new mongoose.Schema({
-    codigo: { type:mongoose.Schema.ObjectId, ref:"codigo", required:true},
-    nombres:{ type:mongoose.Schema.ObjectId, ref:"nombres", required:true},
-    descripcion: { type:mongoose.Schema.ObjectId, ref:"descripcion", required:true},
-    tamaño: { type:mongoose.Schema.ObjectId, ref:"tamaño", required:true},
-    estadoSueldo: { type:mongoose.Schema.ObjectId, ref:"estadoSueldo", required:true},
-    clase: { type:mongoose.Schema.ObjectId, ref:"clase", required:true},
-    padre: { type:mongoose.Schema.ObjectId, ref:"padre", required:true},
-    densidad: { type:mongoose.Schema.ObjectId, ref:"densidad", required: true}
+    codigo: { type: String, required:true},
+    nombres:{ type: String ,required:true},
+    descripcion: { type: String ,required:true},
+    tamaño: { type: String ,required:true},
+    estadoSueldo: { type:  String ,required:true},
+    clase: { type: String ,required:true},
+    padre: { type: String ,required:true},
+    densidad: { type: String ,required: true},
+    estado: { type: Number, default: 1 },
 })
 
-export default mongoose.model("Lotes", LotesShechema)
+const modelosLotes = mongoose.model("Lotes", LotesShechema);
+
+export default modelosLotes;
+
+
+
+
+//mongoose.Schema.ObjectId, ref:"codigo",
+//mongoose.Schema.ObjectId, ref:"nombres",
+//mongoose.Schema.ObjectId, ref:"descripcion",
+//mongoose.Schema.ObjectId, ref:"tamaño",
+//mongoose.Schema.ObjectId, ref:"estadoSueldo",
+//mongoose.Schema.ObjectId, ref:"clase",
+//mongoose.Schema.ObjectId, ref:"padre",
+//mongoose.Schema.ObjectId, ref:"densidad",
