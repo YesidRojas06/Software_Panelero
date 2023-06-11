@@ -26,7 +26,7 @@ actions:{
             console.log ('datos' + datos);
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4503/bodegas`,
+                const resp = await axios.post(`http://localhost:4503/lotes`,
                 datos
                 );
 
