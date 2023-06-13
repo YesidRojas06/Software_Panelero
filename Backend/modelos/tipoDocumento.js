@@ -1,8 +1,12 @@
-import monngoose from "mongoose";
+import mongoose from "mongoose";
 
-const tipoDocumentoShechema= new monngoose.Schema({
+const tipoDocumentoShechema= new mongoose.Schema({
     nombreT:{type:String, required:true},
-    siglas:{type:String, required:true}
+    siglas:{type:String, required:true},
+    estado: { type: Number, default: 1 },
 })
 
-export default monngoose.model("tipoDocumento", tipoDocumentoShechema)
+
+const modelostipoDocumento = mongoose.model("tipoDocumento", tipoDocumentoShechema);
+
+export default modelostipoDocumento;

@@ -17,8 +17,22 @@ const tDocumentohttp={
         const { nombreT, siglas } = req.body;
         const tipoDocumento = await modelostipoDocumento.findByIdAndUpdate({nombreT, siglas});
         await tipoDocumento.save();
-        res.send("tipo de documento actualizado ;)");
-      }
+        res.send(tipoDocumento);
+      },
+
+      tDocumentoInactivoput: async (req, res) => {
+        console.log(req.params);
+        const { id } = req.params;
+        const tipoDocumento = await modeloeps.findByIdAndUpdate(id, { estado: 0 });
+        res.send(tipoDocumento);
+      },
+    
+      tDocumentoActivoput: async (req, res) => {
+        console.log(req.params);
+        const { id } = req.params;
+        const tipoDocumento = await modeloeps.findByIdAndUpdate(id, { estado: 1 });
+        res.send(tipoDocumento);
+      },
 }
 
 export default tDocumentohttp

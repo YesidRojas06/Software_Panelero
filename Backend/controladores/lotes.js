@@ -95,11 +95,6 @@ const loteshttp = {
     res.send(lotes);
   },
 
-
-
-
-
-
 }
 
 export default loteshttp
