@@ -43,6 +43,8 @@ import Numero_Finca from "../components/Numero_Finca.vue"
 //empaques ya esta llamada en transofrmacion
 import Soporte from "../components/Soporte.vue"
 
+//Reporte
+
 
 
 // import Transformacion from "../components/transformacion.vue"
@@ -101,6 +103,17 @@ export const routes = [
     { path: "/Soporte", component: Soporte },
 
    
+
+
+
+    //Reporte
+    { path: "/Reportes", component: Mantenimiento },
+    { path: "/Reportes", component: Costos },
+    { path: "/Reportes", component: Pedidos },
+    { path: "/Reportes", component: Inventario },
+    { path: "/Reportes", component: Transformacion },
+
+
     ] 
   },
   

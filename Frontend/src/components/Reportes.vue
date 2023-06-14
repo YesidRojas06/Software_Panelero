@@ -7,7 +7,7 @@
 
         <div class="contenedor" >
           <div class="contenedor-conciertos">
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="Mantenimiento">
               <div class="card">
                 <div class="textos">
                   <center><h6>Mantenimiento</h6></center>
@@ -17,7 +17,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="Costos">
               <div class="card">
                 <div class="textos">
                   <center><h6>Costos</h6></center>
@@ -27,7 +27,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="Pedidos">
               <div class="card">
                 <div class="textos">
                   <center><h6>Pedidos</h6></center>
@@ -37,7 +37,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="TranSformacion">
               <div class="card" style="left: 600px;">
                 <div class="textos">
                   <center><h6>Transformación</h6></center>
@@ -47,7 +47,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="">
+            <router-link class="lg4" to="Inventario">
               <div class="card" style="right: 220px;">
                 <div class="textos">
                   <center><h6>Inventario</h6></center>
