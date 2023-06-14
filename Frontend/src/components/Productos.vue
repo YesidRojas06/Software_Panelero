@@ -6,7 +6,7 @@
       </div>
       
 
-      <q-table title="Usuario" :rows="rows" :columns="columns" class="tabla ">
+      <q-table title="Productos Inventario" :rows="rows" :columns="columns" class="tabla ">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -41,7 +41,7 @@
         <q-card class="bg-teal text-dark"  style="width: 500px; max-width: 80vw;">
 
           <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
-            <div align= "center" class="text-h6">{{ bd == 0?"Guardar producto ": "Editar productos" }}</div>
+            <div align= "center" class="text-h6">{{ bd == 0?"Guardar producto ": "Editar producto" }}</div>
 
             
 
@@ -93,10 +93,11 @@ const q = useQuasar()
 const getUser = UserStore()
 let rows = ref()
 
-let nombre = ref("");
-let clave = ref("");
-let correo = ref("");
-let rol = ref("");
+let codigo = ref("");
+let nombre_art = ref("");
+let cantidad = ref("");
+let num_entradas = ref("");
+let num_salidas = ref("");
 
 let nuevo = ref(false)
 let bd = ref(0)
@@ -210,10 +211,10 @@ if (bd.value === 0) {
   nuevo.value = false;
   console.log(res.response.data);
 } else {
-  if (nombre.value === "") {
+  if (codigo.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
+      message: "Por favor, ingrese un código válido.",
       position: "top",
     });
     return;
