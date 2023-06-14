@@ -14,7 +14,7 @@ export const laboresStore = defineStore("labores", {
 
         async getlabores(){
             try {
-                 const resp =await axios.get('http://localhost:4503/labores') 
+                 const resp =await axios.get('http://localhost:4504/labores') 
                 return (resp.data.labores);
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const laboresStore = defineStore("labores", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4503/labores`,
+                const resp = await axios.post(`http://localhost:4504/labores`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const laboresStore = defineStore("labores", {
         async editlabores(id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4503/labores/${id}`,
+                const resp = await axios.put(`http://localhost:4504/labores/${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const laboresStore = defineStore("labores", {
         },
         async activelabores (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/labores/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4504/labores/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -65,7 +65,7 @@ export const laboresStore = defineStore("labores", {
         async inactivelabores (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4503/labores/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4504/labores/desactivar/${id}`                ) 
 
                return resp
        

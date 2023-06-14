@@ -53,7 +53,7 @@ export const UserStore = defineStore("user", {
         },
         async activeUser (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/usuario/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4504/usuario/activar/${id}`                ) 
                return resp
        
    
@@ -65,7 +65,7 @@ export const UserStore = defineStore("user", {
         },
         async inactiveUser (id){
             try {
-                const resp = await axios.put(`http://localhost:4503/usuario/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4504/usuario/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {
