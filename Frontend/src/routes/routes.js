@@ -40,7 +40,7 @@ import Tipo_Documento from "../components/Tipo_Documento.vue"
 import Lotes from "../components/Lotes.vue"
 import Numero_Etapa from "../components/Numero_Etapa.vue"
 import Numero_Finca from "../components/Numero_Finca.vue"
-//empaques ya esta lamado en transofrmacion
+//empaques ya esta llamada en transofrmacion
 import Soporte from "../components/Soporte.vue"
 
 
