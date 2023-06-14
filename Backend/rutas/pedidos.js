@@ -6,11 +6,13 @@ import {check} from "express-validator";
 import helpersPedidos from "../helpers/pedidos.js"
 
 
-const router=Router();
+const rutasPedido=Router();
 
-router.get('/', PedidoHttp.pedidoGet)
-
-router.post('/',
+rutasPedido.get('/', PedidoHttp.pedidoGet);
+rutasPedido.put("/:id",PedidoHttp.pedidoPut);
+rutasPedido.put("/desactivar/:id",PedidoHttp.pedidoInactivoput);
+rutasPedido.put("/activar/:id",PedidoHttp.pedidoActivoput);
+rutasPedido.post('/',
     [
         check("documento", "El documento es obligatorio").not().isEmpty(),
         check("telefono", "El telefono es obligatorio").not().isEmpty(),
@@ -28,7 +30,7 @@ router.post('/',
 
 
 
-router.put('/state/:id',
+rutasPedido.put('/state/:id',
 [
     check('id').custom(helpersPedidos.pedidoPut),
     check("id", "El id es obligatorio").notEmpty().exists(),
@@ -39,4 +41,4 @@ router.put('/state/:id',
 )
 
 
-export default router
+export default rutasPedido;
