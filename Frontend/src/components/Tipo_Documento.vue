@@ -99,7 +99,7 @@
     rows.value = await tipoDocumento.gettipoDocumento();
 
   };
-  listartipoDocumento()
+  listartipoDocumento();
   
   function edit(row) {
     bd.value = 1;

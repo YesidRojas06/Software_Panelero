@@ -13,12 +13,12 @@ rutastipos_documento.put("/activar/:id",tipoDocumentohttp.tipoDocumentoActivoput
 rutastipos_documento.put("/:id",tipoDocumentohttp.tipoDocumentoput);
 rutastipos_documento.post('/', 
 
-//[
-    //check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-    //check('siglas', 'Las siglas son obligatorias').not().isEmpty(),
-    //check("nombre", "No es un nombre valido").isMongoId(),
-    //check("nombre").custom(helperstipoDocumento),
-    //validarCampos], 
+[
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('siglas', 'Las siglas son obligatorias').not().isEmpty(),
+    check("nombre", "No es un nombre valido").isMongoId(),
+    check("nombre").custom(helperstipoDocumento),
+    validarCampos], 
     
     tipoDocumentohttp.tipoDocumentoPost);
 
