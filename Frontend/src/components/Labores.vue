@@ -95,13 +95,13 @@ let columns = ref([
   {
     name: 'nombre_labor',
     required: true,
-    label: 'Nombre_labor',
+    label: 'Nombre del labor',
     align: 'left',
     field: "nombre_labor",
     sortable: false
   },
-  { name: 'area_realizar', align: 'center', label: 'area_realizar', field: "area_realizar", sortable: true },
-  { name: 'pago_diario', align: 'center', label: 'pago_diario', field: "pago_diario", sortable: true },
+  { name: 'area_realizar', align: 'center', label: 'Area Realizada', field: "area_realizar", sortable: true },
+  { name: 'pago_diario', align: 'center', label: 'Pago Diario', field: "pago_diario", sortable: true },
 
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
