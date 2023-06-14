@@ -2,12 +2,12 @@
     <div>
       <div class="q-pa-md">
         <div class="title-container">
-          <h1 class="page-title">Tipo_Documento</h1>
+          <h1 class="page-title">Tipo Documento</h1>
         </div>
         
         
   
-        <q-table title="Bodega" :rows="rows" :columns="columns" class="tabla ">
+        <q-table title="Documentos" :rows="rows" :columns="columns" class="tabla ">
           <template v-slot:body-cell-estado="props" style="opacity: 0;">
             <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
             <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -84,12 +84,12 @@
     {
       name: 'nombreT',
       required: true,
-      label: 'nombreT',
+      label: 'Tipo De Documento',
       align: 'left',
       field: "nombreT",
       sortable: false
     },
-    { name: 'siglas', align: 'center', label: 'siglas', field: "siglas", sortable: true },
+    { name: 'siglas', align: 'center', label: 'Siglas', field: "siglas", sortable: true },
     { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
     { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
   ]);
@@ -243,6 +243,15 @@
   .form-input {
     margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
   }
+
+  
+.tabla {
+  border: 7px solid transparent;
+  border-image: linear-gradient(to right, #00FF00, #000000) 1;
+  border-image-slice: 1;
+  border-radius: 20px;
+}
+
   
   </style>
   
