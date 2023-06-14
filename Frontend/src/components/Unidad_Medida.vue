@@ -5,13 +5,13 @@
   <div>
     <div class="q-pa-md">
       <div class="title-container">
-        <h1 class="page-title">Unidades de medida</h1>
+        <h1 class="page-title">Unidades De Medida</h1>
       </div>
 
 
 
 
-      <q-table title="Unidades de medida" :rows="rows" :columns="columns" class="tabla ">
+      <q-table title="Unidades De Medida" :rows="rows" :columns="columns" class="tabla ">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -49,9 +49,41 @@
           <p>Codigo</p>
           <input type="text" v-model="codigo" class="form-input">
 
-          <p>Fecha</p>
+          <!-- <p>Fecha</p>
 
-          <input type="text" v-model="fecha" class="form-input">
+          <input type="text" v-model="fecha" class="form-input"> -->
+
+          
+  <q-input
+    filled
+    v-model="fecha"
+    mask="date"
+    label="Fecha"
+    lazy-rules
+    :rules="[
+      (val) => (val && val.length > 0) || 'por favor ingrese valor',
+    ]"
+  >
+    <template v-slot:append>
+      <q-icon name="event" class="cursor-pointer">
+        <q-popup-proxy
+          cover
+          transition-show="scale"
+          transition-hide="scale">
+          <q-date v-model="fecha" @input="formatDate">
+            <div class="row items-center justify-end">
+              
+              <!-- <input type="text" v-model="fecha" class="form-input text-green" readonly> -->
+
+              <!-- <input type="text" v-model="formattedFecha" class="form-input text-green" readonly> -->
+              <q-btn v-close-popup label="Close" color="primary" flat />
+            </div>
+          </q-date>
+        </q-popup-proxy>
+      </q-icon>
+    </template>
+  </q-input>
+
 
 
           <p>Descripcion</p>
@@ -103,6 +135,8 @@ let columns = ref([
 ])
 
 
+
+
 const listarUnidadesMedida = async () => {
   let er = await UnidadesMedida.getUnidadesMedida();
   rows.value = await UnidadesMedida.getUnidadesMedida();
@@ -141,6 +175,23 @@ function limpiarFormulario() {
   bd.value = 0;
 }
 
+
+
+
+
+
+
+function formatDate() {
+  const date = new Date(fecha.value);
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const formattedDate = date.toLocaleDateString('es-ES', options);
+  fecha.value = formattedDate;
+}
+
+
+
+
+
 async function guardarEditarDatos() {
   if (bd.value === 0) {
     if (codigo.value === "") {
@@ -160,6 +211,16 @@ async function guardarEditarDatos() {
       });
       return;
     }
+
+    if (descripcion.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una descripcion válida.",
+        position: "top",
+      });
+      return;
+    }
+
 
     const datos = {
       codigo: codigo.value,
@@ -191,6 +252,15 @@ async function guardarEditarDatos() {
       return;
     }
 
+    if (descripcion.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una Descripcion válida.",
+        position: "top",
+      });
+      return;
+    }
+
     const datos = {
       codigo: codigo.value,
       fecha: fecha.value,
@@ -209,6 +279,7 @@ async function guardarEditarDatos() {
     });
   }
 }
+
 
 listarUnidadesMedida();
 </script>
@@ -267,4 +338,5 @@ input[type="text"] {
   border-image: linear-gradient(to right, #00FF00, #000000) 1;
   border-image-slice: 1;
   border-radius: 20px;
+  
 }</style>
