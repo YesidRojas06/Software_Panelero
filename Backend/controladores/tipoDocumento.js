@@ -1,38 +1,66 @@
 import modelostipoDocumento from "../modelos/tipoDocumento.js"
 
-const tDocumentohttp={
-    tDocumentoget: async (req, res) => {
+const tipoDocumentohttp={
+
+  tipoDocumentoget: async (req, res) => {
         const tipoDocumento = await modelostipoDocumento.find();
-        res.json({ tipoDocumentos: tipoDocumento });
+        res.json({ 
+          tipoDocumento
+        });
       },
     
-      tDocumentopost: async (req, res) => {
+      tipoDocumentoPost:async (req, res) => {
         const { nombreT, siglas } = req.body;
-        const tipoDocumento = new modelostipoDocumento({nombreT, siglas});
+        const tipoDocumento = new modelostipoDocumento({ 
+          nombreT,
+          siglas
+        });
+      
         await tipoDocumento.save();
-        res.send("Tipo de documento cerrados");
+        res.json({
+          tipoDocumento
+        });
       },
+
+      tipoDocumentoSearchForTextGet:async (req, res) => {
+        const { nombreT, siglas } = req.query;
+        const tipoDocumento = await modelostipoDocumento.find({ 
+          nombreT, siglas });
+        res.json({
+          tipoDocumento,
+        });
+      },
+
     
-      tDocumentoput: async (req, res) => {
+      tipoDocumentoput: async (req, res) => {
         const { nombreT, siglas } = req.body;
-        const tipoDocumento = await modelostipoDocumento.findByIdAndUpdate({nombreT, siglas});
+    
+        console.log(req.body);
+        const { id } = req.params;
+        const tipoDocumento = await modelostipoDocumento.findByIdAndUpdate(id, {
+          nombreT,
+           siglas
+          
+        });
         await tipoDocumento.save();
         res.send(tipoDocumento);
       },
 
-      tDocumentoInactivoput: async (req, res) => {
+
+
+      tipoDocumentoInactivoput: async (req, res) => {
         console.log(req.params);
         const { id } = req.params;
-        const tipoDocumento = await modeloeps.findByIdAndUpdate(id, { estado: 0 });
+        const tipoDocumento = await modelostipoDocumento.findByIdAndUpdate(id, { estado: 0 });
         res.send(tipoDocumento);
       },
     
-      tDocumentoActivoput: async (req, res) => {
+      tipoDocumentoActivoput: async (req, res) => {
         console.log(req.params);
         const { id } = req.params;
-        const tipoDocumento = await modeloeps.findByIdAndUpdate(id, { estado: 1 });
+        const tipoDocumento = await modelostipoDocumento.findByIdAndUpdate(id, { estado: 1 });
         res.send(tipoDocumento);
       },
 }
 
-export default tDocumentohttp
+export default tipoDocumentohttp;
