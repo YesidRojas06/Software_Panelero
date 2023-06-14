@@ -13,6 +13,9 @@ import rutaslabores from "../rutas/labores.js";
 import rutasunidadesMedida from "../rutas/unidadesMedida.js";
 import rutastipoDocumento from "../rutas/tipoDocumento.js";
 import rutaspedidos from "../rutas/pedidos.js";
+import rutasformapago from "../rutas/formapago.js";
+import rutastipopago from "../rutas/tipopago.js"
+
 
 
 
@@ -46,6 +49,9 @@ class servidor {
         this.app.use("/unidadesMedida", rutasunidadesMedida)
         this.app.use("/tipoDocumento", rutastipoDocumento)
         this.app.use("/pedidos", rutaspedidos)
+        this.app.use("/formapago", rutasformapago)
+        this.app.use("/tipopago", rutastipopago)
+
 
 
 
