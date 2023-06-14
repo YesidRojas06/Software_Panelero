@@ -23,7 +23,7 @@ router.post('/',
         check("tipoEmpaque", "El tipo de empaque es obligatorio").not().isEmpty(),
         check("abono", "El abono es obligatorio").not().isEmpty(),
         check("valorTotal", "El valor total es obligatorio").not().isEmpty(),
-        check("token").custom(validarJWT),
+        // check("token").custom(validarJWT),
 ], PedidoHttp.pedidoPost)   
 
 
@@ -33,7 +33,7 @@ router.put('/state/:id',
     check('id').custom(helpersPedidos.pedidoPut),
     check("id", "El id es obligatorio").notEmpty().exists(),
     check("id", "El id no es valido").isMongoId(),
-    check("token").custom(validarJWT),
+    // check("token").custom(validarJWT),
 
 ],
 )

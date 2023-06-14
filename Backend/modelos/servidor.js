@@ -36,7 +36,6 @@ class servidor {
     }
     rutas(){
         this.app.use("/bodegas", rutasbodegas)
-        this.app.use("/clientes", rutasingClientes)
         this.app.use("/inventario", rutasinventario)
         this.app.use("/login", rutaslogin)
         this.app.use("/lotes", rutaslotes)
@@ -58,8 +57,8 @@ class servidor {
     }
 
     listen(){
-        this.app.listen(4503,()=>{
-            console.log("Escuchando puerto 4503 ")
+        this.app.listen(4504,()=>{
+            console.log("Escuchando puerto 4504 ")
         })
     }
 }
