@@ -1,320 +1,339 @@
 <template>
-  <div>
-    <div class="q-pa-md">
-      <div class="title-container">
-        <h1 class="page-title">Inventario Productos</h1>
+  <q-layout>
+    <q-page-container>
+      <div class="title-container"> 
+        <h1 class="page-title">Inventario</h1>
       </div>
-      
 
-      <q-table title="Usuario" :rows="rows" :columns="columns" class="tabla ">
-        <template v-slot:body-cell-estado="props" style="opacity: 0;">
-          <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
-          <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
-        </template>
-        <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
-          <td style="text-align: center;">
-            <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
-            <q-btn v-else @click="active(props.row)">✅</q-btn>
+        <div class="contenedor">
+          <div class="contenedor-conciertos">
+            <router-link class="lg4" to="/Bodegas">
+              <div class="card">
+                <div class="textos">
+                  <center><h6>Bodegas</h6></center>
+                  <!-- <q-separator style="background-color: #000000" dark inset /> -->
+                  <i class="material-icons" style="font-size: 100px;">store</i>
+                </div>
+              </div>
+            </router-link>
 
-          </td>
-        </template>
+            <router-link class="lg4" to="/Marcas">
+              <div class="card">
+                <div class="textos">
+                  <center><h6>Marcas</h6></center>
+                  <!-- <q-separator style="background-color: #000000" dark inset /> -->
+                  <i class="material-icons" style="font-size: 100px;">verified</i>
+                </div>
+              </div>
+            </router-link>
 
-      </q-table>
-      
+            <router-link class="lg4" to="/Categorias">
+              <div class="card">
+                <div class="textos">
+                  <center><h6>Categorias</h6></center>
+                  <!-- <q-separator style="background-color: #000000" dark inset /> -->
+                  <i class="material-icons" style="font-size: 100px;">shopping_bag</i>
+                </div>
+              </div>
+            </router-link>
 
-      <q-btn
-  color="white"
-  text-color="black"
-  label="Nuevo Producto"
-  @click="guardar"
-  class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
-  style="position: absolute; top: 150px; right: 40px; border-radius: 30px;"
-/>
+            <router-link class="lg4" to="/Productos">
+              <div class="card" style="left: 405px;">
+                <div class="textos">
+                  <center><h6>Productos</h6></center>
+                  <!-- <q-separator style="background-color: #000000" dark inset /> -->
+                  <i class="material-icons" style="font-size: 100px;">inventory</i>
+                </div>
+              </div>
+            </router-link>
 
+          </div>
+          </div>
 
-
-    </div>
-
-
-      <q-dialog v-model="nuevo" persistent transition-show="scale" transition-hide="scale">
-        <q-card class="bg-teal text-dark"  style="width: 500px; max-width: 80vw;">
-
-          <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
-            <div align= "center" class="text-h6">{{ bd == 0?"Guardar producto ": "Editar productos" }}</div>
-
-            
-
-          </q-card-section>
-
-          <q-card-section class="q-pt-none">
-            <p>Codigo</p>
-          <input type="text" v-model="codigo" class="form-input" >
-
-          <p>Nombre del Articulo</p>
-          <!-- <input type="text" v-model="correo" class="form-input"> -->
-          <input type="text" v-model="nombreAr" class="form-input">
-
-          <p>Cantidad</p>
-          <input type="text" v-model="cantidad" class="form-input">
-
-          <p>Número de entradas </p>
-          <input type="text" v-model="n_entradas" class="form-input">
-
-          <p>Número de salidas</p>
-          <input type="text" v-model="n_salidas" class="form-input">
-
-          <p>Precio</p>
-          <input type="text" v-model="precio" class="form-input" >
-
-          
-          </q-card-section>
-
-            <q-card-actions align="center" class="bg-white text-black">
-            <q-btn  label="Cancelar" @click="nuevo=false" style="background-color: rgb(243, 9, 9)"/>
-            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
-              {{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
-
-       
-            
-          </q-card-actions>
-        </q-card>
-      </q-dialog>
-    </div>
-
+              </q-page-container>
+          </q-layout>
+         
+  
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue"
-import { inventarioStore } from "../stores/inventario"
-import { useQuasar } from 'quasar'
-
-const q = useQuasar()
-const getinventario = inventarioStore()
-let rows = ref()
-
-let codigo = ref("");
-let nombreAr = ref("");
-let cantidad = ref("");
-let n_entradas = ref("");
-let n_salidas = ref("");
-let precio = ref ("");
-
-let nuevo = ref(false)
-let bd = ref(0)
-let _id = ""
-
-let columns = ref([
-{ name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
-{ name: 'nombre del articulo', label: 'Nombre del articulo', field: 'nombre del articulo', sortable: true, align: "center"},
-{ name: 'cantidad', label: 'Cantidad', field: 'cantidad', align: "center" },
-{ name: 'numero de entradas', label: 'Numero de entradas', field: 'numero de entradas', sortable: true, align: "center" },
-{ name: 'numero de salidas', label: 'Numero de salidas', field: 'numero de salidas', align: "center"},
-{ name: 'precio', label: 'Precio', field: 'precio', align: "center"}
-])
-
-const listarinventario = async () => {
-rows.value = await getinventario.getinventario()
-}
-
-function edit(row) {
-bd.value = 1;
-nuevo.value = true;
-_id = row._id;
-codigo.value = row.codigo;
-nombreAr.value = row.nombreAr;
-cantidad.value = row.cantidad;
-n_entradas.value = row.n_entradas;
-n_salidas.value = row.n_salidas;
-precio.value = row.precio
+<style>
+.lg4 {
+  text-decoration: none;
 
 }
 
-function guardar() {
-bd.value = 0;
-nuevo.value = true;
-limpiarFormulario();
+
+
+
+.contenedor {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0;  
+  display: grid;
+  grid-template-columns: 3fr;
+  gap: 20px;
 }
 
-async function inactive(props) {
-let res = await getinventario.inactiveinventario(props._id);
-listarinventario()
+.contenedor-conciertos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 5px;
 }
 
-async function active(props) {
-let res = await getinventario.activeinventario(props._id);
-listarinventario()
+.card {
+  border-radius: 10px;
+  min-height: 200px;
+  font-weight: bold;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background-color:white
 }
 
-function limpiarFormulario() {
-codigo.value = "";
-nombreAr.value = "";
-cantidad.value = "";
-n_entradas.value = "";
-n_salidas.value = "";
-precio = ref =("");
-}
-
-
-async function guardarEditarDatos() {
-if (bd.value === 0) {
-  if (codigo.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un código válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (nombreAr.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un correo válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (cantidad.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese una contraseña válida.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  const datos = {
-    nombre: nombre.value,
-    correo: correo.value,
-    contrasena: clave.value,
-    rol: rol.value,
-    estado: 0,
-  };
-
-  let res = await getUser.addUser(datos);
-  listarUsuarios()
-  nuevo.value = false;
-  console.log(res.response.data);
-} else {
-  if (nombre.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (correo.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un correo válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  const datos = {
-    nombre: nombre.value,
-    correo: correo.value,
-    rol: rol.value,
-    estado: 1,
-  };
-
-  let res = await getUser.editUser(_id, datos);
-  listarUsuarios()
-  console.log(res);
-  q.notify({
-    type: "positive",
-    message: "Usuario actualizado exitosamente.",
-    position: "top",
-  });
-}
-}
-
-listarUsuarios()
-</script>
-
-<style lang="scss" scoped>
-
-.q-pt-none {
-  background-color: #ffffff; /* Establecer el color de fondo del cuadro de diálogo */
-}
-
-.q-card {
-  border-radius: 8px; /* Agregar radio de borde a la tarjeta */
-}
-
-.q-card-section {
-  padding: 20px; /* Aumentar el relleno de las secciones de la tarjeta. */
-  
-
-}
-
-.q-card-actions {
-  justify-content: flex-end; /* Alinear las acciones de la tarjeta a la derecha */
-}
-
-.q-btn {
-  margin-left: 10px; /* Añade algo de espacio entre los botones. */
-}
-
-input[type="text"] {
-  width: 100%; /* Hacer que las entradas de texto ocupen todo el ancho */
-}
-
-.text-h6 {
-  font-size: 1.25rem; /* Aumentar el tamaño de fuente del título de la sección.*/
-}
-.q-btn:hover{
+.card:hover {
   background-color: rgb(14, 224, 14);
 }
-.form-input {
-    margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
-   
-  }
 
-
-.tabla {
-border: 7px solid transparent;
-border-image: linear-gradient(to right, #00FF00, #000000) 1;
-border-image-slice: 1;
-border-radius: 20px;
+.card .textos {
+  height: 100%;
+  color: #000000;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
 }
-  </style>
+
+@media screen and (max-width: 900px) {
+  .contenedor-conciertos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .contenedor-conciertos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contenedor-conciertos {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}
+
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -60px;
+
+}
+
+.page-title {
+  text-align: center;
+  font-size: 50px; /* Ajusta el tamaño de la letra según tus preferencias */
+  border-bottom: 1px solid black; /* Agrega una línea sólida de 1px de grosor y color negro */
+  padding-bottom: 10px; /* Ajusta el espacio entre el texto y la línea */
+  border-bottom: 3px solid black; /* Ajusta el grosor de la línea según tus preferencias */
+  width: 10000px; /* Ajusta la anchura del contenedor del título */
+}
+
+
+
+</style>
+
+
+
+<!-- <template>
+  
+
+    <q-layout>
+      <q-page-container>
+        <div class="title-container"> 
+        <h1 class="page-title">Inventario</h1>
+      </div>
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-3">
+            <q-card class="Bodegas">
+              <q-card-section>
+                <router-link to="/Bodegas" class="no-link">
+                  <q-icon class="icon q-m" size="130px" name="store" style="left: 80px; color: black; "></q-icon>
+                  <div class="text-h6" style="color: black;  text-align: center; ">Bodegas</div>
+  
+                </router-link>
+              </q-card-section>
+              <q-card-actions>
+              </q-card-actions>
+            </q-card>
+          </div>
+          <div class="col-3 q-ma-4">
+  
+            <q-card class="Marcas">
+              <q-card-section >
+                <router-link to="/Marcas" class="no-link">
+                  <q-icon class="icon q-m" size="130px" name="verified" style="left: 80px; color: black; "></q-icon>
+                  <div class="text-h6" style="color: black; position: relative; 
+                  text-align: center;">Marcas</div>
+                </router-link>
+              </q-card-section>
+              <q-card-actions>
+              </q-card-actions>
+            </q-card>
+  
+  
+          </div>
+          
   
   
   
   
+          </div>
+       
+        <div class="row">
+          <div class="col-1"></div>
+  
+          <div class="col-3">
+  
+            <q-card class="Categorias">
+              <q-card-section>
+                <router-link to="/Categorias" class="no-link">
+                  <q-icon class="icon q-m" size="130px" name="shopping_bag" style="left: 80px; color: black; "></q-icon>
+                  <div class="text-h6" style="color: black; position: relative; 
+           text-align: center;">Categorias</div>
+  
+  
+                </router-link>
+              </q-card-section>
+              <q-card-actions>
+              </q-card-actions>
+            </q-card>
+  
+          </div>
+  
+          
+          <div class="col-3">
+  </div>
+  
+  
+  
+          <div class="col-3">
   
   
   
   
+            <q-card class="Productos">
+              <q-card-section>
+                <router-link to="/Productos" class="no-link">
+                  <q-icon class="icon q-m" size="130px" name="inventory" style="left: 80px; color: black; "></q-icon>
+                  <div class="text-h6" style="color: black; position: relative; 
+           text-align: center;">Productos</div>
+  
+  
+                </router-link>
+              </q-card-section>
+              <q-card-actions>
+              </q-card-actions>
+            </q-card>
   
   
   
   
+          </div>
+          
+        </div>
+  
+      </q-page-container>
+    </q-layout>
+  </template>
+    
+  
+  <style >
+  .q-card:hover {
+    background-color: rgb(14, 224, 14);
+  }
+  
+  .no-link {
+    text-decoration: none;
+  
+  }
+  
+  .Bodegas {
+    width: 330px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+    left: 100px;
+  }
+  
+  .Marcas {
+    width: 330px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+    left: 350px;
+  }
+  
+  .Costos {
+    width: 330px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+  }
+  
+  .Categorias {
+    width: 330px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+    left: 100px;
+  }
+  
+  .Productos {
+    width: 330px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+    left: -15px;
+  }
+  
+
+  .title-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -60px;
+
+}
+
+.page-title {
+  text-align: center;
+  font-size: 50px; /* Ajusta el tamaño de la letra según tus preferencias */
+  border-bottom: 1px solid black; /* Agrega una línea sólida de 1px de grosor y color negro */
+  padding-bottom: 10px; /* Ajusta el espacio entre el texto y la línea */
+  border-bottom: 3px solid black; /* Ajusta el grosor de la línea según tus preferencias */
+  width: 10000px; /* Ajusta la anchura del contenedor del título */
+}
+
+
   
   
   
-  
+  </style> -->

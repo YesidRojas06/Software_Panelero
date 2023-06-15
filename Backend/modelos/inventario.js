@@ -9,9 +9,4 @@ const InventarioSchema = new mongoose.Schema({
   precio: { type: String, maxlength: 50 },
 });
 
-
-
-
-const modeloinventario = mongoose.model("Inventario", InventarioSchema);
-
-export default modeloinventario;
+export default mongoose.model("Inventario", InventarioSchema);
