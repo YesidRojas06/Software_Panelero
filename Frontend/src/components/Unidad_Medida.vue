@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div>
     <div class="q-pa-md">
@@ -5,67 +8,91 @@
         <h1 class="page-title">Unidades De Medida</h1>
       </div>
 
-      <q-table title="Unidades De Medida" :rows="rows" :columns="columns" class="tabla">
-        <template v-slot:body-cell-estado="props">
+
+
+
+      <q-table title="Unidades De Medida" :rows="rows" :columns="columns" class="tabla ">
+        <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
         </template>
-        <template v-slot:body-cell-opcion="props">
+        <template v-slot:body-cell-opcion="props" style="opacity: 0;">
           <td style="text-align: center;">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
             <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
             <q-btn v-else @click="active(props.row)">✅</q-btn>
+
           </td>
         </template>
+
       </q-table>
 
-      <q-btn
-        color="white"
-        text-color="black"
-        label="Nueva unidad de medida"
-        @click="guardar"
+
+      <q-btn color="white" text-color="black" label="Nueva unidad de medida" @click="guardar"
         class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
-        style="position: absolute; top: 150px; right: 40px; border-radius: 30px;"
-      />
+        style="position: absolute; top: 150px; right: 40px; border-radius: 30px;" />
+
+
 
     </div>
 
+
     <q-dialog v-model="nuevo" persistent transition-show="scale" transition-hide="scale">
       <q-card class="bg-teal text-dark" style="width: 500px; max-width: 80vw;">
-        <q-card-section style="background-color:rgb(14, 224, 14);">
-          <div align="center" class="text-h6">{{ bd === 0 ? "Guardar UnidadesMedida" : "Editar UnidadesMedida" }}</div>
+
+        <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
+          <div align="center" class="text-h6">{{ bd == 0 ? "Guardar UnidadesMedida" : "Editar UnidadesMedida" }}</div>
+
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <p>Código</p>
+          <p>Codigo</p>
           <input type="text" v-model="codigo" class="form-input">
 
-          <q-input
-            filled
-            v-model="fecha"
-            mask="date"
-            label="Fecha"
-            lazy-rules
-            :rules="[
-              (val) => (val && val.length > 0) || 'Por favor ingrese un valor',
-            ]"
-          >
-            <template v-slot:append>
-              <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                  <q-date v-model="fecha" @input="formatDate">
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Cerrar" color="primary" flat />
-                    </div>
-                  </q-date>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
+          <!-- <p>Fecha</p>
 
-          <p>Descripción</p>
+          <input type="text" v-model="fecha" class="form-input"> -->
+
+          
+  <q-input
+    filled
+    v-model="fecha"
+    mask="date"
+    label="Fecha"
+    lazy-rules
+    :rules="[
+      (val) => (val && val.length > 0) || 'por favor ingrese valor',
+    ]"
+  >
+    <template v-slot:append>
+      <q-icon name="event" class="cursor-pointer">
+        <q-popup-proxy
+          cover
+          transition-show="scale"
+          transition-hide="scale">
+          <q-date v-model="fecha" @input="formatDate">
+            <div class="row items-center justify-end">
+              
+              <!-- <input type="text" v-model="fecha" class="form-input text-green" readonly> -->
+
+              <!-- <input type="text" v-model="formattedFecha" class="form-input text-green" readonly> -->
+              <q-btn v-close-popup label="Close" color="primary" flat />
+            </div>
+          </q-date>
+        </q-popup-proxy>
+      </q-icon>
+    </template>
+  </q-input>
+
+
+
+          <p>Descripcion</p>
           <input type="text" v-model="descripcion" class="form-input">
+
+
+
         </q-card-section>
+
         <q-card-actions align="center" class="bg-white text-black">
           <q-btn label="Cancelar" @click="nuevo = false" style="background-color: rgb(243, 9, 9)" />
           <q-btn @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">{{ bd == 0 ? "Guardar " : "Editar "
@@ -147,6 +174,22 @@ function limpiarFormulario() {
   descripcion.value = "";
   bd.value = 0;
 }
+
+
+
+
+
+
+
+function formatDate() {
+  const date = new Date(fecha.value);
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const formattedDate = date.toLocaleDateString('es-ES', options);
+  fecha.value = formattedDate;
+}
+
+
+
 
 
 async function guardarEditarDatos() {
