@@ -1,13 +1,11 @@
 <template>
   <div>
     <div class="q-pa-md">
-      <div class="title-container">
-        <h1 class="page-title">Pagos</h1>
-      </div>
       
+      <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar" style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
+      border-radius: 30px;  "/>
 
-      <q-table title="Pagos
-      " :rows="rows" :columns="columns" class="tabla ">
+      <q-table title="Usuario" :rows="rows" :columns="columns">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -22,19 +20,6 @@
         </template>
 
       </q-table>
-      
-
-      <q-btn
-  color="white"
-  text-color="black"
-  label="Nuevo Usuario"
-  @click="guardar"
-  class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
-  style="position: absolute; top: 150px; right: 40px; border-radius: 30px;"
-/>
-
-
-
     </div>
 
 
@@ -44,32 +29,25 @@
           <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
             <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
 
-            
+       
 
           </q-card-section>
 
           <q-card-section class="q-pt-none">
             <p>Nombre</p>
           <input type="text" v-model="nombre" class="form-input" >
-
           <p>Correo</p>
-          <!-- <input type="text" v-model="correo" class="form-input"> -->
-
-          <input type="text" id="email" class="form-input" name="email" v-model="correo" required @input="validateEmail">
-
-
+          <input type="text" v-model="correo" class="form-input">
           <p v-if="bd == 0 ">contraseña</p>
           <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
-          
           <p>Rol</p>
           <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
-          :option-value="'value'" :option-label="'label'" class="form-input" required/>
+          :option-value="'value'" :option-label="'label'" class="form-input" />
           </q-card-section>
 
             <q-card-actions align="center" class="bg-white text-black">
             <q-btn  label="Cancelar" @click="nuevo=false" style="background-color: rgb(243, 9, 9)"/>
-            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
-              {{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
+            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">{{ bd == 0?"Guardar ": "Editar "  }} </q-btn> 
 
        
             
@@ -85,185 +63,142 @@ import { ref, onMounted } from "vue"
 import { UserStore } from "../stores/user"
 import { useQuasar } from 'quasar'
 
-const q = useQuasar()
+const q=useQuasar()
 const getUser = UserStore()
 let rows = ref()
 
 let rolOptions = ref([
-{ label: 'Admin', value: 'Admin' },
-{ label: 'User', value: 'User' }
+  { label: 'Admin', value: 'Admin' },
+  { label: 'User', value: 'User' }
 ]);
 
 
 let nombre = ref("");
-let clave = ref("");
+let clave=ref("")
 let correo = ref("");
 let rol = ref("");
 
-let nuevo = ref(false)
-let bd = ref(0)
-let _id = ""
+
+
+let nuevo= ref(false)
+let bd= ref (0)
+let _id=""
 
 let columns = ref([
-{
-  name: 'nombre',
-  required: true,
-  label: 'Nombre',
-  align: 'left',
-  field: "nombre",
-  sortable: false
-},
-{ name: 'correo', align: 'center', label: 'Correo', field: "correo", sortable: true },
-{ name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
-{ name: 'estado', label: 'Estado', field: 'estado', align: "center" },
-{ name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
+  {
+    name: 'nombre',
+    required: true,
+    label: 'Nombre',
+    align: 'left',
+    field: "nombre",
+    sortable: false
+  },
+  
+  { name: 'fecha de pago', align: 'center', label: 'fecha de pago', field: "fecha de pago", sortable: true },
+  { name: 'valor pago', align: 'center', label: 'valor pago', field: "valor pago", sortable: true },
+  { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
+  { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
+  { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
 
+
+
+
+
 const listarUsuarios = async () => {
-rows.value = await getUser.getUsers()
+  console.log(await getUser.getUsers());
+  rows.value = await getUser.getUsers()
+}
+function edit (row){
+  console.log(row._id);
+  bd.value=1;
+  nuevo.value=true
+  _id = row. _id;
+  nombre.value = row.nombre;
+  correo.value = row.correo;
+  rol.value = row.rol;
+
 }
 
-function edit(row) {
-bd.value = 1;
-nuevo.value = true;
-_id = row._id;
-nombre.value = row.nombre;
-correo.value = row.correo;
-rol.value = row.rol;
-}
+function guardar (){
+  bd.value=0
+  nuevo.value=true;
+  limpiarFormulario(); // Limpia los valores del formulario antes de abrir el modal
+  nuevo.value = true;
 
-function guardar() {
-bd.value = 0;
-nuevo.value = true;
-limpiarFormulario();
-}
+ 
 
+  const nuevoUsuario = {
+    nombre: nombre.value,
+    correo: correo.value,
+    rol: rol.value,
+  };
+
+
+  postUser.addUser(nuevoUsuario).then(() => {
+    listarUsuarios();
+    
+    
+  })
+  
+}
 async function inactive(props) {
-let res = await getUser.inactiveUser(props._id);
-listarUsuarios()
+  console.log("desactivado", props.nombre);
+  let res = await getUser.inactiveUser(props._id);
+  listarUsuarios()
 }
 
 async function active(props) {
-let res = await getUser.activeUser(props._id);
-listarUsuarios()
+  console.log("activado", props.nombre);
+  let res = await getUser.activeUser(props._id);
+  listarUsuarios()
 }
 
 function limpiarFormulario() {
-nombre.value = "";
-clave.value = "";
-correo.value = "";
-rol.value = "";
-bd.value = 0;
-}
-
-function validateEmail() {
-if (!correo.value.includes("@")) {
-  q.notify({
-    type: "negative",
-    message: "El correo electrónico debe contener el símbolo @",
-    position: "top",
-  });
-}
+  nombre.value = "";
+  clave.value = "";
+  correo.value = "";
+  rol.value = "";
+  bd.value = 0;
 }
 
 
-async function guardarEditarDatos() {
-if (bd.value === 0) {
-  if (nombre.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
-      position: "top",
-    });
-    return;
-  }
+  async function guardarEditarDatos(){
 
-  if (correo.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un correo válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (clave.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese una contraseña válida.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
-
+ if(bd.value == 0 ){
   const datos = {
     nombre: nombre.value,
     correo: correo.value,
-    contrasena: clave.value,
+    contrasena:clave.value,
     rol: rol.value,
-    estado: 0,
+    estado:0,
   };
-
+  // console.log("guardar ",  datos);
   let res = await getUser.addUser(datos);
   listarUsuarios()
-  nuevo.value = false;
   console.log(res.response.data);
-} else {
-  if (nombre.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (correo.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un correo válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
-
+ }else{
   const datos = {
     nombre: nombre.value,
     correo: correo.value,
     rol: rol.value,
-    estado: 1,
+    estado:1,
   };
-
+  console.log("editar ", datos);
   let res = await getUser.editUser(_id, datos);
   listarUsuarios()
   console.log(res);
   q.notify({
-    type: "positive",
-    message: "Usuario actualizado exitosamente.",
-    position: "top",
-  });
-}
+      type: "positive",
+      message: "Usuario actualizado exitosamente.",
+      position: "top",
+    });
+ }
 }
 
+
 listarUsuarios()
+
 </script>
 
 <style lang="scss" scoped>
@@ -304,12 +239,4 @@ input[type="text"] {
     margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
    
   }
-
-
-.tabla {
-border: 7px solid transparent;
-border-image: linear-gradient(to right, #00FF00, #000000) 1;
-border-image-slice: 1;
-border-radius: 20px;
-}
   </style>
