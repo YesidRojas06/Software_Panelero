@@ -84,7 +84,7 @@ let columns = ref([
     field: "nombre",
     sortable: false
   },
-  { name: 'n_linea', align: 'center', label: 'Número De Línea', field: "n_linea", sortable: true },
+  { name: 'n_linea', align: 'center', label: 'N_LINEA', field: "n_linea", sortable: true },
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 
@@ -256,6 +256,4 @@ input[type="text"] {
   border-image: linear-gradient(to right, #00FF00, #000000) 1;
   border-image-slice: 1;
   border-radius: 20px;
-}
-
-</style>
+}</style>
