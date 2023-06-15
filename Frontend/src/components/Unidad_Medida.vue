@@ -2,19 +2,11 @@
   <div>
     <div class="q-pa-md">
       <div class="title-container">
-        <h1 class="page-title">Unidades de medida</h1>
+        <h1 class="page-title">Unidades De Medida</h1>
       </div>
 
-<<<<<<< HEAD
       <q-table title="Unidades De Medida" :rows="rows" :columns="columns" class="tabla">
         <template v-slot:body-cell-estado="props">
-=======
-
-
-
-      <q-table title="Unidades de medida" :rows="rows" :columns="columns" class="tabla ">
-        <template v-slot:body-cell-estado="props" style="opacity: 0;">
->>>>>>> parent of c48d828 (Merge branch 'Develop' of https://github.com/YesidRojas06/Software_Panelero into Develop)
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
         </template>
@@ -48,7 +40,6 @@
           <p>Código</p>
           <input type="text" v-model="codigo" class="form-input">
 
-<<<<<<< HEAD
           <q-input
             filled
             v-model="fecha"
@@ -73,14 +64,6 @@
           </q-input>
 
           <p>Descripción</p>
-=======
-          <p>Fecha</p>
-
-          <input type="text" v-model="fecha" class="form-input">
-
-
-          <p>Descripcion</p>
->>>>>>> parent of c48d828 (Merge branch 'Develop' of https://github.com/YesidRojas06/Software_Panelero into Develop)
           <input type="text" v-model="descripcion" class="form-input">
         </q-card-section>
         <q-card-actions align="center" class="bg-white text-black">
@@ -125,6 +108,8 @@ let columns = ref([
 ])
 
 
+
+
 const listarUnidadesMedida = async () => {
   let er = await UnidadesMedida.getUnidadesMedida();
   rows.value = await UnidadesMedida.getUnidadesMedida();
@@ -163,10 +148,7 @@ function limpiarFormulario() {
   bd.value = 0;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of c48d828 (Merge branch 'Develop' of https://github.com/YesidRojas06/Software_Panelero into Develop)
 async function guardarEditarDatos() {
   if (bd.value === 0) {
     if (codigo.value === "") {
@@ -186,6 +168,16 @@ async function guardarEditarDatos() {
       });
       return;
     }
+
+    if (descripcion.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una descripcion válida.",
+        position: "top",
+      });
+      return;
+    }
+
 
     const datos = {
       codigo: codigo.value,
@@ -217,6 +209,15 @@ async function guardarEditarDatos() {
       return;
     }
 
+    if (descripcion.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una Descripcion válida.",
+        position: "top",
+      });
+      return;
+    }
+
     const datos = {
       codigo: codigo.value,
       fecha: fecha.value,
@@ -235,6 +236,7 @@ async function guardarEditarDatos() {
     });
   }
 }
+
 
 listarUnidadesMedida();
 </script>
@@ -293,4 +295,5 @@ input[type="text"] {
   border-image: linear-gradient(to right, #00FF00, #000000) 1;
   border-image-slice: 1;
   border-radius: 20px;
+  
 }</style>
