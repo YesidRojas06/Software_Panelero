@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const inventarioStore = defineStore("inventario", {
     state: () => ({
-        inventarioData: ":)",
+        userData: ":)",
         token: null
     }),
     actions:{
