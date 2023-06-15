@@ -12,7 +12,8 @@ const etapashttp= {
   etapaspost : async (req, res) => {
     const { nombreE, descripcionEtapa } = req.body;
     const etapas = new modelosetapas({
-      nombreE, descripcionEtapa
+      nombreE, 
+      descripcionEtapa
     });
 
     await etapas.save();

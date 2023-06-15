@@ -89,7 +89,7 @@
             </router-link>
 
 
-            <router-link class="lg4" to="/Numero_Etapa">
+            <router-link class="lg4" to="/Etapas">
               <div class="card">
                 <div class="textos">
                   <center><h6>Numero de Etapa</h6></center>

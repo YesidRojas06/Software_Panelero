@@ -11,7 +11,7 @@ const helpersEtapas={
 
     existe_descripcion :() => {
         return async (req, res) => {
-            const existe = await descripcion.findOne({ descripcion: req.body.descripcion });
+            const existe = await Etapas.findOne({ descripcion: req.body.descripcion });
         
                 if (existe ) {
                     return res.status(401).json({ msg: `La descripcion nombre ya está registrada` });

@@ -38,7 +38,7 @@ import Unidad_Medida from "../components/Unidad_Medida.vue"
 import Eps from "../components/Eps.vue"
 import Tipo_Documento from "../components/Tipo_Documento.vue"
 import Lotes from "../components/Lotes.vue"
-import Numero_Etapa from "../components/Numero_Etapa.vue"
+import Etapas from "../components/Etapas.vue"
 import Numero_Finca from "../components/Numero_Finca.vue"
 //empaques ya esta llamada en transofrmacion
 import Soporte from "../components/Soporte.vue"
@@ -97,7 +97,7 @@ export const routes = [
     { path: "/Eps", component: Eps },
     { path: "/Tipo_Documento", component: Tipo_Documento },
     { path: "/Lotes", component: Lotes },
-    { path: "/Numero_Etapa", component: Numero_Etapa },
+    { path: "/Etapas", component: Etapas },
     { path: "/Numero_Finca", component: Numero_Finca },
     { path: "/Mantenimiento", component: Empaques }, //llada a empaques 
     { path: "/Soporte", component: Soporte },
