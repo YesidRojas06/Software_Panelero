@@ -6,7 +6,7 @@
       </div>
       
 
-      <q-table title="Usuario" :rows="rows" :columns="columns" class="tabla ">
+      <q-table title="Articulos Inventario" :rows="rows" :columns="columns" class="tabla ">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -89,9 +89,9 @@ import { ref, onMounted } from "vue"
 import { inventarioStore } from "../stores/inventario"
 import { useQuasar } from 'quasar'
 
-const q = useQuasar()
-const getinventario = inventarioStore()
-let rows = ref()
+const q = useQuasar();
+const inventario = inventarioStore();
+let rows = ref();
 
 let codigo = ref("");
 let nombreAr = ref("");
@@ -114,8 +114,10 @@ let columns = ref([
 ])
 
 const listarinventario = async () => {
-rows.value = await getinventario.getinventario()
+rows.value = await inventario.getinventario();
 }
+
+listarinventario();
 
 function edit(row) {
 bd.value = 1;
@@ -125,7 +127,7 @@ codigo.value = row.codigo;
 nombreAr.value = row.nombreAr;
 cantidad.value = row.cantidad;
 n_entradas.value = row.n_entradas;
-n_salidas.value = row.n_salidas;
+n_salidas.value = row.n_salidas;;
 precio.value = row.precio
 
 }
@@ -137,12 +139,12 @@ limpiarFormulario();
 }
 
 async function inactive(props) {
-let res = await getinventario.inactiveinventario(props._id);
+let res = await inventario.inactiveinventario(props._id);
 listarinventario()
 }
 
 async function active(props) {
-let res = await getinventario.activeinventario(props._id);
+let res = await inventario.activeinventario(props._id);
 listarinventario()
 }
 
@@ -152,7 +154,8 @@ nombreAr.value = "";
 cantidad.value = "";
 n_entradas.value = "";
 n_salidas.value = "";
-precio = ref =("");
+precio ="";
+bd.value = 0;
 }
 
 
@@ -170,7 +173,7 @@ if (bd.value === 0) {
   if (nombreAr.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un correo válido.",
+      message: "Por favor, ingrese un articulo válido.",
       position: "top",
     });
     return;
@@ -179,80 +182,133 @@ if (bd.value === 0) {
   if (cantidad.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese una contraseña válida.",
+      message: "Por favor, ingrese una cantidad válida.",
       position: "top",
     });
     return;
   }
 
-  if (rol.value === "") {
+  if (n_entradas.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, seleccione un rol válido.",
+      message: "Por favor, seleccione un número de entradas válido.",
       position: "top",
     });
     return;
   }
 
+
+  if (n_salidas.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, seleccione un número de salidas válido.",
+      position: "top",
+    });
+    return;
+  }
+
+  if (precio.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, seleccione un precio válido.",
+      position: "top",
+    });
+    return;
+  }
   const datos = {
-    nombre: nombre.value,
-    correo: correo.value,
-    contrasena: clave.value,
-    rol: rol.value,
+    codigo: codigo.value,
+    nombreAr : nombreAr.value,
+    cantidad : cantidad.value,
+    n_entradas: n_entradas.value,
+    n_salidas: n_salidas.value,
+    precio : precio.value,
     estado: 0,
   };
 
-  let res = await getUser.addUser(datos);
-  listarUsuarios()
+  let res = await inventario.addinventario(datos);
+  console.log(res);
+  listarinventario();
   nuevo.value = false;
-  console.log(res.response.data);
+
 } else {
-  if (nombre.value === "") {
+  if (codigo.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
+      message: "Por favor, ingrese un codigo válido.",
       position: "top",
     });
     return;
   }
 
-  if (correo.value === "") {
+  if (nombreAr.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un correo válido.",
+      message: "Por favor, ingrese un artículo válido.",
       position: "top",
     });
     return;
   }
 
-  if (rol.value === "") {
+  if (cantidad.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, seleccione un rol válido.",
+      message: "Por favor, seleccione una cantidad válida.",
+      position: "top",
+    });
+    return;
+  }
+
+  if (n_entradas.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, ingrese un número de entradas válido.",
+      position: "top",
+    });
+    return;
+  }
+
+
+  if (n_salidas.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, seleccione un número de salidas válido.",
+      position: "top",
+    });
+    return;
+  }
+
+  if (precio.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, seleccione un precio válido.",
       position: "top",
     });
     return;
   }
 
   const datos = {
-    nombre: nombre.value,
-    correo: correo.value,
-    rol: rol.value,
+    nombre: codigo.value,
+    nombreAr: nombreAr.value,
+    cantidad: cantidad.value,
+    n_entradas: n_entradas.value,
+    n_salidas: n_salidas.value,
+    precio : precio.value,
     estado: 1,
   };
 
-  let res = await getUser.editUser(_id, datos);
-  listarUsuarios()
+  console.log(_id, {datos});
+  let res = await lotes.editinventario(_id, datos);
+  listarinventario();
   console.log(res);
   q.notify({
     type: "positive",
-    message: "Usuario actualizado exitosamente.",
+    message: "Articulo actualizado exitosamente.",
     position: "top",
   });
 }
 }
 
-listarUsuarios()
+listarinventario()
 </script>
 
 <style lang="scss" scoped>
