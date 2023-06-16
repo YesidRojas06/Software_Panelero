@@ -2,10 +2,10 @@
   <div>
     <div class="q-pa-md">
       
-      <q-btn color="white" text-color="black" label="Nuevo Usuario" @click="guardar" style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
+      <q-btn color="white" text-color="black" label="Nueva forma de pago" @click="guardar" style="left: 1300px; margin-bottom: 20px; margin-top: 60px;
       border-radius: 30px;  "/>
 
-      <q-table title="Usuario" :rows="rows" :columns="columns">
+      <q-table title="Forma de pago" :rows="rows" :columns="columns">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -27,22 +27,18 @@
         <q-card class="bg-teal text-dark"  style="width: 500px; max-width: 80vw;">
 
           <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
-            <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
+            <div align= "center" class="text-h6">{{ bd == 0?"Guardar forma de pago": "Editar forma de pago" }}</div>
 
        
 
           </q-card-section>
 
           <q-card-section class="q-pt-none">
-            <p>Nombre</p>
+          <p>Nombre</p>
           <input type="text" v-model="nombre" class="form-input" >
-          <p>Correo</p>
-          <input type="text" v-model="correo" class="form-input">
-          <p v-if="bd == 0 ">contraseña</p>
-          <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
-          <p>Rol</p>
-          <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
-          :option-value="'value'" :option-label="'label'" class="form-input" />
+          <p>Fecha</p>
+          <input type="text" v-model="fecha" class="form-input">
+
           </q-card-section>
 
             <q-card-actions align="center" class="bg-white text-black">
@@ -59,25 +55,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
-import { UserStore } from "../stores/user"
+import { ref,} from "vue"
+import { FpagoStore } from "../stores/Forma_pago"
 import { useQuasar } from 'quasar'
 
 const q=useQuasar()
-const getUser = UserStore()
+const getFpago = FpagoStore()
 let rows = ref()
 
-let rolOptions = ref([
-  { label: 'Admin', value: 'Admin' },
-  { label: 'User', value: 'User' }
-]);
-
-
 let nombre = ref("");
-let clave=ref("")
-let correo = ref("");
-let rol = ref("");
-
+let fecha = ref ("");
 
 
 let nuevo= ref(false)
@@ -85,36 +72,30 @@ let bd= ref (0)
 let _id=""
 
 let columns = ref([
-  {
-    name: 'nombre',
+  { name: 'nombre',
     required: true,
     label: 'Nombre',
     align: 'left',
-    field: "nombre",
-    sortable: false
-  },
-  { name: 'correo', align: 'center', label: 'Correo', field: "correo", sortable: true },
-  { name: 'rol', label: 'Rol', field: 'rol', sortable: true, align: "center" },
+    field: "nombre",sortable: false},
+  { name: 'fecha', align: 'center', label: 'Fecha', field: "fecha", sortable: true },
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
-  { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
 
+const listarFpago = async () => {
+  const res = await FpagoStore.getFpago()
+  rows.value = res == null ? [] : res
+  console.log("fp")
+};
 
+listarFpago()
 
-
-
-const listarUsuarios = async () => {
-  console.log(await getUser.getUsers());
-  rows.value = await getUser.getUsers()
-}
 function edit (row){
   console.log(row._id);
   bd.value=1;
   nuevo.value=true
   _id = row. _id;
   nombre.value = row.nombre;
-  correo.value = row.correo;
-  rol.value = row.rol;
+  fecha.value = row.fecha;
 
 }
 
@@ -126,36 +107,28 @@ function guardar (){
 
  
 
-  const nuevoUsuario = {
-    nombre: nombre.value,
-    correo: correo.value,
-    rol: rol.value,
-  };
+  
 
-
-  postUser.addUser(nuevoUsuario).then(() => {
-    listarUsuarios();
+  // postUser.addUser(nuevoUsuario).then(() => {
+  //   listarUsuarios();
     
     
-  })
+  // })
   
 }
 async function inactive(props) {
-  console.log("desactivado", props.nombre);
-  let res = await getUser.inactiveUser(props._id);
-  listarUsuarios()
+  let res = await getFpago.inactiveFpago(props._id);
+  listarFpago()
 }
 
 async function active(props) {
-  console.log("activado", props.nombre);
-  let res = await getUser.activeUser(props._id);
-  listarUsuarios()
+  let res = await getFpago.activeFpago(props._id);
+  listarFpago()
 }
 
 function limpiarFormulario() {
   nombre.value = "";
-  clave.value = "";
-  correo.value = "";
+  fecha.value = "";
   rol.value = "";
   bd.value = 0;
 }
@@ -166,36 +139,33 @@ function limpiarFormulario() {
  if(bd.value == 0 ){
   const datos = {
     nombre: nombre.value,
-    correo: correo.value,
-    contrasena:clave.value,
-    rol: rol.value,
+    fecha: fecha.value,
     estado:0,
   };
   // console.log("guardar ",  datos);
-  let res = await getUser.addUser(datos);
-  listarUsuarios()
+  let res = await getFpago.addFpago(datos);
+  listarFpago()
   console.log(res.response.data);
  }else{
   const datos = {
     nombre: nombre.value,
-    correo: correo.value,
-    rol: rol.value,
+    fecha: fecha.value,
     estado:1,
   };
   console.log("editar ", datos);
-  let res = await getUser.editUser(_id, datos);
-  listarUsuarios()
+  let res = await getFpago.editFpago(_id, datos);
+  listarFpago()
   console.log(res);
   q.notify({
       type: "positive",
-      message: "Usuario actualizado exitosamente.",
+      message: "Forma de pago actualizada exitosamente.",
       position: "top",
     });
  }
 }
 
 
-listarUsuarios()
+listarFpago()
 
 </script>
 
