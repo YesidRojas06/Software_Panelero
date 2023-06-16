@@ -22,7 +22,7 @@ const formapagoHttp = {
 
 
   formapagoactivoGet: async(req, res) =>{
-    const todopago = await formapago.find({state: 1})
+    const todopago = await formapago.find({estado: 1})
     res.json(todopago)
   },
 
