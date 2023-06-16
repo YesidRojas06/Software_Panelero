@@ -23,7 +23,7 @@
       </q-table>
 
 
-      <q-btn color="white" text-color="black" label="Nuevo Labores" v-on:click="guardar()"
+      <q-btn color="white" text-color="black" label="Nuevo Labor" v-on:click="guardar()"
         class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
         style="position: absolute; top: 150px; right: 40px; border-radius: 30px;" />
 
@@ -43,13 +43,13 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <p>Nombre_labor</p>
+          <p>Nombre Del Labor</p>
           <input type="text" v-model="nombre_labor" class="form-input">
 
-          <p>area_realizar</p>
+          <p>Area Para Realizar</p>
           <input type="text" v-model="area_realizar" class="form-input">
 
-          <p>pago_diario</p>
+          <p>Pago Diario</p>
           <input type="text" v-model="pago_diario" class="form-input">
 
 
@@ -95,13 +95,13 @@ let columns = ref([
   {
     name: 'nombre_labor',
     required: true,
-    label: 'Nombre_labor',
+    label: 'Nombre Del Labor',
     align: 'left',
     field: "nombre_labor",
     sortable: false
   },
-  { name: 'area_realizar', align: 'center', label: 'area_realizar', field: "area_realizar", sortable: true },
-  { name: 'pago_diario', align: 'center', label: 'pago_diario', field: "pago_diario", sortable: true },
+  { name: 'area_realizar', align: 'center', label: 'Area Para Realizar', field: "area_realizar", sortable: true },
+  { name: 'pago_diario', align: 'center', label: 'Pago Diario', field: "pago_diario", sortable: true },
 
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
