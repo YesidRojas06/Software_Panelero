@@ -15,7 +15,7 @@ const helpersBodegas={
         
                 if (existe ) {
                     return res.status(401).json({ msg: `El nombre ya está registrado` });
-                    //throw new Error(`El email ya está registrado`)
+                    
                 }
         
         }
@@ -27,7 +27,7 @@ const helpersBodegas={
         
                 if (existe ) {
                     return res.status(401).json({ msg: `La descripción ya está registrada` });
-                    //throw new Error(`El email ya está registrado`)
+                    
                 }
         
         }
