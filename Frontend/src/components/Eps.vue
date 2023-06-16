@@ -38,7 +38,7 @@
           <p>Nombre</p>
           <input type="text" v-model="nombre" class="form-input" />
 
-          <p>n_linea</p>
+          <p>Número De La Línea</p>
           <input type="text" v-model="n_linea" class="form-input" />
 
 
@@ -84,7 +84,7 @@ let columns = ref([
     field: "nombre",
     sortable: false
   },
-  { name: 'n_linea', align: 'center', label: 'N_LINEA', field: "n_linea", sortable: true },
+  { name: 'n_linea', align: 'center', label: 'Número De La Línea', field: "n_linea", sortable: true },
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 
@@ -145,7 +145,7 @@ async function guardarEditarDatos() {
     if (n_linea.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese un n_linea válido.",
+        message: "Por favor, ingrese un Número De línea válido.",
         position: "top",
       });
       return;
