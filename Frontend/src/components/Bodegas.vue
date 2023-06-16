@@ -254,6 +254,13 @@ input[type="text"] {
   margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
 }
 
+.tabla {
+  border: 7px solid transparent;
+  border-image: linear-gradient(to right, #00FF00, #000000) 1;
+  border-image-slice: 1;
+  border-radius: 20px;
+}
+
 </style>
 
 
