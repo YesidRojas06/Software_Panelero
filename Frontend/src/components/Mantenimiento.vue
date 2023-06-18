@@ -27,7 +27,7 @@
               </div>
             </router-link>
 
-            <router-link class="lg4" to="/Forma_pago">
+            <router-link class="lg4" to="/Formapago">
               <div class="card">
                 <div class="textos">
                   <center><h6>Forma de Pago</h6></center>

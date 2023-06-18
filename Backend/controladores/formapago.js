@@ -1,5 +1,5 @@
 import modeloformapago from "../modelos/formapago.js";
-import formapago from "../modelos/formapago.js";
+//import formapago from "../modelos/formapago.js";
 
 
 const formapagoHttp = {
@@ -14,7 +14,10 @@ const formapagoHttp = {
   formapagoPost:async (req, res) => {
     const { codigoPago, nombrePago, tipoPago, fecha } = req.body;
     const formapago = new modeloformapago({ 
-      codigoPago, nombrePago, tipoPago, fecha
+      codigoPago, 
+      nombrePago, 
+      tipoPago, 
+      fecha
     });
   
     await formapago.save();
@@ -26,9 +29,14 @@ const formapagoHttp = {
   
   formapagoSearchForTextGet:async (req, res) => {
     const { codigoPago, nombrePago, tipoPago, fecha } = req.query;
-    const formapago = await formapago.find({ codigoPago, nombrePago, tipoPago, fecha });
+    const formapago = await formapago.find({ 
+      codigoPago, 
+      nombrePago, 
+      tipoPago, 
+      fecha 
+    });
     res.json({
-      fechapago,
+      formapago,
     });
   },
 
@@ -41,7 +49,9 @@ const formapagoHttp = {
     const { id } = req.params;
     const formapago = await modeloformapago.findByIdAndUpdate(id, {
       codigoPago,
-       nombrePago, tipoPago, fecha
+      nombrePago, 
+      tipoPago, 
+      fecha
       
     });
     await formapago.save();

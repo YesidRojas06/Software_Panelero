@@ -1,5 +1,4 @@
-// [check("token").custom(validarJWT),validarCampos],
-// import { Router } from "express";
+import { Router } from "express";
 import formapagohttp from "../controladores/formapago.js";
 import { check } from "express-validator";
 import helpersformapago from "../helpers/formapago.js";
@@ -17,7 +16,10 @@ rutasformapago.post('/',
     
     formapagohttp.formapagoPost);
 
-export default rutasformapago
+export default rutasformapago;
+
    // check("token").custom(validarJWT),validarCampos
 // check("token").custom(validarJWT),validarCampos
 // check("token").custom(validarJWT),validarCampos
+// [check("token").custom(validarJWT),validarCampos],
+// import { Router } from "express";

@@ -32,7 +32,7 @@ import Gastos_Ocasionales from "../components/Gastos_Ocasionales.vue"
 import Mantenimiento from "../components/Mantenimiento.vue";
 import Usuarios from "../components/Usuarios.vue";
 import Labores from "../components/Labores.vue"
-import Forma_pago from "../components/Forma_pago.vue"
+import Formapago from "../components/formapago.vue"
 import Tipo_pago from "../components/Tipo_pago.vue"
 import Unidad_Medida from "../components/Unidad_Medida.vue"
 import Eps from "../components/Eps.vue"
@@ -91,7 +91,7 @@ export const routes = [
     { path: "/usuarios", component: Usuarios },
     { path: "/Mantenimiento", component:Mantenimiento },
     { path: "/Labores", component: Labores },
-    { path: "/Forma_pago", component: Forma_pago },
+    { path: "/Formapago", component: Formapago },
     { path: "/Tipo_pago", component: Tipo_pago },
     { path: "/Unidad_Medida", component: Unidad_Medida },
     { path: "/Eps", component: Eps },

@@ -15,7 +15,7 @@ export const formapagoStore = defineStore("formapago", {
         async getformapago(){
             try {
                  const resp =await axios.get('http://localhost:4504/formapago') 
-                return (resp.data.formapago);
+                return (resp.data.formapago)
         
             } catch (error) {
                 console.log(error);
@@ -53,7 +53,7 @@ export const formapagoStore = defineStore("formapago", {
         },
         async activeformapago (id){
             try {
-                const resp = await axios.put(`http://localhost:4504/formapago/activar/${id}`) 
+                const resp = await axios.put(`http://localhost:4504/formapago/activar/${id}`  ) 
                return resp
        
            } catch (error) {
