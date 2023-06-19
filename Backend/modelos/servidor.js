@@ -13,8 +13,24 @@ import rutaslabores from "../rutas/labores.js";
 import rutasunidadesMedida from "../rutas/unidadesMedida.js";
 import rutastipoDocumento from "../rutas/tipoDocumento.js";
 import rutaspedidos from "../rutas/pedidos.js";
-import rutasetapas from "../rutas/etapas.js"
-import rutasformapago from "../rutas/formapago.js"
+import rutasetapas from "../rutas/etapas.js";
+import rutasformapago from "../rutas/formapago.js";
+import rutasmarcas from "../rutas/marcas.js";
+import rutascategoria from "../rutas/categoria.js";
+import rutasprocesodiario from "../rutas/procesodiario.js";
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -49,11 +65,20 @@ class servidor {
         this.app.use("/tipoDocumento", rutastipoDocumento)
         this.app.use("/pedidos", rutaspedidos)
         this.app.use("/etapas", rutasetapas)
-        this.app.use("/formapago.js", rutasformapago)
-
+        this.app.use("/formapago", rutasformapago)
+        this.app.use("/marcas", rutasmarcas)
+        this.app.use("/categoria", rutascategoria)
+        this.app.use("/procesodiario", rutasprocesodiario)
 
 
         
+
+
+
+
+
+
+
             this.app.use("/", (req,res) => {
                 res.send('life')
             })
