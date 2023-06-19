@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const gastosmensuales = new mongoose.Schema(
+const gastosocasionales = new mongoose.Schema(
+
     {   
         nombregasto: { type: String, require: true, unique: true},
         finca: { type:mongoose.Schema.Types.ObjectId,ref: "finca",    require: true },
@@ -9,7 +10,12 @@ const gastosmensuales = new mongoose.Schema(
         estado:{type:Number, default:1 },
         metododepago: {type: mongoose.Schema.Types.ObjectId,ref: "metododepago",    require: true },
         costValue: {type: String, require: true},
-        Total: {type: String, require: true},
+        Total: {type: String, require: true}
     })
 
-export default mongoose.model("gastosmensuales", gastosmensuales)
+export default mongoose.model("gastosocasionales", gastosocasionales)
+
+
+
+
+

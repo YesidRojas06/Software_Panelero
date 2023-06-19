@@ -2,6 +2,7 @@ import conexion from "../baseDeDatos/configuracion.js";
 import cors from 'cors'
 import express from "express";
 import * as dotenv from 'dotenv'
+
 import rutasbodegas from "../rutas/bodegas.js";
 import rutasinventario from "../rutas/inventario.js";
 import rutaslogin from "../rutas/login.js";
@@ -18,7 +19,9 @@ import rutasformapago from "../rutas/formapago.js";
 import rutasmarcas from "../rutas/marcas.js";
 import rutascategoria from "../rutas/categoria.js";
 import rutasprocesodiario from "../rutas/procesodiario.js";
-
+import rutasgastosmensuales from "../rutas/gastosmensuales.js";
+import rutasgastosocasionales from "../rutas/gastosocasionales.js";
+import rutasempaques from "../rutas/empaques.js";
 
 
 
@@ -69,6 +72,10 @@ class servidor {
         this.app.use("/marcas", rutasmarcas)
         this.app.use("/categoria", rutascategoria)
         this.app.use("/procesodiario", rutasprocesodiario)
+        this.app.use("/gastosmensuales", rutasgastosmensuales)
+        this.app.use("/gastosocasionales", rutasgastosocasionales)
+        this.app.use("/empaques", rutasempaques)
+
 
 
         

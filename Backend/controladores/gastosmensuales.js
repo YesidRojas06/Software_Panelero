@@ -1,45 +1,46 @@
-import monthlExpenses from "../../models/Costs/monthlyExpenses.js"
-import bcryptjs from "bcryptjs";
+import gastosmensuales from "../modelos/gastosmensuales.js"
+//import bcryptjs from "bcryptjs";
 
-const monthlyExpensesHttp = {
-    monthlyExpensesPost: async (req, res) => {
+const gastosmensualesHttp = {
+
+    gastosmensualesPost: async (req, res) => {
     console.log(req.body);
-    const { Name_spent, Finca, Description,  PAYMENT_METHOD, costValue, Total } = req.body;
-    const monthlyExpensesAdd = new monthlExpenses({ Name_spent, Finca, Description,  PAYMENT_METHOD, costValue, Total });
-    await monthlyExpensesAdd.save();
+    const { nombregasto, finca, descripcion,  metododepago, costValue, Total } = req.body;
+    const gastosmensualesAdd = new gastosmensuales({ nombregasto, finca, descripcion,  metododepago, costValue, Total });
+    await gastosmensualesAdd.save();
     console.log("3crea");
-    res.json("saved monthlyExpenses");
+    res.json("guardar gastos mensuales");
   },
 
 
 // listar todos los gastos
 
-monthlyExpensesAllGet: async ( req, res) =>{
-const monthlyExpens= await monthlExpenses.find().populate("PAYMENT_METHOD").populate("Finca");
-res.json(monthlyExpens);
+gastosmensualesAllGet: async ( req, res) =>{
+const gastosmensuales= await gastosmensuales.find().populate("metododepago").populate("finca");
+res.json(gastosmensuales);
 },
 
 // modificar por id
 
-monthlyExpensesPutId: async (req, res) => {
+gastosmensualesPutId: async (req, res) => {
 const { id } = req.params;
-const { Name_spent, Finca, Description,  PAYMENT_METHOD, costValue, Total  } = req.body;
-const monthlyExpensesUpdate = await monthlExpenses.findByIdAndUpdate(id, {
-  Name_spent, Finca, Description, PAYMENT_METHOD, costValue, Total
+const { nombregasto, finca, descripcion,  metododepago, costValue, Total  } = req.body;
+const gastosmensualesUpdate = await gastosmensuales.findByIdAndUpdate(id, {
+  nombregasto, finca, descripcion, metododepago, costValue, Total
 });
-await monthlyExpensesUpdate.save();
-res.json("monthlyExpenses actualizada");
+await gastosmensualesUpdate.save();
+res.json("gastos mensuales actualizados");
 },
 
 
 //edit state for id
-monthlyExpensesPutState: async (req, res) => {
+gastosmensualesPutestado: async (req, res) => {
 const { id } = req.params;
-const { state } = req.body;
-const monthlyExpenseState = await monthlExpenses.findByIdAndUpdate(id, {
-  state: state,
+const { estado } = req.body;
+const gastosmensualesestado = await gastosmensuales.findByIdAndUpdate(id, {
+  estado: estado,
 });
-await monthlyExpenseState.save();
+await gastosmensualesestado.save();
 res.json("Estado actualizado");
 },
 
@@ -48,4 +49,4 @@ res.json("Estado actualizado");
 
 
 
-export default monthlyExpensesHttp;
+export default gastosmensualesHttp;

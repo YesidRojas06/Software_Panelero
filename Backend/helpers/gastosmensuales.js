@@ -1,12 +1,12 @@
-import monthlyExpenses from "../../models/Costs/monthlyExpenses.js"
+import gastosmensuales from "../modelos/gastosmensuales.js"
 
-const helpersMonthlyExpenses = {
-    existMonthlyId: async(id, req) => {
-        const exist = await monthlyExpenses.findById(id)
+const helpersgastosmensuales = {
+    existmensualesId: async(id, req) => {
+        const exist = await gastosmensuales.findById(id)
         if(!exist){
             throw new Error(`Los pagos mensuales ${id} no existe`)
         }
     },
 }
 
-export default helpersMonthlyExpenses
+export default helpersgastosmensuales
