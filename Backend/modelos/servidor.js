@@ -22,6 +22,12 @@ import rutasprocesodiario from "../rutas/procesodiario.js";
 import rutasgastosmensuales from "../rutas/gastosmensuales.js";
 import rutasgastosocasionales from "../rutas/gastosocasionales.js";
 import rutasempaques from "../rutas/empaques.js";
+import rutaspagos from "../rutas/pagos.js";
+import rutasproductos from "../rutas/productos.js";
+import rutasmateriaprimatrans from "../rutas/materiaprimatrans.js";
+import rutastipoempaque from "../rutas/tipoempaque.js";
+//import rutastipopanela from "../rutas/tipopanela.js";
+
 
 
 
@@ -75,6 +81,13 @@ class servidor {
         this.app.use("/gastosmensuales", rutasgastosmensuales)
         this.app.use("/gastosocasionales", rutasgastosocasionales)
         this.app.use("/empaques", rutasempaques)
+        this.app.use("/pagos", rutaspagos)
+        this.app.use("/productos" , rutasproductos)
+        this.app.use("/materiaprimatrans", rutasmateriaprimatrans)
+        this.app.use("/tipoempaque", rutastipoempaque)
+        //this.app.use("/tipopanela", rutastipopanela)
+
+        
 
 
 
@@ -92,8 +105,8 @@ class servidor {
     }
 
     listen(){
-        this.app.listen(4504,()=>{
-            console.log("Escuchando puerto 4504 ")
+        this.app.listen(4000,()=>{
+            console.log("Escuchando puerto 4000 ")
         })
     }
 }

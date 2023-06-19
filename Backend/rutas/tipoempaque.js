@@ -1,40 +1,40 @@
 import { Router } from "express";
 import {check} from "express-validator";
 // import { validarJWT } from "../../middlewares/Login/validar-jwt.js";
-import typePackingHttp from "../../controllers/Maintenance/Typepackaing.js";
-import helperPackaing from "../../helpers/Maintenance/TypePackaing.js"
+import tipoempaqueHttp from "../controladores/tipoempaque.js";
+import helperstipoempaque from "../helpers/tipoempaque.js"
 // import { validarcampos } from "../../middlewares/ValidationFields/validateFields.js";
 
 const router=Router();
 
 router.get('/all',
 // [check("token").custom(validarJWT),validarCampos], 
-typePackingHttp.packingGetAll);
+tipoempaqueHttp.tipoempaqueGetAll);
 
-router.get('/active',
+router.get('/activo',
 // [check("token").custom(validarJWT),validarCampos], 
-typePackingHttp.packingGetActive);
+tipoempaqueHttp.tipoempaqueGetActive);
 
 router.post('/',
 [
     check(['name','maxWeight','unitsPerBox'],'Todos los campos son requeridos').not().isEmpty(),
     // check("token").custom(validarJWT),validarCampos
 ], 
-typePackingHttp.packingPost);
+tipoempaqueHttp.tipoempaquePost);
 
 router.put('/update/:id',
 [
-    check('id').custom(helperPackaing.existPackaingId),
+    check('id').custom(helperstipoempaque.existtipoempaqueId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-typePackingHttp.packingPutInfo);
+tipoempaqueHttp.tipoempaquePutInfo);
 
-router.put('/state/:id',
+router.put('/estado/:id',
 [
-    check('id').custom(helperPackaing.existPackaingId),
+    check('id').custom(helperstipoempaque.existtipoempaqueId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-typePackingHttp.packingPutState);
+tipoempaqueHttp.tipoempaquePutestado);
 
 
 

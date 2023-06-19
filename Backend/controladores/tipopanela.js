@@ -1,11 +1,11 @@
-import panela from "../../models/Maintenance/TypePanela.js"
+import tipopanela from "../modelos/tipopanela"
 
-const typePanelaHttp = {
+const tipopanelaHttp = {
   // post info panela
   panelaPost: async (req, res) => {
     console.log(req.body);
-    const { name , price} = req.body;
-    const panelaAdd = new panela({ name, price});
+    const { nombre , precio} = req.body;
+    const panelaAdd = new panela({ nombre, precio});
     await panelaAdd.save();
     res.json("Tipo de panela registrado");
   },
@@ -22,23 +22,23 @@ panelaGetAll: async(req, res) =>{
   //edit info for id
 panelaPutInfo: async(req, res)=>{
   const {id} = req.params;
-  const{name,price} = req.body
+  const{nombre,precio} = req.body
   const panelaUpdate = await panela.findByIdAndUpdate(id,{
-    name:name,
-    price: price,
+    nombre:nombre,
+    precio: precio,
   });
   await panelaUpdate.save()
   res.json("Tipo de panela actualizada")
   },
   //edit state for id
-panelaPutState: async(req, res)=>{
+panelaPutestado: async(req, res)=>{
     const {id} = req.params;
-    const{state} = req.body
+    const{estado} = req.body
     const panelaUpdate = await panela.findByIdAndUpdate(id,{
-      state: state
+      estado: estado
     });
     await panelaUpdate.save()
     res.json("Estado actualizado")
     },
 };
-export default typePanelaHttp;
+export default tipopanelaHttp;

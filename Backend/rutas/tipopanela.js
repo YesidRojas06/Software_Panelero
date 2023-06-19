@@ -1,40 +1,40 @@
 import { Router } from "express";
 import {check} from "express-validator";
 // import { validarJWT } from "../../middlewares/Login/validar-jwt.js";
-import helpersPanela from "../../helpers/Maintenance/TypePanela.js"
-import typePanelaHttp from "../../controllers/Maintenance/TypePanela.js";
+import helperstipopanela from "../helpers/tipopanela.js"
+import tipopanelaHttp from "../controladores/tipopanela.js";
 // import { validarcampos } from "../../middlewares/ValidationFields/validateFields.js";
 
 const router=Router();
 
 router.get('/all',
 // [check("token").custom(validarJWT),validarCampos], 
-typePanelaHttp.panelaGetAll);
+tipopanelaHttp.panelaGetAll);
 
-router.get('/active',
+router.get('/activo',
 // [check("token").custom(validarJWT),validarCampos], 
-typePanelaHttp.panelaGetActive);
+tipopanelaHttp.panelaGetActive);
 
 router.post('/',
 [
     check(['name','price'],'Todos los campos son requeridos').not().isEmpty(),
     // check("token").custom(validarJWT),validarCampos
 ], 
-typePanelaHttp.panelaPost);
+tipopanelaHttp.panelaPost);
 
 router.put('/update/:id',
 [
-    check('id').custom(helpersPanela.existPanelaId),
+    check('id').custom(helperstipopanela.existPanelaId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-typePanelaHttp.panelaPutInfo);
+tipopanelaHttp.panelaPutInfo);
 
-router.put('/state/:id',
+router.put('/estado/:id',
 [
-    check('id').custom(helpersPanela.existPanelaId),
+    check('id').custom(helperstipopanela.existPanelaId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-typePanelaHttp.panelaPutState);
+tipopanelaHttp.panelaPutestado);
 
 
 
