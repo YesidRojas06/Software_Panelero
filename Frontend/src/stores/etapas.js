@@ -14,7 +14,7 @@ export const etapasStore = defineStore("etapas", {
 
         async getetapas(){
             try {
-                 const resp =await axios.get('http://localhost:4504/etapas') 
+                 const resp =await axios.get('http://localhost:4000/etapas') 
                 return(resp.data.etapas)
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const etapasStore = defineStore("etapas", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4504/etapas`,
+                const resp = await axios.post(`http://localhost:4000/etapas`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const etapasStore = defineStore("etapas", {
         async editetapas (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4504/etapas/${id}`,
+                const resp = await axios.put(`http://localhost:4000/etapas/${id}`,
                     datos
                 ) 
                return resp
@@ -54,7 +54,7 @@ export const etapasStore = defineStore("etapas", {
         async activeetapas(id){
             try {
                 console.log("sr");
-                const resp = await axios.put(`http://localhost:4504/etapas/activar/${id}`,{}) 
+                const resp = await axios.put(`http://localhost:4000/etapas/activar/${id}`,{}) 
                 console.log(resp);
                return resp
        
@@ -67,7 +67,7 @@ export const etapasStore = defineStore("etapas", {
         async inactiveetapas (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4504/etapas/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4000/etapas/desactivar/${id}`                ) 
 
                return resp
        
