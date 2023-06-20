@@ -52,15 +52,19 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <p>Tipo De Documento</p>
-          <!-- <input type="text" v-model="nombreT" class="form-input" /> -->
 
+          <!-- <p>Tipo De Documento</p>
           <q-select
             v-model="seleccion"
             :options="nombreT"
             lazy-rules
-            color="positive"
-          />
+            color="positive" /> -->
+
+
+            <p>Tipo De Documento</p>
+          <q-select :options="nombreTOptions"  v-model="nombreT" emit-value map-options 
+          :option-value="'value'" :option-label="'label'" color="positive" class="form-input" required/>
+          
 
           <p></p>
           <p>Numero Del Documento</p>
@@ -72,28 +76,18 @@
               @click="nuevo = false"
               style="background-color: rgb(243, 9, 9)"
             />
-            <q-btn
-              @click="guardarEditarDatos"
-              style="background-color: rgb(14, 224, 14)"
-            >
-              {{ bd === 0 ? "Guardar" : "Editar" }}
-            </q-btn>
+            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
+              {{ bd == 0?"Guardar ": "Editar "  }} 
+            </q-btn> 
           </q-card-actions>
         </q-card-section>
       </q-card>
     </q-dialog>
   </div>
 </template>
-
-
-
-
-
-
-
   
-<script setup>
-import { ref, onMounted} from "vue";
+  <script setup>
+import { ref, onMounted } from "vue";
 import { tipoDocumentoStore } from "../stores/tipoDocumento";
 import { useQuasar } from "quasar";
 
@@ -101,10 +95,18 @@ const q = useQuasar();
 const tipoDocumento = tipoDocumentoStore();
 let rows = ref();
 
+let nombreTOptions = ref([
+{ label: 'T.I', value: 'T.I' },
+{ label: 'C.C', value: 'C.C' },
+{ label: 'NIP', value: 'NIP' },
+{ label: 'R.C', value: 'R.C' },
+{ label: 'C.E', value: 'C.E' }
+]);
 
-const nombreT =  (["T.I", "C.C", "NIP", "R.C", "C.E"]);
 
-// let nombreT = ref("");
+// const nombreT = ["T.I", "C.C", "NIP", "R.C", "C.E"];
+
+let nombreT = ref("");
 let siglas = ref("");
 
 let nuevo = ref(false);
@@ -112,14 +114,20 @@ let bd = ref(0);
 let _id = "";
 
 let columns = ref([
-  {
-    name: "nombreT",
-    required: true,
-    label: "Tipo De Documento",
-    align: "left",
-    field: "nombreT",
-    sortable: false,
-  },
+  // {
+  //   name: "nombreT",
+  //   required: true,
+  //   label: "Tipo De Documento",
+  //   align: "left",
+  //   field: "nombreT",
+  //   sortable: false,
+  // },
+
+
+  { name: 'nombreT', label: 'Tipo De Documento', field: 'nombreT', sortable: true, align: "center" },
+
+
+
   {
     name: "siglas",
     align: "center",
@@ -209,7 +217,7 @@ async function guardarEditarDatos() {
         message: "Por favor, ingrese un nombreT válido.",
         position: "top",
       });
-      return { nombreT };
+      return;
     }
     // nombreT es TIPO DE DOCUMENTO y siglas es NUMERO DEL DOCUMENTO
 
@@ -278,15 +286,8 @@ input[type="text"] {
 .form-input {
   margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
 }
-
-.tabla {
-border: 7px solid transparent;
-border-image: linear-gradient(to right, #00FF00, #000000) 1;
-border-image-slice: 1;
-border-radius: 20px;
-}
-
-
 </style>
   
- 
+  
+  
+  
