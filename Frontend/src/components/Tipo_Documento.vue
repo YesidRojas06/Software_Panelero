@@ -47,7 +47,7 @@
       <q-card class="bg-teal text-dark" style="width: 500px; max-width: 80vw">
         <q-card-section style="background-color: rgb(14, 224, 14)">
           <div align="center" class="text-h6">
-            {{ bd === 0 ? "Guardar Documento" : "Editar Tipo_Documento" }}
+            {{ bd === 0 ? "Guardar Documento" : "Editar El Documento" }}
           </div>
         </q-card-section>
 
@@ -283,6 +283,14 @@ input[type="text"] {
 .q-btn:hover {
   background-color: rgb(14, 224, 14);
 }
+
+.tabla {
+border: 7px solid transparent;
+border-image: linear-gradient(to right, #00FF00, #000000) 1;
+border-image-slice: 1;
+border-radius: 20px;
+}
+
 .form-input {
   margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
 }
