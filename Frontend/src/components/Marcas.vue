@@ -4,111 +4,81 @@
       <div class="title-container">
         <h1 class="page-title">Marcas</h1>
       </div>
+      
+      
 
-      <q-btn
-        color="white"
-        text-color="black"
-        label="Nueva Marcas"
-        @click="guardar"
-        style="
-          left: 1300px;
-          margin-bottom: 20px;
-          margin-top: 60px;
-          border-radius: 30px;"/>
-
-      <q-table title="Marcas" :rows="rows" :columns="columns">
-        <template v-slot:body-cell-estado="props" style="opacity: 0">
-          <td
-            v-if="props.row.estado == 1" style="color: green; text-align: center"> Activo </td>
-
-          <td v-else style="color: rgb(251, 2, 2); text-align: center"> Inactivo </td>
+      <q-table title="Marca" :rows="rows" :columns="columns" class="tabla ">
+        <template v-slot:body-cell-estado="props" style="opacity: 0;">
+          <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
+          <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
         </template>
-
-
-        <template v-slot:body-cell-opcion="props" style="opacity: 0">
-          <td style="text-align: center">
+        <template v-slot:body-cell-opcion="props" style="opacity: 0;"> 
+          <td style="text-align: center;">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
             <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
             <q-btn v-else @click="active(props.row)">✅</q-btn>
           </td>
         </template>
       </q-table>
+
+      <q-btn
+        color="white"
+        text-color="black"
+        label="Nueva Marca"
+        @click="guardar"
+        class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
+        style="position: absolute; top: 150px; right: 40px; border-radius: 30px;"
+      />
+
     </div>
 
-    <q-dialog
-      v-model="nuevo"
-      persistent
-      transition-show="scale"
-      transition-hide="scale">
-      <q-card class="bg-teal text-dark" style="width: 500px; max-width: 80vw">
-        <q-card-section style="background-color: rgb(14, 224, 14)">
-          <div align="center" class="text-h6">
-            {{ bd == 0 ? "Guardar Marcas" : "Editar Marcas" }}
-          </div>
+    <q-dialog v-model="nuevo" persistent transition-show="scale" transition-hide="scale">
+      <q-card class="bg-teal text-dark" style="width: 500px; max-width: 80vw;">
+
+        <q-card-section style="background-color:rgb(14, 224, 14);">
+          <div align="center" class="text-h6">{{ bd === 0 ? "Guardar Marca" : "Editar Marca" }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <p>Codigo</p>
-          <input type="text" v-model="Codigo" class="form-input" />
-          
-          <p>Nombre</p>
-          <input type="text" v-model="Nombre" class="form-input" />
-          
-          
+          <p>Nombre de la marca</p>
+          <input type="text" v-model="nombres" class="form-input" />
+
           <p>Descripcion</p>
-          <input type="text" v-model="Descripcion" class="form-input" />
+          <input type="text" v-model="descripcion" class="form-input" />
           
-          <p v-if="bd == 0">contraseña</p>
-          <input
-            v-if="bd == 0"
-            type="text"
-            v-model="clave"
-            class="form-input" />
-          
-          <p>Rol</p>
-          <q-select
-            :options="rolOptions"
-            v-model="rol"
-            emit-value
-            map-options
-            :option-value="'value'"
-            :option-label="'label'"
-            class="form-input"/>
+          <p>Creador</p>
+          <input type="text" v-model="codigo" class="form-input" />
+
+          <p>Fecha</p>
+          <input type="text" v-model="codigo" class="form-input" />
+
+          <q-card-actions align="center" class="bg-white text-black">
+            <q-btn label="Cancelar" @click="nuevo = false" style="background-color: rgb(243, 9, 9)" />
+            <q-btn @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
+              {{ bd === 0 ? "Guardar" : "Editar" }}
+            </q-btn> 
+          </q-card-actions>
         </q-card-section>
-
-        <q-card-actions align="center" class="bg-white text-black">
-          <q-btn
-            label="Cancelar"
-            @click="nuevo = false"
-            style="background-color: rgb(243, 9, 9)"/>
-          <q-btn @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)" >{{ bd == 0 ? "Guardar " : "Editar " }}
-
-          </q-btn>
-        </q-card-actions>
       </q-card>
     </q-dialog>
   </div>
 </template>
 
 <script setup>
-import { ref,     } from "vue";
-import { BodegasStore } from "../stores/Bodegas.js";
-import { useQuasar } from "quasar";
+import { ref, onMounted } from "vue";
+import { MarcasStore } from "../stores/Marcas.js";
+import { useQuasar } from 'quasar';
 
 const q = useQuasar();
-const Bodegas = BodegasStore();
+const Marcas = MarcasStore();
 let rows = ref();
 
-let rolOptions = ref([
-  { label: "Admin", value: "Admin" },
-  { label: "Bodegas", value: "Bodegas" },
-]);
 
-let Codigo = ref("");
-let clave = ref("");
-let Nombre = ref("");
-let Descripcion = ref("");
-let rol = ref("");
+
+let nombresmarca = ref("");
+let descripcion = ref("");
+let creador = ref("");
+let fecha = ref("");
 
 
 let nuevo = ref(false);
@@ -116,138 +86,182 @@ let bd = ref(0);
 let _id = "";
 
 let columns = ref([
-  {
-    name: "Codigo",
-    required: true,
-    label: "Codigo",
-    align: "left",
-    field: "Codigo",
-    sortable: false,
-  },
-  {
-    name: "Nombre",
-    align: "center",
-    label: "Nombre",
-    field: "Nombre",
-    sortable: true,
-  },
-
-  {
-    name: "Descripcion",
-    align: "center",
-    label: "Descripcion",
-    field: "Descripcion",
-    sortable: true,
-  },
-  
-  { name: "rol", label: "Rol", field: "rol", sortable: true, align: "center" },
-  { name: "estado", label: "Estado", field: "estado", align: "center" },
-  {
-    name: "opcion",
-    label: "Opciones",
-    field: "",
-    sortable: true,
-    align: "center",
-  },
+  {name: 'nombresmarca',required: true,label: 'Nombre de la marca',align: 'left',field: "nombresmarca", sortable: false},
+  { name: 'descripcion', label: 'descripcion', field: 'descripcion', sortable: true, align: "center" },
+  { name: 'creador', label: 'creador', field : 'creador', sortable: true, align: "center"},
+  { name: 'fecha', label: 'fecha', field : 'fecha', sortable: true, align: "center"},
+  { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
+  { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ]);
 
-const listarBodegas = async () => {
-  console.log(await Bodegas.getBodegas());
-  rows.value = await Bodegas.getBodegas();
+const listarMarcas = async () => {
+
+  rows.value = await Marcas.getMarcas();
 };
+listarMarcas()
+
 function edit(row) {
-  console.log(row._id);
   bd.value = 1;
   nuevo.value = true;
   _id = row._id;
-  Codigo.value = row.Codigo;
-  Nombre.value = row.Nombre;
-  rol.value = row.rol;
-  Descripcion.value = row.Descripcion;
-  
+  nombresmarca.value = row.nombresmarca;
+  descripcion.value = row.descripcion;
+  creador.value = row.creador; 
+  fecha.value = row.fecha;
 }
 
 function guardar() {
   bd.value = 0;
   nuevo.value = true;
-  limpiarFormulario(); // Limpia los valores del formulario antes de abrir el modal
-  nuevo.value = true;
-
-  const nuevoBodega = {
-    Codigo: Codigo.value,
-    Nombre: Nombre.value,
-    rol: rol.value,
-    Descripcion: Descripcion.value,
-    
-  };
-
-  postBodegas.addBodegas(nuevoBodega).then(() => {
-    listarBodegas();
-  });
+  limpiarFormulario();
 }
 
-
 async function inactive(props) {
-  console.log("desactivado", props.Codigo);
-  let res = await Bodegas.inactiveBodegas(props._id);
-  listarBodegas();
+  let res = await Marcas.inactiveMarcas(props._id);
+  listarMarcas();
 }
 
 async function active(props) {
-  console.log("activado", props.Codigo);
-  let res = await Bodegas.activeBodegas(props._id);
-  listarBodegas();
+  let res = await Marcas.activeMarcas(props._id);
+  listarMarcas();
 }
 
-
-
 function limpiarFormulario() {
-  Codigo.value = "";
-  clave.value = "";
-  Nombre.value = "";
-  rol.value = "";
-  Descripcion.value = "";
+  nombresmarca.value = "";
+  descripcion.value ="";
+  creador.value = "";
+  fecha.value = "";
   bd.value = 0;
 }
 
+
+
 async function guardarEditarDatos() {
-  if (bd.value == 0) {
+  if (bd.value === 0) {
+    if (nombresmarca.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre de marca válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (descripcion.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una descripcion válida.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (creador.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre de creador válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (fecha.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una fecha válida.",
+        position: "top",
+      });
+      return;
+    }
+
+
+  
+
+
     const datos = {
-      Codigo: Codigo.value,
-      Nombre: Nombre.value,
-      Descripcion: Descripcion.value,
-      contrasena: clave.value,
-      rol: rol.value,
+      nombres: nombres.value,
+      descripcion: descripcion.value,
+      creador: creador.value,
+      fecha: fecha.value,
       estado: 0,
     };
-    // console.log("guardar ",  datos);
-    let res = await Bodegas.addBodegas(datos);
-    listarBodegas();
-    console.log(res.response.data);
+
+    let res = await Marcas.addMarcas(datos);
+    console.log(res);
+    listarMarcas();
+    nuevo.value = false;
   } else {
+    if (nombresmarca.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre de marca válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (descripcion.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una descripcion válida.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (creador.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre de creador válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (fecha.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una fecha válida.",
+        position: "top",
+      });
+      return;
+    }
+
+
+
+
+
+
+
+
+
     const datos = {
-      Codigo: Codigo.value,
-      Nombre: Nombre.value,
-      rol: rol.value,
-      Descripcion: Descripcion.value,
+      nombres: nombres.value,
+      descripcion: descripcion.value,
+      creador: creador.value,
+      fecha: fecha.value,
       estado: 1,
     };
-    console.log("editar ", datos);
-    let res = await Bodegas.editBodegas(_id, datos);
-    listarBodegas();
+
+    console.log(_id, {datos});
+    let res = await Marcas.editMarcas(_id, datos);
+    listarMarcas();
     console.log(res);
     q.notify({
       type: "positive",
-      message: "Marcas actualizado exitosamente.",
+      message: "Marca actualizada exitosamente.",
       position: "top",
     });
   }
 }
 
-listarBodegas();
+ listarMarcas();
+
 </script>
 
+
 <style lang="scss" scoped>
+
 .q-pt-none {
   background-color: #ffffff; /* Establecer el color de fondo del cuadro de diálogo */
 }
@@ -281,14 +295,15 @@ input[type="text"] {
 .form-input {
   margin-bottom: 30px; /* Ajusta el margen inferior entre los campos */
 }
+
+.tabla {
+  border: 7px solid transparent;
+  border-image: linear-gradient(to right, #00FF00, #000000) 1;
+  border-image-slice: 1;
+  border-radius: 20px;
+}
+
 </style>
-
-
-
-
-
-
-
 
 
 

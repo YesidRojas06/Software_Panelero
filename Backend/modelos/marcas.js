@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 
-const marcas = new mongoose.Schema(
+const MarcasSchechema = new mongoose.Schema(
     {   
         nombremarcas: { type: String, require: true, unique: true},
         descripcion: { type: String, require: true},
         creador: { type: String, require: true},
         fecha: { type: Date, default:Date.now },
-        estado: { type: String, require: true}
+        estado: { type: Number, require: true}
        
     })
+
+const modelomarcas =mongoose.model("Marcas", MarcasSchechema);
     
-export default mongoose.model("marcas", marcas)
+export default modelomarcas;
