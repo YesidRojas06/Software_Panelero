@@ -15,7 +15,7 @@ export const MarcasStore = defineStore("Marcas", {
         async getMarcas(){
             try {
                  const resp =await axios.get('http://localhost:4000/marcas') 
-                return(resp.data.marca)
+                return(resp.data.marcas)
         
             } catch (error) {
                 console.log(error);

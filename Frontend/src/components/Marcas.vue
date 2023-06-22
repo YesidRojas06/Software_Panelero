@@ -41,16 +41,16 @@
 
         <q-card-section class="q-pt-none">
           <p>Nombre de la marca</p>
-          <input type="text" v-model="nombres" class="form-input" />
+          <input type="text" v-model="nombremarcas" class="form-input" />
 
           <p>Descripcion</p>
           <input type="text" v-model="descripcion" class="form-input" />
           
           <p>Creador</p>
-          <input type="text" v-model="codigo" class="form-input" />
+          <input type="text" v-model="creador" class="form-input" />
 
           <p>Fecha</p>
-          <input type="text" v-model="codigo" class="form-input" />
+          <input type="date" v-model="fecha" class="form-input" />
 
           <q-card-actions align="center" class="bg-white text-black">
             <q-btn label="Cancelar" @click="nuevo = false" style="background-color: rgb(243, 9, 9)" />
@@ -75,7 +75,7 @@ let rows = ref();
 
 
 
-let nombresmarca = ref("");
+let nombremarcas = ref("");
 let descripcion = ref("");
 let creador = ref("");
 let fecha = ref("");
@@ -86,7 +86,7 @@ let bd = ref(0);
 let _id = "";
 
 let columns = ref([
-  {name: 'nombresmarca',required: true,label: 'Nombre de la marca',align: 'left',field: "nombresmarca", sortable: false},
+  {name: 'nombremarcas',required: true,label: 'nombremarcas',align: 'left',field: "nombremarcas", sortable: false},
   { name: 'descripcion', label: 'descripcion', field: 'descripcion', sortable: true, align: "center" },
   { name: 'creador', label: 'creador', field : 'creador', sortable: true, align: "center"},
   { name: 'fecha', label: 'fecha', field : 'fecha', sortable: true, align: "center"},
@@ -98,13 +98,13 @@ const listarMarcas = async () => {
 
   rows.value = await Marcas.getMarcas();
 };
-listarMarcas()
+listarMarcas();
 
 function edit(row) {
   bd.value = 1;
   nuevo.value = true;
   _id = row._id;
-  nombresmarca.value = row.nombresmarca;
+  nombremarcas.value = row.nombremarcas;
   descripcion.value = row.descripcion;
   creador.value = row.creador; 
   fecha.value = row.fecha;
@@ -127,7 +127,7 @@ async function active(props) {
 }
 
 function limpiarFormulario() {
-  nombresmarca.value = "";
+  nombremarcas.value = "";
   descripcion.value ="";
   creador.value = "";
   fecha.value = "";
@@ -138,7 +138,7 @@ function limpiarFormulario() {
 
 async function guardarEditarDatos() {
   if (bd.value === 0) {
-    if (nombresmarca.value === "") {
+    if (nombremarcas.value === "") {
       q.notify({
         type: "negative",
         message: "Por favor, ingrese un nombre de marca válido.",
@@ -179,7 +179,7 @@ async function guardarEditarDatos() {
 
 
     const datos = {
-      nombres: nombres.value,
+      nombremarcas: nombremarcas.value,
       descripcion: descripcion.value,
       creador: creador.value,
       fecha: fecha.value,
@@ -191,7 +191,7 @@ async function guardarEditarDatos() {
     listarMarcas();
     nuevo.value = false;
   } else {
-    if (nombresmarca.value === "") {
+    if (nombremarcas.value === "") {
       q.notify({
         type: "negative",
         message: "Por favor, ingrese un nombre de marca válido.",
@@ -236,7 +236,7 @@ async function guardarEditarDatos() {
 
 
     const datos = {
-      nombres: nombres.value,
+      nombremarcas: nombremarcas.value,
       descripcion: descripcion.value,
       creador: creador.value,
       fecha: fecha.value,

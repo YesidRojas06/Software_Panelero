@@ -5,27 +5,35 @@ import {check} from "express-validator";
 import helpersmarcas from "../helpers/marcas.js";
 // import { validarcampos } from "../../middlewares/ValidationFields/validateFields.js";
 
-const router=Router();
+const rutasmarcas=Router();
 
-router.post('/',[
+rutasmarcas.get("/",marcasHttp.marcasGet);
+rutasmarcas.get("/",marcasHttp.marcasSearchForTextGet);
+rutasmarcas.put("/desactivar/:id",marcasHttp.marcasInactivoput);
+rutasmarcas.put("/activar/:id",marcasHttp.marcasActivoput);
+rutasmarcas.put("/:id",marcasHttp.marcasput);
+
+
+rutasmarcas.post('/',[
    
     check("nombremarcas", "El campo nombre es obligatorio").notEmpty(),
     check("descripcion", "El campo descripcion es obligatorio").notEmpty(),
     check("creador", "El campo nombre del creador es obligatorio").notEmpty(),
     // check("token").custom(validarJWT),
 
-], marcasHttp.marcasPost)
-
-.0
-
-
-
-router.get('/', marcasHttp.marcasAllGet)
+], marcasHttp.marcasPost);
 
 
 
 
-router.put('/update/:id',[[
+
+
+
+
+
+
+rutasmarcas.put('/update/:id',[[
+    
     check("id", "El id es obligatorio").notEmpty().exists(),
     check("id", "El id no es valido").isMongoId(),
     check('id').custom(helpersmarcas.existcategoriaId), 
@@ -33,24 +41,22 @@ router.put('/update/:id',[[
     check("descripcion", "El campo descripcion es obligatorio").notEmpty(),
     check("creador", "El campo nombre del creador es obligatorio").notEmpty(),
     // check("token").custom(validarJWT),
-
-], ], marcasHttp.marcasPutId)
-
-
-
-
-
-
-router.put('/estado/:id',[ 
     check('id').custom(helpersmarcas.existcategoriaId),
     check("id", "El id es obligatorio").notEmpty().exists(),
     check("id", "El id no es valido").isMongoId(),
     // check("token").custom(validarJWT),
-        
-], marcasHttp.marcasPutestado)
+
+], ], marcasHttp.marcasPutId);
 
 
 
 
 
-export default router
+
+
+
+
+
+
+
+export default rutasmarcas;
