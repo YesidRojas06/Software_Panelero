@@ -12,8 +12,6 @@ rutasmarcas.get("/",marcasHttp.marcasSearchForTextGet);
 rutasmarcas.put("/desactivar/:id",marcasHttp.marcasInactivoput);
 rutasmarcas.put("/activar/:id",marcasHttp.marcasActivoput);
 rutasmarcas.put("/:id",marcasHttp.marcasput);
-
-
 rutasmarcas.post('/',[
    
     check("nombremarcas", "El campo nombre es obligatorio").notEmpty(),
@@ -22,16 +20,6 @@ rutasmarcas.post('/',[
     // check("token").custom(validarJWT),
 
 ], marcasHttp.marcasPost);
-
-
-
-
-
-
-
-
-
-
 rutasmarcas.put('/update/:id',[[
     
     check("id", "El id es obligatorio").notEmpty().exists(),
@@ -47,16 +35,5 @@ rutasmarcas.put('/update/:id',[[
     // check("token").custom(validarJWT),
 
 ], ], marcasHttp.marcasPutId);
-
-
-
-
-
-
-
-
-
-
-
 
 export default rutasmarcas;
