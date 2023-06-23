@@ -5,115 +5,156 @@
         <h1 class="page-title">Labores</h1>
       </div>
 
-
-
-
-      <q-table title="Labores" :rows="rows" :columns="columns" class="tabla ">
-        <template v-slot:body-cell-estado="props" style="opacity: 0;">
-          <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
-          <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
+      <q-table title="Labores" :rows="rows" :columns="columns" class="tabla">
+        <template v-slot:body-cell-estado="props" style="opacity: 0">
+          <td
+            v-if="props.row.estado == 1"
+            style="color: green; text-align: center"
+          >
+            Activo
+          </td>
+          <td v-else style="color: rgb(251, 2, 2); text-align: center">
+            Inactivo
+          </td>
         </template>
-        <template v-slot:body-cell-opcion="props" style="opacity: 0;">
-          <td style="text-align: center;">
+        <template v-slot:body-cell-opcion="props" style="opacity: 0">
+          <td style="text-align: center">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
+            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)"
+              >🚫</q-btn
+            >
             <q-btn v-else @click="active(props.row)">✅</q-btn>
           </td>
         </template>
       </q-table>
 
-
-      <q-btn color="white" text-color="black" label="Nuevo Labor" v-on:click="guardar()"
+      <q-btn
+        color="white"
+        text-color="black"
+        label="Nuevo Labor"
+        v-on:click="guardar()"
         class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
-        style="position: absolute; top: 150px; right: 40px; border-radius: 30px;" />
-
-
-
+        style="position: absolute; top: 150px; right: 40px; border-radius: 30px"
+      />
     </div>
 
-
-    <q-dialog v-model="nuevo" persistent transition-show="scale" transition-hide="scale">
-      <q-card class="bg-teal text-dark" style="width: 500px; max-width: 80vw;">
-
-        <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
-          <div align="center" class="text-h6">{{ bd == 0 ? "Guardar Labores" : "Editar Labores" }}</div>
-
-
-
+    <q-dialog
+      v-model="nuevo"
+      persistent
+      transition-show="scale"
+      transition-hide="scale"
+    >
+      <q-card class="bg-teal text-dark" style="width: 500px; max-width: 80vw">
+        <q-card-section style="background-color: rgb(14, 224, 14)">
+          <div align="center" class="text-h6">
+            {{ bd == 0 ? "Guardar Labores" : "Editar Labores" }}
+          </div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
+          <!-- <p>Nombre Del Labor</p>
+          <input type="text" v-model="nombre_labor" class="form-input"> -->
+
           <p>Nombre Del Labor</p>
-          <input type="text" v-model="nombre_labor" class="form-input">
+          <input
+            type="text"
+            v-model="nombre_labor"
+            class="form-input"
+            pattern="[A-Za-z]+"
+            @input="validateNombreLabor"
+          />
 
           <p>Area Para Realizar</p>
-          <input type="text" v-model="area_realizar" class="form-input">
+          <input type="text" v-model="area_realizar" class="form-input" />
+
+          <!-- <p>Pago Diario</p>
+          <input type="text" v-model="pago_diario" class="form-input"> -->
 
           <p>Pago Diario</p>
-          <input type="text" v-model="pago_diario" class="form-input">
-
-
-
-
-
+          <input
+            type="text"
+            v-model="pago_diario"
+            class="form-input"
+            pattern="[0-9]+([.][0-9]+)?"
+            @input="validarNumero"
+          />
         </q-card-section>
 
         <q-card-actions align="center" class="bg-white text-black">
-          <q-btn label="Cancelar" @click="nuevo = false" style="background-color: rgb(243, 9, 9)" />
-          <q-btn @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
-            {{ bd == 0 ? "Guardar " : "Editar " }} </q-btn>
-
-
-
+          <q-btn
+            label="Cancelar"
+            @click="nuevo = false"
+            style="background-color: rgb(243, 9, 9)"
+          />
+          <q-btn
+            @click="guardarEditarDatos"
+            style="background-color: rgb(14, 224, 14)"
+          >
+            {{ bd == 0 ? "Guardar " : "Editar " }}
+          </q-btn>
         </q-card-actions>
       </q-card>
     </q-dialog>
   </div>
 </template>
 
-
 <script setup>
-import { ref } from "vue"
-import { laboresStore } from "../stores/Labores"
-import { useQuasar } from 'quasar'
+import { ref } from "vue";
+import { laboresStore } from "../stores/Labores";
+import { useQuasar } from "quasar";
 
-const q = useQuasar()
-const labores = laboresStore()
-let rows = ref()
-
-
+const q = useQuasar();
+const labores = laboresStore();
+let rows = ref();
 
 let nombre_labor = ref("");
 let area_realizar = ref("");
 let pago_diario = ref("");
 
-let nuevo = ref(false)
-let bd = ref(0)
-let _id = ""
+let nuevo = ref(false);
+let bd = ref(0);
+let _id = "";
 
 let columns = ref([
   {
-    name: 'nombre_labor',
+    name: "nombre_labor",
     required: true,
-    label: 'Nombre Del Labor',
-    align: 'left',
+    label: "Nombre Del Labor",
+    align: "left",
     field: "nombre_labor",
-    sortable: false
+    sortable: false,
   },
-  { name: 'area_realizar', align: 'center', label: 'Area Para Realizar', field: "area_realizar", sortable: true },
-  { name: 'pago_diario', align: 'center', label: 'Pago Diario', field: "pago_diario", sortable: true },
+  {
+    name: "area_realizar",
+    align: "center",
+    label: "Area Para Realizar",
+    field: "area_realizar",
+    sortable: true,
+  },
+  {
+    name: "pago_diario",
+    align: "center",
+    label: "Pago Diario",
+    field: "pago_diario",
+    sortable: true,
+  },
 
-  { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
-  { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
-])
+  { name: "estado", label: "Estado", field: "estado", align: "center" },
+  {
+    name: "opcion",
+    label: "Opciones",
+    field: "",
+    sortable: true,
+    align: "center",
+  },
+]);
 
 const listarLabores = async () => {
-  const res = await labores.getlabores()
-  rows.value = res == null ? [] : res
+  const res = await labores.getlabores();
+  rows.value = res == null ? [] : res;
   console.log("sr");
 };
-listarLabores()
-
+listarLabores();
 
 function edit(row) {
   bd.value = 1;
@@ -133,12 +174,12 @@ function guardar() {
 
 async function inactive(props) {
   let res = await labores.inactivelabores(props._id);
-  listarLabores()
+  listarLabores();
 }
 
 async function active(props) {
   let res = await labores.activelabores(props._id);
-  listarLabores()
+  listarLabores();
 }
 
 function limpiarFormulario() {
@@ -148,84 +189,69 @@ function limpiarFormulario() {
   bd.value = 0;
 }
 
+function validarNumero() {
+  pago_diario.value = pago_diario.value.replace(/[^0-9.]/g, "");
+}
+
+function validateNombreLabor() {
+  nombre_labor.value = nombre_labor.value.replace(/[^A-Za-z]/g, "");
+}
+
 async function guardarEditarDatos() {
-  if (bd.value === 0) {
-    if (nombre_labor.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, ingrese un nombre_labor válido.",
-        position: "top",
-      });
-      return;
-    }
-
-    if (area_realizar.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, ingrese un area_realizar válido.",
-        position: "top",
-      });
-      return;
-    }
-
-
-
-
-    const datos = {
-      nombre_labor: nombre_labor.value,
-      area_realizar: area_realizar.value,
-      pago_diario: pago_diario.value,
-      estado: 0,
-    };
-
-    let res = await labores.addlabores(datos);
-    console.log(res);
-    await listarLabores()
-    nuevo.value = false;
-    //console.log(res.response.data);
-  } else {
-    if (nombre_labor.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, ingrese un Labor válido.",
-        position: "top",
-      });
-      return;
-    }
-
-    if (area_realizar.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, ingrese un area_realizar válido.",
-        position: "top",
-      });
-      return;
-    }
-
-
-
-    const datos = {
-      nombre_labor: nombre_labor.value,
-      area_realizar: area_realizar.value,
-      pago_diario: pago_diario.value,
-      estado: 1,
-    };
-
-    console.log(_id, { datos });
-    let res = await labores.editlabores(_id, datos);
-    listarLabores()
-    console.log(res);
+  if (nombre_labor.value === "") {
     q.notify({
-      type: "positive",
-      message: "labores actualizada exitosamente.",
+      type: "negative",
+      message: "Por favor, ingrese un Nombre para el Labor",
       position: "top",
     });
- 
+    return;
+  }
+
+  if (area_realizar.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, ingrese un Área válido",
+      position: "top",
+    });
+    return;
+  }
+
+  if (pago_diario.value === "" || isNaN(parseFloat(pago_diario.value))) {
+    q.notify({
+      type: "negative",
+      message: "Por favor, ingrese un Valor diario válido",
+      position: "top",
+    });
+    return;
+  }
+
+  const datos = {
+    nombre_labor: nombre_labor.value,
+    area_realizar: area_realizar.value,
+    pago_diario: parseFloat(pago_diario.value),
+    estado: 1,
+  };
+
+  if (bd.value === 0) {
+    const res = await labores.addlabores(datos);
+    console.log(res);
+    await listarLabores();
+    nuevo.value = false;
+  } else {
+    console.log(_id, { datos });
+    const res = await labores.editlabores(_id, datos);
+    console.log(res);
+    await listarLabores();
+    nuevo.value = false;
+    q.notify({
+      type: "positive",
+      message: "Labores actualizada exitosamente.",
+      position: "top",
+    });
   }
 }
 
-listarLabores()
-
+listarLabores();
 </script>
 
 <style lang="scss" scoped>
@@ -242,8 +268,6 @@ listarLabores()
 .q-card-section {
   padding: 20px;
   /* Aumentar el relleno de las secciones de la tarjeta. */
-
-
 }
 
 .q-card-actions {
@@ -273,13 +297,12 @@ input[type="text"] {
 .form-input {
   margin-bottom: 30px;
   /* Ajusta el margen inferior entre los campos */
-
 }
-
 
 .tabla {
   border: 7px solid transparent;
-  border-image: linear-gradient(to right, #00FF00, #000000) 1;
+  border-image: linear-gradient(to right, #00ff00, #000000) 1;
   border-image-slice: 1;
   border-radius: 20px;
-}</style>
+}
+</style>
