@@ -4,10 +4,10 @@ import {check} from "express-validator";
 //import { validarJWT } from "../middleware/validar_campos.js";
 import helpersproductos from "../helpers/productos.js";
 
-const router=Router();
+const rutasproductos=Router();
 
 
-router.post('/',
+rutasproductos.post('/',
 [
     check('cantidad','El campo cantidad es obligatorio').not().isEmpty(),
     check('nombregasto','El campo nombre es obligatorio').not().isEmpty(),
@@ -18,15 +18,6 @@ router.post('/',
     check('cost_value','El campo de valor del costo es obligatorio').not().isEmpty(),
     check('total','El campo de total es obligatorio').not().isEmpty(),
     //check("token").custom(validarJWT),
-        
-], productosHttp.productosPost);
-
-
-router.get('/',productosHttp.productosAllGet)
-
-
-router.put('/update/:id',
-[   
     check("id", "El id es obligatorio").notEmpty().exists(),
     check("id", "El id no es valido").isMongoId(),
     check('id').custom(helpersproductos.existproductosId), 
@@ -39,27 +30,18 @@ router.put('/update/:id',
     check('cost_value','El campo de valor del costo es obligatorio').not().isEmpty(),
     check('total','El campo de total es obligatorio').not().isEmpty(),
     //check("token").custom(validarJWT),
-
-   
-], 
-productosHttp.productosPutId);
-
-
-router.put('/estado/:id',
-[   
     check("id", "El id es obligatorio").notEmpty().exists(),
     check("id", "El id no es valido").isMongoId(),
     check('id').custom(helpersproductos.existproductosId),
     //check("token").custom(validarJWT),
   
-], 
-productosHttp.productosPutestado);
+        
+], productosHttp.productosPost);
+rutasproductos.get("/",productosHttp.productosGet);
+rutasproductos.get("/",productosHttp.productosSearchForTextGet);
+rutasproductos.put("/desactivar/:id",productosHttp.productosInactivoput);
+rutasproductos.put("/activar/:id",productosHttp.productosActivoput);
+rutasproductos.put("/:id",productosHttp.productosput);
 
 
-
-
-
-
-
-
-export default router
+export default rutasproductos;
