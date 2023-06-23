@@ -61,7 +61,7 @@
           <input v-if="bd == 0 " type="text" v-model="clave" class="form-input">
           
           <p>Rol</p>
-          <q-select :options="rolOptions"  v-model="rol" emit-value map-options 
+          <q-select :options="rolOptions" color="positive" v-model="rol" emit-value map-options 
           :option-value="'value'" :option-label="'label'" class="form-input" required/>
           
         </q-card-section>
