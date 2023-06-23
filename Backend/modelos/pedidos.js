@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const pedidosSchema = new mongoose.Schema(
   {
+    
     Documento: { type: String, required: true, unique: true },
     Telefono: { type: String, required: true },
     Nombre: { type: String, required: true },
