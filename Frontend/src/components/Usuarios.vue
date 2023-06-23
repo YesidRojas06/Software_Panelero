@@ -6,7 +6,7 @@
       </div>
       
 
-      <q-table title="Usuario" :rows="rows" :columns="columns" class="tabla ">
+      <q-table title="Usuarios" :rows="rows" :columns="columns" class="tabla ">
         <template v-slot:body-cell-estado="props" style="opacity: 0;">
           <td v-if="props.row.estado == 1" style="color:green; text-align: center;">Activo</td>
           <td v-else style="color:rgb(251, 2, 2); text-align: center;">Inactivo</td>
@@ -161,108 +161,251 @@ function validateEmail() {
 if (!correo.value.includes("@")) {
   q.notify({
     type: "negative",
-    message: "El correo electrónico debe contener el símbolo @",
+    message: "El Correo Electrónico debe contener el símbolo @",
     position: "top",
   });
 }
 }
+
+
+// async function guardarEditarDatos() {
+// if (bd.value === 0) {
+//   if (nombre.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, ingrese un Nombre válido.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   if (correo.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, ingrese un Correo válido.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   if (clave.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, ingrese una Contraseña válida.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   if (rol.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, seleccione un Rol válido.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   const datos = {
+//     nombre: nombre.value,
+//     correo: correo.value,
+//     contrasena: clave.value,
+//     rol: rol.value,
+//     estado: 0,
+//   };
+
+//   let res = await getUser.addUser(datos);
+//   listarUsuarios()
+//   nuevo.value = false;
+//   console.log(res.response.data);
+// } else {
+//   if (nombre.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, ingrese un nombre válido.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   if (correo.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, ingrese un correo válido.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   if (rol.value === "") {
+//     q.notify({
+//       type: "negative",
+//       message: "Por favor, seleccione un rol válido.",
+//       position: "top",
+//     });
+//     return;
+//   }
+
+//   const datos = {
+//     nombre: nombre.value,
+//     correo: correo.value,
+//     rol: rol.value,
+//     estado: 1,
+//   };
+
+//   let res = await getUser.editUser(_id, datos);
+//   listarUsuarios()
+//   console.log(res);
+//   q.notify({
+//     type: "positive",
+//     message: "Usuario actualizado exitosamente.",
+//     position: "top",
+//   });
+// }
+// }
+
+
 
 
 async function guardarEditarDatos() {
-if (bd.value === 0) {
-  if (nombre.value === "") {
+  if (bd.value === 0) {
+    if (nombre.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un Nombre válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (correo.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un Correo válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (!correo.value.includes("@")) {
+      q.notify({
+        type: "negative",
+        message: "El Correo Electrónico debe contener el símbolo @",
+        position: "top",
+      });
+      return;
+    }
+
+    const correoParts = correo.value.split("@");
+    const dominio = correoParts[1];
+
+    if (!dominio || !dominio.includes(".")) {
+      q.notify({
+        type: "negative",
+        message: "Después del símbolo @, por favor, ingrese una dirección de correo válida.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (clave.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una Contraseña válida.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (rol.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, seleccione un Rol válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    const datos = {
+      nombre: nombre.value,
+      correo: correo.value,
+      contrasena: clave.value,
+      rol: rol.value,
+      estado: 0,
+    };
+
+    let res = await getUser.addUser(datos);
+    listarUsuarios();
+    nuevo.value = false;
+    console.log(res.response.data);
+
     q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
+      type: "positive",
+      message: "Usuario creado exitosamente.",
       position: "top",
     });
-    return;
   }
 
-  if (correo.value === "") {
+
+
+
+
+
+  else {
+    if (nombre.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un nombre válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (correo.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese un correo válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    if (!correo.value.includes("@")) {
+      q.notify({
+        type: "negative",
+        message: "El Correo Electrónico debe contener el símbolo @",
+        position: "top",
+      });
+      return;
+    }
+
+    if (rol.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, seleccione un rol válido.",
+        position: "top",
+      });
+      return;
+    }
+
+    const datos = {
+      nombre: nombre.value,
+      correo: correo.value,
+      rol: rol.value,
+      estado: 1,
+    };
+
+    let res = await getUser.editUser(_id, datos);
+    listarUsuarios();
+    console.log(res);
     q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un correo válido.",
+      type: "positive",
+      message: "Usuario actualizado exitosamente.",
       position: "top",
     });
-    return;
   }
-
-  if (clave.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese una contraseña válida.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  const datos = {
-    nombre: nombre.value,
-    correo: correo.value,
-    contrasena: clave.value,
-    rol: rol.value,
-    estado: 0,
-  };
-
-  let res = await getUser.addUser(datos);
-  listarUsuarios()
-  nuevo.value = false;
-  console.log(res.response.data);
-} else {
-  if (nombre.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un nombre válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (correo.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un correo válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (rol.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, seleccione un rol válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  const datos = {
-    nombre: nombre.value,
-    correo: correo.value,
-    rol: rol.value,
-    estado: 1,
-  };
-
-  let res = await getUser.editUser(_id, datos);
-  listarUsuarios()
-  console.log(res);
-  q.notify({
-    type: "positive",
-    message: "Usuario actualizado exitosamente.",
-    position: "top",
-  });
 }
-}
+
 
 listarUsuarios()
 </script>
