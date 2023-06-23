@@ -2,7 +2,7 @@
   <div>
     <div class="q-pa-md">
       <div class="title-container">
-        <h1 class="page-title">Forma de pagoo</h1>
+        <h1 class="page-title">Forma de pago</h1>
       </div>
 
 
@@ -44,9 +44,6 @@
           
           <p>Tipo De Pago</p>
           <input type="text" v-model="tipoPago" class="form-input" />
-
-          <!-- <p>fecha</p>
-          <input type="date" v-model="fecha" class="form-input" /> -->
 
           <p>Fecha</p>
           <q-input
@@ -116,16 +113,9 @@ let columns = ref([
     field: "nombrePago",
     sortable: false},
 
-  { name: 'codigoPago', align: 'center', label: 'codigoPago', field: "codigoPago", sortable: true },
+  { name: 'codigoPagoo', align: 'center', label: 'codigoPago', field: "codigoPago", sortable: true },
   { name: 'tipoPago', align: 'center', label: 'tipoPago', field: "tipoPago", sortable: true },
-  // { name: 'fecha', align: 'center', label: 'fecha', field: "fecha", sortable: true },
-  {
-    name: "fecha",
-    label: "Fecha",
-    field: "fecha",
-    sortable: true,
-    align: "center",
-  },
+  { name: 'fecha', align: 'center', label: 'fecha', field: "fecha", sortable: true },
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
@@ -135,18 +125,6 @@ const listarformaPago = async () => {
 rows.value = await formapago.getformapago();
 };
 listarformaPago();
-
-const listarUnidadesMedida = async () => {
-  let unidadesMedida = await UnidadesMedida.getUnidadesMedida();
-
-  // Formatear la fecha en cada objeto de unidadesMedida
-  unidadesMedida.forEach((unidadMedida) => {
-    unidadMedida.fecha = new Date(unidadMedida.fecha).toLocaleDateString();
-  });
-
-  rows.value = unidadesMedida;
-};
-
 
 function edit(row) {
 bd.value = 1;
@@ -179,7 +157,7 @@ listarformaPago();
 function limpiarFormulario() {
   nombrePago.value = "";
   codigoPago.value = "";
-  tipoPago = "";
+  tipoPago.value = "";
   fecha.value = "";
   bd.value = 0;
 
@@ -210,11 +188,12 @@ if (bd.value === 0) {
   if (tipoPago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un Tipo de Paog válido.",
+      message: "Por favor, ingrese un tipo de válido.",
       position: "top",
     });
     return;
   }
+
 
   if (fecha.value === "") {
       q.notify({
@@ -224,6 +203,7 @@ if (bd.value === 0) {
       });
       return;
     }
+
 
 
   const datos = {
@@ -242,7 +222,7 @@ if (bd.value === 0) {
   if (nombrePago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un Pago válido.",
+      message: "Por favor, ingrese un nombrePago válido.",
       position: "top",
     });
     return;
@@ -251,29 +231,11 @@ if (bd.value === 0) {
   if (codigoPago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un Codigo de Pago válido.",
+      message: "Por favor, ingrese un codigoPago válido.",
       position: "top",
     });
     return;
   }
-
-  if (tipoPago.value === "") {
-    q.notify({
-      type: "negative",
-      message: "Por favor, ingrese un Tipo de Paog válido.",
-      position: "top",
-    });
-    return;
-  }
-
-  if (fecha.value === "") {
-      q.notify({
-        type: "negative",
-        message: "Por favor, ingrese una fecha válida.",
-        position: "top",
-      });
-      return;
-    }
 
   const datos = {
     nombrePago: nombrePago.value,

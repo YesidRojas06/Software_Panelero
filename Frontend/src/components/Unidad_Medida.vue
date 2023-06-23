@@ -162,16 +162,10 @@ let columns = ref([
   },
 ]);
 
-// const listarUnidadesMedida = async () => {
-//   let er = await UnidadesMedida.getUnidadesMedida();
-//   rows.value = await UnidadesMedida.getUnidadesMedida();
-
-// };
 
 const listarUnidadesMedida = async () => {
   let unidadesMedida = await UnidadesMedida.getUnidadesMedida();
 
-  // Formatear la fecha en cada objeto de unidadesMedida
   unidadesMedida.forEach((unidadMedida) => {
     unidadMedida.fecha = new Date(unidadMedida.fecha).toLocaleDateString();
   });
@@ -179,7 +173,6 @@ const listarUnidadesMedida = async () => {
   rows.value = unidadesMedida;
 };
 
-// listarUnidadesMedida()
 function edit(row) {
   bd.value = 1;
   nuevo.value = true;
