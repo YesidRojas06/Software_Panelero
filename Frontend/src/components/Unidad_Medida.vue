@@ -65,8 +65,6 @@
           <p>Codigo</p>
           <input type="text" v-model="codigo" class="form-input" />
 
-          <!-- <p>Fecha</p>
-          <input type="text" v-model="fecha" class="form-input"  > -->
 
           <p>Fecha</p>
           <q-input

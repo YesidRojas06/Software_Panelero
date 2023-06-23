@@ -2,7 +2,7 @@
   <div>
     <div class="q-pa-md">
       <div class="title-container">
-        <h1 class="page-title">Forma de pago</h1>
+        <h1 class="page-title">Forma de pagoo</h1>
       </div>
 
 
@@ -35,20 +35,45 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <p>nombrePago</p>
+          <p>Nombre Del Pago</p>
           <input type="text" v-model="nombrePago" class="form-input" />
 
-          <p>codigoPago</p>
+          <p>Codigo Del Pago</p>
           <input type="text" v-model="codigoPago" class="form-input" />
 
           
-          <p>tipoPago</p>
+          <p>Tipo De Pago</p>
           <input type="text" v-model="tipoPago" class="form-input" />
 
-          <p>fecha</p>
-          <input type="date" v-model="fecha" class="form-input" />
+          <!-- <p>fecha</p>
+          <input type="date" v-model="fecha" class="form-input" /> -->
 
-
+          <p>Fecha</p>
+          <q-input
+            filled
+            v-model="fecha"
+            mask="date"
+            lazy-rules
+            type="text"
+            class="form-input"
+            color="positive"
+          >
+            <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer" color="positive">
+                <q-popup-proxy
+                  cover
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date v-model="fecha" color="positive">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="dark" flat />
+                    </div>
+                  </q-date>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
 
 
 
@@ -93,7 +118,14 @@ let columns = ref([
 
   { name: 'codigoPago', align: 'center', label: 'codigoPago', field: "codigoPago", sortable: true },
   { name: 'tipoPago', align: 'center', label: 'tipoPago', field: "tipoPago", sortable: true },
-  { name: 'fecha', align: 'center', label: 'fecha', field: "fecha", sortable: true },
+  // { name: 'fecha', align: 'center', label: 'fecha', field: "fecha", sortable: true },
+  {
+    name: "fecha",
+    label: "Fecha",
+    field: "fecha",
+    sortable: true,
+    align: "center",
+  },
   { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
@@ -103,6 +135,18 @@ const listarformaPago = async () => {
 rows.value = await formapago.getformapago();
 };
 listarformaPago();
+
+const listarUnidadesMedida = async () => {
+  let unidadesMedida = await UnidadesMedida.getUnidadesMedida();
+
+  // Formatear la fecha en cada objeto de unidadesMedida
+  unidadesMedida.forEach((unidadMedida) => {
+    unidadMedida.fecha = new Date(unidadMedida.fecha).toLocaleDateString();
+  });
+
+  rows.value = unidadesMedida;
+};
+
 
 function edit(row) {
 bd.value = 1;
@@ -136,7 +180,7 @@ function limpiarFormulario() {
   nombrePago.value = "";
   codigoPago.value = "";
   tipoPago = "";
-  fecha = "";
+  fecha.value = "";
   bd.value = 0;
 
 }
@@ -163,7 +207,23 @@ if (bd.value === 0) {
     return;
   }
 
+  if (tipoPago.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, ingrese un Tipo de Paog válido.",
+      position: "top",
+    });
+    return;
+  }
 
+  if (fecha.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una fecha válida.",
+        position: "top",
+      });
+      return;
+    }
 
 
   const datos = {
@@ -182,7 +242,7 @@ if (bd.value === 0) {
   if (nombrePago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un nombrePago válido.",
+      message: "Por favor, ingrese un Pago válido.",
       position: "top",
     });
     return;
@@ -191,11 +251,29 @@ if (bd.value === 0) {
   if (codigoPago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un codigoPago válido.",
+      message: "Por favor, ingrese un Codigo de Pago válido.",
       position: "top",
     });
     return;
   }
+
+  if (tipoPago.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, ingrese un Tipo de Paog válido.",
+      position: "top",
+    });
+    return;
+  }
+
+  if (fecha.value === "") {
+      q.notify({
+        type: "negative",
+        message: "Por favor, ingrese una fecha válida.",
+        position: "top",
+      });
+      return;
+    }
 
   const datos = {
     nombrePago: nombrePago.value,
