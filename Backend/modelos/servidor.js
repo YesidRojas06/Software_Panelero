@@ -26,25 +26,9 @@ import rutaspagos from "../rutas/pagos.js";
 import rutasproductos from "../rutas/productos.js";
 import rutasmateriaprimatrans from "../rutas/materiaprimatrans.js";
 import rutastipoempaque from "../rutas/tipoempaque.js";
-//import rutastipopanela from "../rutas/tipopanela.js";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import rutastipopanela from "../rutas/tipopanela.js";
+import rutastipopago from "../rutas/tipopago.js";
+import rutassoporte from "../rutas/soporte.js";
 
 
 
@@ -85,17 +69,10 @@ class servidor {
         this.app.use("/productos" , rutasproductos)
         this.app.use("/materiaprimatrans", rutasmateriaprimatrans)
         this.app.use("/tipoempaque", rutastipoempaque)
-        //this.app.use("/tipopanela", rutastipopanela)
-
-        
-
-
-
-        
-
-
-
-
+        this.app.use("/tipopanela", rutastipopanela)
+        this.app.use("/tipopago", rutastipopago)
+        this.app.use("/soporte", rutassoporte)
+       
 
 
 

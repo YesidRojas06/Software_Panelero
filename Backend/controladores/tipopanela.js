@@ -1,4 +1,4 @@
-import tipopanela from "../modelos/tipopanela"
+import tipopanela from "../modelos/tipopanela.js"
 
 const tipopanelaHttp = {
   // post info panela

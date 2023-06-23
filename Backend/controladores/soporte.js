@@ -1,35 +1,35 @@
-import support from "../modelos/soporte.js"
+import soporte from "../modelos/soporte.js"
 
-const supportHttp = {
+const soporteHttp = {
   // post info eps
-  supportPost: async (req, res) => {
+  soportePost: async (req, res) => {
     console.log(req.body);
-    const { emailUser , coment } = req.body;
-    const supportAdd = new support({ emailUser, coment});
-    await supportAdd.save();
+    const { emailusuario , comentario } = req.body;
+    const soporteAdd = new soporte({ emailusuario, comentario});
+    await soporteAdd.save();
     res.json("Se registro el comentario de soporte");
   },
 // get all info eps
-  supportGetAll: async(req, res) =>{
-    const supportAll = await support.find()
-    res.json(supportAll)
+  soporteGetAll: async(req, res) =>{
+    const soporteAll = await soporte.find()
+    res.json(soporteAll)
   },
   //edit info for email
-  supportPutInfo: async(req, res)=>{
+  soportePutInfo: async(req, res)=>{
   const {id} = req.params;
-  const{ emailUser, coment} = req.body
-  const supportUpdate = await support.findByIdAndUpdate(id,{
-    emailUser: emailUser,
-    coment:coment
+  const{ emailusuario, comentario} = req.body
+  const soporteUpdate = await soporte.findByIdAndUpdate(id,{
+    emailusuario: emailusuario,
+    comentario:comentario
   });
-  await supportUpdate.save()
+  await soporteUpdate.save()
   res.json("Comentario actualizada")
   },
 
   //edit state for id
   soporteInactivoput: async(req, res)=>{
     const {id} = req.params;
-    const supportUpdate = await support.findByIdAndUpdate(id,{
+    const supportUpdate = await soporte.findByIdAndUpdate(id,{
       state: 0
     });
     await supportUpdate.save()
@@ -38,7 +38,7 @@ const supportHttp = {
 
     soporteActivoput: async(req, res)=>{
         const {id} = req.params;
-        const supportUpdate = await support.findByIdAndUpdate(id,{
+        const supportUpdate = await soporte.findByIdAndUpdate(id,{
           state: 1
         });
         await supportUpdate.save()
@@ -47,4 +47,4 @@ const supportHttp = {
 
 };
 
-export default supportHttp;
+export default soporteHttp;

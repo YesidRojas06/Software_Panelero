@@ -1,41 +1,41 @@
 import { Router } from "express";
 import {check} from "express-validator";
 // import { validarJWT } from "../../middlewares/Login/validar-jwt.js";
-import supportHttp from "../controladores/soporte.js";
-import helperSupport from "../helpers/soporte.js"
+import soporteHttp from "../controladores/soporte.js";
+import helperssoporte from "../helpers/soporte.js"
 // import { validarcampos } from "../../middlewares/ValidationFields/validateFields.js";
 
 const router=Router();
 
-router.get('/',[], supportHttp.supportGetAll);
+router.get('/',[], soporteHttp.soporteGetAll);
 
 router.post('/',
 [
-    check(['emailUser','ciment'],'Todos los campos son requeridos').not().isEmpty(),
+    check(['emailusuario','comentario'],'Todos los campos son requeridos').not().isEmpty(),
     // check("token").custom(validarJWT),validarCampos
 ], 
-supportHttp.supportPost);
+soporteHttp.soportePost);
 
 router.put('/:id',
 [
-    check('id').custom(helperSupport.existSupportId),
+    check('id').custom(helperssoporte.existsoporteId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-supportHttp.supportPutInfo);
+soporteHttp.soportePutInfo);
 
 router.put('/desactivar/:id',
 [
-    check('id').custom(helperSupport.existSupportId),
+    check('id').custom(helperssoporte.existsoporteId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-supportHttp.soporteInactivoput);
+soporteHttp.soporteInactivoput);
 
 router.put('/activar/:id',
 [
-    check('id').custom(helperSupport.existSupportId),
+    check('id').custom(helperssoporte.existsoporteId),
     // check("token").custom(validarJWT),validarCampos
 ], 
-supportHttp.soporteActivoput);
+soporteHttp.soporteActivoput);
 
 
 
