@@ -14,7 +14,7 @@ export const BodegasStore = defineStore("Bodegas", {
 
         async getBodegas(){
             try {
-                 const resp =await axios.get('http://localhost:4000/bodegas') 
+                 const resp =await axios.get('http://localhost:4000/api/bodegas') 
                 return(resp.data.bodega)
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const BodegasStore = defineStore("Bodegas", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/bodegas`,
+                const resp = await axios.post(`http://localhost:4000/api/bodegas`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const BodegasStore = defineStore("Bodegas", {
         async editBodegas (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4000/bodegas/${id}`,
+                const resp = await axios.put(`http://localhost:4000/api/bodegas/${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const BodegasStore = defineStore("Bodegas", {
         },
         async activeBodegas (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/bodegas/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4000/api/bodegas/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -65,7 +65,7 @@ export const BodegasStore = defineStore("Bodegas", {
         async inactiveBodegas (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4000/bodegas/desactivar/${id}`) 
+                const resp = await axios.put(`http://localhost:4000/api/bodegas/desactivar/${id}`) 
 
                return resp
        

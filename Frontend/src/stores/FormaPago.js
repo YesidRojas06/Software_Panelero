@@ -14,7 +14,7 @@ export const formapagoStore = defineStore("formapago", {
 
         async getformapago(){
             try {
-                 const resp =await axios.get('http://localhost:4000/formapago') 
+                 const resp =await axios.get('http://localhost:4000/api/formapago') 
                 return (resp.data.formapago)
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const formapagoStore = defineStore("formapago", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/formapago`,
+                const resp = await axios.post(`http://localhost:4000/api/formapago`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const formapagoStore = defineStore("formapago", {
         async editformapago(id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4000/formapago/${id}`,
+                const resp = await axios.put(`http://localhost:4000/api/formapago/${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const formapagoStore = defineStore("formapago", {
         },
         async activeformapago (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/formapago/activar/${id}`  ) 
+                const resp = await axios.put(`http://localhost:4000/api/formapago/activar/${id}`  ) 
                return resp
        
            } catch (error) {
@@ -65,7 +65,7 @@ export const formapagoStore = defineStore("formapago", {
         async inactiveformapago (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4000/formapago/desactivar/${id}`) 
+                const resp = await axios.put(`http://localhost:4000/api/formapago/desactivar/${id}`) 
 
                return resp
        

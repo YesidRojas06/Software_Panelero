@@ -14,7 +14,7 @@ export const EpsStore = defineStore("Eps", {
 
         async getEps(){
             try {
-                 const resp =await axios.get('http://localhost:4000/eps') 
+                 const resp =await axios.get('http://localhost:4000/api/eps') 
                 return(resp.data.eps)
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const EpsStore = defineStore("Eps", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/eps`,
+                const resp = await axios.post(`http://localhost:4000/api/eps`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const EpsStore = defineStore("Eps", {
         async editEps (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4000/eps/${id}`,
+                const resp = await axios.put(`http://localhost:4000/api/eps/${id}`,
                     datos
                 ) 
                return resp
@@ -54,7 +54,7 @@ export const EpsStore = defineStore("Eps", {
         async activeEps (id){
             try {
                 console.log("sr");
-                const resp = await axios.put(`http://localhost:4000/eps/activar/${id}`,{}) 
+                const resp = await axios.put(`http://localhost:4000/api/eps/activar/${id}`,{}) 
                 console.log(resp);
                return resp
        
@@ -67,7 +67,7 @@ export const EpsStore = defineStore("Eps", {
         async inactiveEps (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4000/eps/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4000/api/eps/desactivar/${id}`                ) 
 
                return resp
        

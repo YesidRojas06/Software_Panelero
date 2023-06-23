@@ -14,7 +14,7 @@ export const UserStore = defineStore("user", {
 
         async getUsers(){
             try {
-                 const resp =await axios.get('https://software-panelero.onrender.com/usuario') 
+                 const resp =await axios.get('https://software-panelero.onrender.com/api/usuario') 
                 return resp.data.usuarios
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const UserStore = defineStore("user", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post('https://software-panelero.onrender.com/usuario',
+                const resp = await axios.post('https://software-panelero.onrender.com/api/usuario',
                 datos
                 ) 
                return resp
@@ -40,7 +40,7 @@ export const UserStore = defineStore("user", {
         async editUser (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`https://software-panelero.onrender.com/usuario/${id}`,
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/usuario/${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const UserStore = defineStore("user", {
         },
         async activeUser (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/usuario/activar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4000/api/usuario/activar/${id}`                ) 
                return resp
        
    
@@ -65,7 +65,7 @@ export const UserStore = defineStore("user", {
         },
         async inactiveUser (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/usuario/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4000/api/usuario/desactivar/${id}`                ) 
                return resp
        
            } catch (error) {

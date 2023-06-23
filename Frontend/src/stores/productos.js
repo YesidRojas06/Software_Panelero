@@ -14,7 +14,7 @@ export const productosStore = defineStore("productos", {
 
         async getproductos(){
             try {
-                 const resp =await axios.get('http://localhost:4000/productos') 
+                 const resp =await axios.get('http://localhost:4000/api/productos') 
                 return(resp.data.productos)
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const productosStore = defineStore("productos", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/productos`,
+                const resp = await axios.post(`http://localhost:4000/api/productos`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const productosStore = defineStore("productos", {
         async editproductos (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4000/productos/${id}`,
+                const resp = await axios.put(`http://localhost:4000/api/productos/${id}`,
                     datos
                 ) 
                return resp
@@ -54,7 +54,7 @@ export const productosStore = defineStore("productos", {
         async activeproductos (id){
             try {
                 console.log("sr");
-                const resp = await axios.put(`http://localhost:4000/prodcutos/activar/${id}`,{}) 
+                const resp = await axios.put(`http://localhost:4000/api/prodcutos/activar/${id}`,{}) 
                 console.log(resp);
                return resp
        
@@ -67,7 +67,7 @@ export const productosStore = defineStore("productos", {
         async inactiveproductos (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4000/productos/desactivar/${id}`                ) 
+                const resp = await axios.put(`http://localhost:4000/api/productos/desactivar/${id}`                ) 
 
                return resp
        
