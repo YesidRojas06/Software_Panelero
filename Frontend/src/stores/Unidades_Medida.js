@@ -14,7 +14,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
 
         async getUnidadesMedida(){
             try {
-                const resp =await axios.get('http://localhost:4000/api/UnidadesMedida') 
+                const resp =await axios.get('https://software-panelero.onrender.com/api/UnidadesMedida') 
                 return resp.data
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/api/UnidadesMedida`,
+                const resp = await axios.post(`https://software-panelero.onrender.com/api/UnidadesMedida`,
                 datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
         },
         async activeUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/api/UnidadesMedida/activar/${id}`                ) 
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/UnidadesMedida/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -64,7 +64,7 @@ export const Unidades_MedidaStore = defineStore("UnidadesMedida", {
         },
         async inactiveUnidadesMedida (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/api/UnidadesMedida/desactivar/${id}`                ) 
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/UnidadesMedida/desactivar/${id}`                ) 
                 console.log(resp);
                return resp
        

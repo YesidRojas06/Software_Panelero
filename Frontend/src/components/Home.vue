@@ -2,7 +2,7 @@
   <q-layout>
     <q-page-container>
       <div class="title-container"> 
-        <h1 class="page-title">Home</h1>
+        <h1  style="margin-top: 50px;" class="page-title">Home</h1>
       </div>
 
 

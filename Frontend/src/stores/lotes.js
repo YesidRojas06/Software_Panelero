@@ -14,7 +14,7 @@ actions:{
 
     async getlotes(){
         try {
-            const resp = await axios.get('http://localhost:4000/api/lotes')
+            const resp = await axios.get('https://software-panelero.onrender.com/api/lotes')
             return(resp.data.lotes)
         } catch (error){
             console.log(error);
@@ -26,7 +26,7 @@ actions:{
             console.log ('datos' + datos);
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/api/lotes`,
+                const resp = await axios.post(`https://software-panelero.onrender.com/api/lotes`,
                 datos
                 );
 
@@ -40,7 +40,7 @@ actions:{
         async editlotes (id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4000/api/lotes/${id}`,
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/lotes/${id}`,
                 datos
                 )
 
@@ -53,7 +53,7 @@ actions:{
 
         async activelotes(id){
             try{
-                const resp = await axios.put(`http://localhost:4000/api/lotes/activar/${id}`)
+                const resp = await axios.put(`https://software-panelero.onrender.com/lotes/activar/${id}`)
                 return resp 
             } catch (error) {
                 console.log(error);
@@ -64,7 +64,7 @@ actions:{
         async inactivelotes(id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4000/api/lotes/desactivar/${id}`) 
+                const resp = await axios.put(`https://software-panelero.onrender.com/lotes/desactivar/${id}`) 
 
                return resp
        

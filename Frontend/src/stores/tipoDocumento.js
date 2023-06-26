@@ -14,7 +14,7 @@ export const tipoDocumentoStore = defineStore("tipoDocumento", {
 
         async gettipoDocumento(){
             try {
-                 const resp =await axios.get('http://localhost:4000/api/tipoDocumento') 
+                 const resp =await axios.get('https://software-panelero.onrender.com/api/tipoDocumento') 
                 return(resp.data.tipoDocumento)
         
             } catch (error) {
@@ -27,7 +27,7 @@ export const tipoDocumentoStore = defineStore("tipoDocumento", {
             console.log('datos' + datos );
             console.log(JSON.stringify(datos))
             try {
-                const resp = await axios.post(`http://localhost:4000/api/tipoDocumento`,
+                const resp = await axios.post(`https://software-panelero.onrender.com/api/tipoDocumento`,
                 datos
                 ); 
                return resp;
@@ -40,7 +40,7 @@ export const tipoDocumentoStore = defineStore("tipoDocumento", {
         async edittipoDocumento(id, datos){
             try {
                 console.log(datos);
-                const resp = await axios.put(`http://localhost:4000/api/tipoDocumento/${id}`,
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/tipoDocumento/${id}`,
                     datos
                 ) 
                return resp
@@ -53,7 +53,7 @@ export const tipoDocumentoStore = defineStore("tipoDocumento", {
         },
         async activetipoDocumento (id){
             try {
-                const resp = await axios.put(`http://localhost:4000/api/tipoDocumento/activar/${id}`                ) 
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/tipoDocumento/activar/${id}`                ) 
                return resp
        
            } catch (error) {
@@ -65,7 +65,7 @@ export const tipoDocumentoStore = defineStore("tipoDocumento", {
         async inactivetipoDocumento (id){
             try {
                 
-                const resp = await axios.put(`http://localhost:4000/api/tipoDocumento/desactivar/${id}`) 
+                const resp = await axios.put(`https://software-panelero.onrender.com/api/tipoDocumento/desactivar/${id}`) 
 
                return resp
        

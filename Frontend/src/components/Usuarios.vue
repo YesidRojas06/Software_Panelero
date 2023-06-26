@@ -2,7 +2,7 @@
   <div>
     <div class="q-pa-md">
       <div class="title-container">
-        <h1 class="page-title">Usuarios</h1>
+        <h1  class="page-title">Usuarios</h1>
       </div>
       
 
@@ -41,7 +41,7 @@
         <q-card class="bg-teal text-dark"  style="width: 500px; max-width: 80vw;">
 
           <q-card-section style="background-color:rgb(14, 224, 14)  ; ">
-            <div align= "center" class="text-h6">{{ bd == 0?"Guardar Ususario": "Editar Usuario" }}</div>
+            <div align= "center" class="text-h6">{{ bd == 0?"Guardar Usuario": "Editar Usuario" }}</div>
 
             
 
@@ -355,6 +355,7 @@ input[type="text"] {
 
 
 .tabla {
+
 border: 7px solid transparent;
 border-image: linear-gradient(to right, #00FF00, #000000) 1;
 border-image-slice: 1;
