@@ -19,27 +19,30 @@
         </template>
         <template v-slot:body-cell-opcion="props" style="opacity: 0">
           <td style="text-align: center">
-            <q-btn
-  v-if="props.row.estado == 1"
-  :loading="loading"
-  :disable="loading"
-  :class="{ 'cursor-not-allowed': loading }"
-  @click="inactive(props.row)"
->
-  <span v-if="loading">⏳</span>
-  <span v-else>🚫</span>
-</q-btn>
-<q-btn
-  v-else
-  :loading="loading"
-  :disable="loading"
-  :class="{ 'cursor-not-allowed': loading }"
-  @click="active(props.row)"
->
-  <span v-if="loading">⏳</span>
-  <span v-else>✅</span>
-</q-btn>
+            
+            <q-btn @click="edit(props.row)" class="">📝</q-btn>
 
+            
+            <q-btn
+              v-if="props.row.estado == 1"
+              :loading="loading"
+              :disable="loading"
+              :class="{ 'cursor-not-allowed': loading }"
+              @click="inactive(props.row)"
+            >
+              <span v-if="loading">⏳</span>
+              <span v-else>🚫</span>
+            </q-btn>
+            <q-btn
+              v-else
+              :loading="loading"
+              :disable="loading"
+              :class="{ 'cursor-not-allowed': loading }"
+              @click="active(props.row)"
+            >
+              <span v-if="loading">⏳</span>
+              <span v-else>✅</span>
+            </q-btn>
           </td>
         </template>
       </q-table>
@@ -131,10 +134,7 @@ let nuevo = ref(false);
 let bd = ref(0);
 let _id = "";
 
-
 let loading = ref(false);
-
-
 
 let columns = ref([
   {
@@ -199,7 +199,6 @@ async function inactive(props) {
   listarLabores();
   loading.value = false;
 }
-
 
 async function active(props) {
   loading.value = true;
