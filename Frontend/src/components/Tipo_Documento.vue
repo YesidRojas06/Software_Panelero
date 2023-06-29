@@ -20,10 +20,27 @@
         <template v-slot:body-cell-opcion="props" style="opacity: 0">
           <td style="text-align: center">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)"
-              >🚫</q-btn
+
+            <q-btn
+              v-if="props.row.estado == 1"
+              :loading="loading"
+              :disable="loading"
+              :class="{ 'cursor-not-allowed': loading }"
+              @click="inactive(props.row)"
             >
-            <q-btn v-else @click="active(props.row)">✅</q-btn>
+              <span v-if="loading">⏳</span>
+              <span v-else>🚫</span>
+            </q-btn>
+            <q-btn
+              v-else
+              :loading="loading"
+              :disable="loading"
+              :class="{ 'cursor-not-allowed': loading }"
+              @click="active(props.row)"
+            >
+              <span v-if="loading">⏳</span>
+              <span v-else>✅</span>
+            </q-btn>
           </td>
         </template>
       </q-table>
@@ -52,7 +69,6 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-
           <!-- <p>Tipo De Documento</p>
           <q-select
             v-model="seleccion"
@@ -60,11 +76,18 @@
             lazy-rules
             color="positive" /> -->
 
-
-            <p>Tipo De Documento</p>
-          <q-select :options="nombreTOptions"  v-model="nombreT" emit-value map-options 
-          :option-value="'value'" :option-label="'label'" color="positive" class="form-input" required/>
-          
+          <p>Tipo De Documento</p>
+          <q-select
+            :options="nombreTOptions"
+            v-model="nombreT"
+            emit-value
+            map-options
+            :option-value="'value'"
+            :option-label="'label'"
+            color="positive"
+            class="form-input"
+            required
+          />
 
           <p></p>
           <p>Numero Del Documento</p>
@@ -76,9 +99,12 @@
               @click="nuevo = false"
               style="background-color: rgb(243, 9, 9)"
             />
-            <q-btn  @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
-              {{ bd == 0?"Guardar ": "Editar "  }} 
-            </q-btn> 
+            <q-btn
+              @click="guardarEditarDatos"
+              style="background-color: rgb(14, 224, 14)"
+            >
+              {{ bd == 0 ? "Guardar " : "Editar " }}
+            </q-btn>
           </q-card-actions>
         </q-card-section>
       </q-card>
@@ -96,13 +122,12 @@ const tipoDocumento = tipoDocumentoStore();
 let rows = ref();
 
 let nombreTOptions = ref([
-{ label: 'T.I', value: 'T.I' },
-{ label: 'C.C', value: 'C.C' },
-{ label: 'NIP', value: 'NIP' },
-{ label: 'R.C', value: 'R.C' },
-{ label: 'C.E', value: 'C.E' }
+  { label: "T.I", value: "T.I" },
+  { label: "C.C", value: "C.C" },
+  { label: "NIP", value: "NIP" },
+  { label: "R.C", value: "R.C" },
+  { label: "C.E", value: "C.E" },
 ]);
-
 
 // const nombreT = ["T.I", "C.C", "NIP", "R.C", "C.E"];
 
@@ -112,6 +137,8 @@ let siglas = ref("");
 let nuevo = ref(false);
 let bd = ref(0);
 let _id = "";
+
+let loading = ref(false);
 
 let columns = ref([
   // {
@@ -123,10 +150,13 @@ let columns = ref([
   //   sortable: false,
   // },
 
-
-  { name: 'nombreT', label: 'Tipo De Documento', field: 'nombreT', sortable: true, align: "center" },
-
-
+  {
+    name: "nombreT",
+    label: "Tipo De Documento",
+    field: "nombreT",
+    sortable: true,
+    align: "center",
+  },
 
   {
     name: "siglas",
@@ -165,12 +195,20 @@ function guardar() {
 }
 
 async function inactive(props) {
+  loading.value = true;
+
   let res = await tipoDocumento.inactivetipoDocumento(props._id);
+  loading.value = false;
+
   listartipoDocumento();
 }
 
 async function active(props) {
+  loading.value = true;
+
   let res = await tipoDocumento.activetipoDocumento(props._id);
+  loading.value = false;
+
   listartipoDocumento();
 }
 
@@ -285,10 +323,10 @@ input[type="text"] {
 }
 
 .tabla {
-border: 7px solid transparent;
-border-image: linear-gradient(to right, #00FF00, #000000) 1;
-border-image-slice: 1;
-border-radius: 20px;
+  border: 7px solid transparent;
+  border-image: linear-gradient(to right, #00ff00, #000000) 1;
+  border-image-slice: 1;
+  border-radius: 20px;
 }
 
 .form-input {

@@ -45,30 +45,30 @@
           </q-card-section>
 
           <q-card-section class="q-pt-none">
-            <p>codigo</p>
+            <p>Codigo</p>
           <input type="text" v-model="codigo" class="form-input" >
 
-          <p>nombres</p>
+          <p>Nombres</p>
           <input type="text" v-model="nombres" class="form-input" >
           <!-- <input type="text" v-model="correo" class="form-input"> -->
 
-          <p>descripcion</p>
+          <p>Descripcion</p>
          <input type="text" v-model="descripcion" class="form-input" >
 
 
-         <p>tamaño</p>
+         <p>Tamaño</p>
          <input type="text" v-model="tamaño" class="form-input">
 
          <p>Estado Sueldo</p>
          <input type="text" v-model="estadoSueldo" class="form-input" >
 
-         <p>clase</p>
+         <p>Clase</p>
          <input type="text" v-model="clase" class="form-input">
 
-         <p>padre</p>
+         <p>Padre</p>
          <input type="text" v-model="padre" class="form-input" >
 
-         <p>densidad</p>
+         <p>Densidad</p>
          <input type="text" v-model="densidad" class="form-input">
 
 
@@ -117,14 +117,14 @@ let _id = ""
 
 let columns = ref([
 
-{ name: 'codigo', align: 'center', label: 'codigo', field: "codigo", sortable: true },
-{ name: 'nombres', label: 'nombres', field: 'nombres', sortable: true, align: "center"},
-{ name: 'descripcion', label: 'descripcion', field: 'descripcion', sortable:true, align: "center" },
-{ name: 'tamaño', label: 'tamaño', field: 'tamaño', sortable:true, align: "center"},
-{ name: 'estadoSueldo', label: 'estadoSueldo', field: 'estadoSueldo', sortable:true, align: "center" },
-{ name: 'clase', label: 'clase', field: 'clase', sortable:true, align: "center" },
-{ name: 'padre', label: 'padre', field: 'padre', sortable:true, align: "center" },
-{ name: 'densidad', label: 'densidad', field: 'densidad', sortable:true, align: "center" },
+{ name: 'codigo', align: 'center', label: 'Codigo', field: "codigo", sortable: true },
+{ name: 'nombres', label: 'nombres', field: 'Nombres', sortable: true, align: "center"},
+{ name: 'descripcion', label: 'Descripcion', field: 'descripcion', sortable:true, align: "center" },
+{ name: 'tamaño', label: 'Tamaño', field: 'tamaño', sortable:true, align: "center"},
+{ name: 'estadoSueldo', label: 'Estado Sueldo', field: 'estadoSueldo', sortable:true, align: "center" },
+{ name: 'clase', label: 'Clase', field: 'clase', sortable:true, align: "center" },
+{ name: 'padre', label: 'Padre', field: 'padre', sortable:true, align: "center" },
+{ name: 'densidad', label: 'Densidad', field: 'densidad', sortable:true, align: "center" },
 { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
 { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])

@@ -15,8 +15,27 @@
         <template v-slot:body-cell-opcion="props" style="opacity: 0;">
           <td style="text-align: center;">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)">🚫</q-btn>
-            <q-btn v-else @click="active(props.row)">✅</q-btn>
+            <q-btn
+  v-if="props.row.estado == 1"
+  :loading="loading"
+  :disable="loading"
+  :class="{ 'cursor-not-allowed': loading }"
+  @click="inactive(props.row)"
+>
+  <span v-if="loading">⏳</span>
+  <span v-else>🚫</span>
+</q-btn>
+<q-btn
+  v-else
+  :loading="loading"
+  :disable="loading"
+  :class="{ 'cursor-not-allowed': loading }"
+  @click="active(props.row)"
+>
+  <span v-if="loading">⏳</span>
+  <span v-else>✅</span>
+</q-btn>
+
           </td>
         </template>
       </q-table>
@@ -54,6 +73,7 @@
             type="text"
             class="form-input"
             color="positive"
+            
           >
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer" color="positive">
@@ -105,18 +125,27 @@ let nuevo= ref(false)
 let bd= ref (0)
 let _id=""
 
+let loading = ref(false);
+
+
 let columns = ref([
   { name: 'nombrePago',
     required: true,
-    label: 'nombrePago',
+    label: 'Nombre Del Pago',
     align: 'left',
     field: "nombrePago",
     sortable: false},
 
-  { name: 'codigoPagoo', align: 'center', label: 'codigoPago', field: "codigoPago", sortable: true },
-  { name: 'tipoPago', align: 'center', label: 'tipoPago', field: "tipoPago", sortable: true },
-  { name: 'fecha', align: 'center', label: 'fecha', field: "fecha", sortable: true },
-  { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
+  { name: 'codigoPago', align: 'center', label: 'Codigo Del Pago', field: "codigoPago", sortable: true },
+  { name: 'tipoPago', align: 'center', label: 'Tipo De pago', field: "tipoPago", sortable: true },
+  {
+    name: "fecha",
+    label: "Fecha",
+    field: "fecha",
+    sortable: true,
+    align: "center",
+  },
+    { name: 'estado', label: 'Estado', field: 'estado', align: "center" },
   { name: 'opcion', label: 'Opciones', field: '', sortable: true, align: "center" }
 ])
 
@@ -144,13 +173,20 @@ limpiarFormulario();
 }
 
 async function inactive(props) {
+  loading.value = true;
+
 let res = await formapago.inactiveformapago(props._id);
+loading.value = false;
 listarformaPago();
 }
 
 async function active(props) {
+loading.value = true;
+
 console.log("sirve");
 let res = await formapago.activeformapago(props._id);
+loading.value = false;
+
 listarformaPago();
 }
 
@@ -170,7 +206,7 @@ if (bd.value === 0) {
   if (nombrePago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un nombrePago válido.",
+      message: "Por favor, ingrese un Pago válido",
       position: "top",
     });
     return;
@@ -179,7 +215,7 @@ if (bd.value === 0) {
   if (codigoPago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un codigoPago válido.",
+      message: "Por favor, ingrese un Codigo válido",
       position: "top",
     });
     return;
@@ -188,7 +224,7 @@ if (bd.value === 0) {
   if (tipoPago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un tipo de válido.",
+      message: "Por favor, ingrese un tipo de Pago válido",
       position: "top",
     });
     return;
@@ -198,7 +234,7 @@ if (bd.value === 0) {
   if (fecha.value === "") {
       q.notify({
         type: "negative",
-        message: "Por favor, ingrese una fecha válida.",
+        message: "Por favor, ingrese una Fecha válida",
         position: "top",
       });
       return;
@@ -222,7 +258,7 @@ if (bd.value === 0) {
   if (nombrePago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un nombrePago válido.",
+      message: "Por favor, ingrese un Pago válido",
       position: "top",
     });
     return;
@@ -231,7 +267,16 @@ if (bd.value === 0) {
   if (codigoPago.value === "") {
     q.notify({
       type: "negative",
-      message: "Por favor, ingrese un codigoPago válido.",
+      message: "Por favor, ingrese un codigo válido",
+      position: "top",
+    });
+    return;
+  }
+
+  if (tipoPago.value === "") {
+    q.notify({
+      type: "negative",
+      message: "Por favor, ingrese un Tipo De Pago válido",
       position: "top",
     });
     return;

@@ -28,10 +28,26 @@
         <template v-slot:body-cell-opcion="props" style="opacity: 0">
           <td style="text-align: center">
             <q-btn @click="edit(props.row)" class="">📝</q-btn>
-            <q-btn v-if="props.row.estado == 1" @click="inactive(props.row)"
-              >🚫</q-btn
-            >
-            <q-btn v-else @click="active(props.row)">✅</q-btn>
+            <q-btn
+  v-if="props.row.estado == 1"
+  :loading="loading"
+  :disable="loading"
+  :class="{ 'cursor-not-allowed': loading }"
+  @click="inactive(props.row)"
+>
+  <span v-if="loading">⏳</span>
+  <span v-else>🚫</span>
+</q-btn>
+<q-btn
+  v-else
+  :loading="loading"
+  :disable="loading"
+  :class="{ 'cursor-not-allowed': loading }"
+  @click="active(props.row)"
+>
+  <span v-if="loading">⏳</span>
+  <span v-else>✅</span>
+</q-btn>
           </td>
         </template>
       </q-table>
@@ -131,6 +147,10 @@ let nuevo = ref(false);
 let bd = ref(0);
 let _id = "";
 
+
+let loading = ref(false);
+
+
 let columns = ref([
   {
     name: "codigo",
@@ -189,12 +209,20 @@ function guardar() {
 }
 
 async function inactive(props) {
+  loading.value = true;
+
   let res = await UnidadesMedida.inactiveUnidadesMedida(props._id);
+  loading.value = false;
+
   listarUnidadesMedida();
 }
 
 async function active(props) {
+  loading.value = true;
+
   let res = await UnidadesMedida.activeUnidadesMedida(props._id);
+  loading.value = false;
+
   listarUnidadesMedida();
 }
 
