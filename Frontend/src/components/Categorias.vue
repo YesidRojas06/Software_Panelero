@@ -21,7 +21,7 @@
         </template>
       </q-table>
 
-      <q-btn color="white" text-color="black" label="Nueva Categoria" @click="guardar()"
+      <q-btn color="white" text-color="black" label="Nueva Categoria" @click="guardar"
         class="q-ma-md q-mb-lg q-mt-xl q-ml-auto q-mr-auto q-col-xs-12 q-col-sm-6 q-col-md-4 q-col-lg-3"
         style="position: absolute; top: 150px; right: 40px; border-radius: 30px;" />
 
@@ -48,7 +48,7 @@
 
           <q-card-actions align="center" class="bg-white text-black">
             <q-btn label="Cancelar" @click="nuevo = false" style="background-color: rgb(243, 9, 9)" />
-            <q-btn @click="guardarEditarDatos()" style="background-color: rgb(14, 224, 14)">
+            <q-btn @click="guardarEditarDatos" style="background-color: rgb(14, 224, 14)">
               {{ bd === 0 ? "Guardar" : "Editar" }}
             </q-btn>
           </q-card-actions>
@@ -98,7 +98,9 @@ let columns = ref([
 
 const listarcategoria = async () => {
 
-  rows.value = await categoria.getcategoria();
+  const data = await categoria.getcategoria();
+  console.log("data", data)
+  rows.value = data.categoria
 };
 listarcategoria();
 
